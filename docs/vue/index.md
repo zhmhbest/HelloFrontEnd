@@ -1,14 +1,7 @@
-<style>
-body {
-    color: #ddd;
-    background-color: #333;
-}
-a {
-    color: hotpink;
-}
-</style>
+<link rel="stylesheet" href="https://zhmhbest.gitee.io/hellomathematics/style/index.css">
+<script src="https://zhmhbest.gitee.io/hellomathematics/style/index.js"></script>
 
-# [Vue](https://github.com/zhmhbest/HelloVue)
+# [Vue](../index.html)
 
 - [Hello](demo/demo-template.html)
   - 没有模板
