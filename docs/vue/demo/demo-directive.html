@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Directive</title>
+    <script src="static/codeview.js"></script>
+    <script src="static/lib/vue.js"></script>
+</head>
+<body>
+
+<!-- ■■■■■■■■ ■■■■■■■■ ■■■■■■■■ ■■■■■■■■-->
+
+<h1>自定义指令</h1><div class="demo">
+<div id="el_directive">
+    <p v-diy-public-cmd="msg1"></p>
+    <p v-diy-private-cmd="msg2"></p>
+</div>
+<script>
+    //  【局部指令】
+    const myDirective = {
+        /**
+         * 被绑定元素插入父节点时调用（父节点存在即可调用，不必存在于 document 中）。
+         * @param el        所绑定的元素Object
+         * @param binding
+         *      binding.name        指令名，不包括 v- 前缀。
+         *      binding.value       指令的绑定值， 例如： v-my-directive="1 + 1", value 的值是 2。
+         *      binding.oldValue    指令绑定的前一个值，仅在 update 和 componentUpdated 钩子中可用。无论值是否改变都可用。
+         *      binding.expression  绑定值的表达式或变量名。 例如 v-my-directive="1 + 1" ， expression 的值是 "1 + 1"。
+         *      binding.arg         传给指令的参数。例如 v-my-directive:abc， arg 的值是 "abc"。
+         * @param vnode     Vue 编译生成的虚拟节点
+         */
+        inserted: function (el, binding, vnode) {
+            console.log("inserted");
+            // 当前自定义命令设置了元素的innerHTML
+            el.innerText = binding.value;
+        },
+        bind: function (el, binding, vnode) {
+            console.log("bind");
+            // 只调用一次，指令第一次绑定到元素时调用，用这个钩子函数可以定义一个在绑定时执行一次的初始化动作。
+        },
+        update: function (el, binding, vnode, oldVnode) {
+            // 被绑定元素所在的模板更新时调用，而不论绑定值是否变化。通过比较更新前后的绑定值，可以忽略不必要的模板更新。
+            console.log("update");
+        },
+        unbind: function (el, binding, vnode) {
+            // 只调用一次， 指令与元素解绑时调用。
+            console.log("unbind");
+        },
+        componentUpdated: function (el, binding, vnode, oldVnode) {
+            //被绑定元素所在模板完成一次更新周期时调用。
+            console.log("componentUpdated");
+        }
+    };
+
+    // 【全局指令】
+    Vue.directive('diy-public-cmd', myDirective);
+</script>
+<script>
+    finalRun(() => {
+        new Vue({
+            el: "#el_directive",
+            // 注册到局部
+            directives: {
+                'diy-private-cmd': myDirective
+            },
+            data: {
+                msg1: "全局指令",
+                msg2: "局部指令"
+            },
+        });
+    });
+</script>
+</div><div class="view"></div>
+
+<!-- ■■■■■■■■ ■■■■■■■■ ■■■■■■■■ ■■■■■■■■-->
+
+<script src="static/autoid.js"></script>
+</body>
+</html>
