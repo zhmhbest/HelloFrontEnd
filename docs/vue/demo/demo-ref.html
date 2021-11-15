@@ -32,6 +32,33 @@
 
 <!-- ■■■■■■■■ ■■■■■■■■ ■■■■■■■■ ■■■■■■■■-->
 
+<h1>For Ref</h1><div class="demo">
+<div id="el_for_ref">
+    <ul>
+        <li v-for="i in 3" :ref="`ref${i}`">{{i}}</li>
+    </ul>
+</div>
+<script>
+    finalRun(() => {
+        new Vue({
+            el: "#el_for_ref",
+            data: {
+                arr: [-1, -1, -1]
+            },
+            mounted() {
+                // 获得Dom
+                console.log("refs", this.$refs);
+                for (let i = 0; i < 3; i++) {
+                    console.log(`ref${i + 1}`, this.$refs[`ref${i + 1}`][0]);
+                }
+            }
+        });
+    });
+</script>
+</div><div class="view"></div>
+
+<!-- ■■■■■■■■ ■■■■■■■■ ■■■■■■■■ ■■■■■■■■-->
+
 <script src="static/autoid.js"></script>
 </body>
 </html>
