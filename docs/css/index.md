@@ -205,17 +205,7 @@
 
 ### Rect
 
-#### client
-
-![](./images/client.png)
-
-#### offset
-
-![](./images/offset.png)
-
-#### scroll
-
-![](./images/scroll.png)
+![client_offser_scroll](images/client_offser_scroll.png)
 
 ### Margin
 
