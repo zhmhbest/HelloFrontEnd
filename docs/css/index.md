@@ -5,30 +5,27 @@
 
 [TOC]
 
-## Import
+## 引入样式
 
 ```html
 <link rel="stylesheet" type="text/css" href="style.css" />
 ```
 
-## Display
+## 显示方式
 
-| 样式 | 说明 |
-| :-: | :- |
-| none         | 元素不会被显示 |
-| block        | **块级元素**独占一行。常见的块元素有：`p`、`h1`、`h2`、`h3`、`br`、`div`等。 |
-| inline       | **内联元素**只占自身的宽度。常见的内联元素有：`a`、`span`等。 |
-| inline-block | **行内块元素**既能设置宽高，也不会独占一行。常见的行内块元素有：`img`、`iframe`等。 |
-| inherit      | 继承自父元素 |
-| table        | 将元素作为一个块级`table`显示。相关子元素见下述。 |
-| inline-table | 将元素作为一个内联`table`显示。相关子元素见下述。 |
-| table-caption      | `caption` |
-| table-header-group | `thead` |
-| table-row-group    | `tbody` |
-| table-row          | `tr` |
-| table-cell         | `th`、`td` |
+| 样式 | 说明 | 例子 |
+| --: | :- | :- |
+| `none`       | 元素不会被显示 |  |
+| `block`      | **块级元素**独占一行。 | `p`、`h1`、`h2`、`h3`、`br`、`div` |
+| `inline`     | **内联元素**只占自身的宽度。 | `a`、`span` |
+| `inline-block` | **行内块元素**既能设置宽高，也不会独占一行。 | `img`、`iframe` |
+| `inherit`    | 继承自父元素 |  |
 
-## Hidden
+```html
+<div style="display: block;"></div>
+```
+
+## 隐藏元素
 
 ```css
 {
@@ -45,16 +42,16 @@
 }
 ```
 
-## Selector
+## 选择器
 
-### Basic
+### 基础选择器
 
 - `tag_name {}`：标签选择器
 - `.cls_name {}`：类选择器
 - `#id_name {}`：ID选择器
 - `* {}`：通配选择器
 
-### Advanced
+### 逻辑选择器
 
 - `selector1,selector2 {}`：并集选择器
 - `selector2selector2 {}`：交集选择器（若有标签选择器，则必须为第一个）
@@ -64,7 +61,7 @@
 - `selector1 selector2 {}`：后代选择器（后代的后代也可被选中）
 - `selector1>selector2 {}`：子元素选择器（必须为直系）
 
-### Pseudo-class
+### 伪类选择器
 
 - `a:link {}`：未访问过的链接
 - `a:visited {}`：访问过的链接，只能设置字体颜色
@@ -82,14 +79,14 @@
 - `selector:last-of-type {}`：最后一个元素
 - `selector:nth-of-type {}`：第n个元素
 
-### Pseudo-element
+### 伪元素选择器
 
 - `p:first-letter {}`：首字母样式
 - `p:first-line {}`：首行样式
 - `p:before {content:"[前]";color:red;}`：每行之前，添加内容
 - `p:after {content:"[后]";color:orange;}`：每行之后，添加内容
 
-### Attribute
+### 属性选择器
 
 - `selector[attr] {}`：选取含有指定属性的元素
 - `selector[attr1][attr2] {}`：同时含有属性attr1和attr2的元素
@@ -100,9 +97,9 @@
 - `selector[attr*="content"] {}`：含有指定属性且值包含content的元素
 - `selector[attr~="content"] {}`：含有指定属性且值以空格断句时可出现content的元素
 
-## Unit of length
+## 长度单位
 
-### Absolute
+### 绝对长度
 
 | Value  | Explain |
 | :- | :-: |
@@ -111,7 +108,7 @@
 | mm | 毫米
 | in | 英寸
 
-### Relative
+### 相对长度
 
 | Value  | Explain |
 | :-  | :-: |
@@ -119,7 +116,7 @@
 | em  | 1 em = 1 当前元素的 font-size
 | rem | 1 rem = 1 根元素的 font-size
 
-## Color
+## 颜色
 
 - [颜色表](html/color.html)
 
@@ -144,7 +141,7 @@
 }
 ```
 
-## Font
+## 字体
 
 ```css
 {
@@ -170,9 +167,9 @@
 }
 ```
 
-## Box
+## 盒子模型
 
-![](images/box.png)
+![box](images/box.png)
 
 ```css
 {
@@ -232,7 +229,7 @@
 
 - [容器](./src/container.html)
 
-## Layout
+## 布局
 
 ### [Position](./src/position.html)
 
