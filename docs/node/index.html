@@ -270,10 +270,10 @@ pre[data-line] .line-highlight[data-end]:after {
 <ul>
 <li><a href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE">&#x73AF;&#x5883;&#x914D;&#x7F6E;</a>
 <ul>
+<li><a href="#%E5%AE%89%E8%A3%85">&#x5B89;&#x88C5;</a></li>
 <li><a href="#node-gyp">node-gyp</a></li>
 <li><a href="#%E5%85%B3%E8%81%94js%E5%90%AF%E5%8A%A8">&#x5173;&#x8054;JS&#x542F;&#x52A8;</a></li>
 <li><a href="#%E5%85%B3%E8%81%94ts%E5%90%AF%E5%8A%A8">&#x5173;&#x8054;TS&#x542F;&#x52A8;</a></li>
-<li><a href="#%E9%95%9C%E5%83%8F%E8%AE%BE%E7%BD%AE">&#x955C;&#x50CF;&#x8BBE;&#x7F6E;</a></li>
 </ul>
 </li>
 <li><a href="#%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8">&#x5305;&#x7BA1;&#x7406;&#x5668;</a>
@@ -282,55 +282,61 @@ pre[data-line] .line-highlight[data-end]:after {
 <li><a href="#yarn">YARN</a></li>
 </ul>
 </li>
-<li><a href="#a-hrefjavascriptgotorepositorysrc%E6%9F%A5%E7%9C%8B%E4%BB%93%E5%BA%93a">&#x67E5;&#x770B;&#x4ED3;&#x5E93;</a></li>
 </ul>
 </li>
 </ul>
 <h2 class="mume-header" id="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE">&#x73AF;&#x5883;&#x914D;&#x7F6E;</h2>
 
-<ul>
-<li>&#x4E0B;&#x8F7D;<a href="https://nodejs.org/en/download/">Binary NodeJs</a></li>
-</ul>
-<pre data-role="codeBlock" data-info="batch" class="language-batch"><span class="token comment">REM &#x5220;&#x9664;&#x5386;&#x53F2;&#x914D;&#x7F6E;</span>
+<p>&#x4E0B;&#x8F7D;<a href="https://nodejs.org/en/download/">Binary NodeJs</a></p>
+<h3 class="mume-header" id="%E5%AE%89%E8%A3%85">&#x5B89;&#x88C5;</h3>
+
+<pre data-role="codeBlock" data-info="batch" class="language-batch"><span class="token comment">REM &#x8BBE;&#x7F6E;&#x5B89;&#x88C5;&#x76EE;&#x5F55;</span>
+<span class="token command"><span class="token keyword keyword-SET">SET</span> <span class="token variable">NODE_LOCAL</span><span class="token operator">=</span>D:\ProgramFiles\Programming\Nodejs</span>
+<span class="token command"><span class="token keyword keyword-IF">IF</span> <span class="token keyword keyword-NOT">NOT</span> <span class="token keyword keyword-EXIST">EXIST</span> <span class="token string">&quot;%NODE_LOCAL%&quot;</span></span> <span class="token command"><span class="token keyword keyword-MKDIR">MKDIR</span> <span class="token string">&quot;%NODE_LOCAL%&quot;</span></span>
+<span class="token comment">REM &#x8BBE;&#x7F6E;&#x4E0B;&#x8F7D;&#x7248;&#x672C;</span>
+<span class="token command"><span class="token keyword keyword-SET">SET</span> <span class="token variable">NODE_VERSION</span><span class="token operator">=</span>v14.<span class="token number">17</span>.<span class="token number">3</span></span>
+<span class="token command"><span class="token keyword keyword-SET">SET</span> <span class="token variable">NODE_ARCH</span><span class="token operator">=</span>x64</span>
+<span class="token command"><span class="token keyword keyword-SET">SET</span> <span class="token variable">NODE_NAME</span><span class="token operator">=</span>node<span class="token operator">-</span><span class="token variable">%NODE_VERSION%</span><span class="token operator">-</span>win<span class="token operator">-</span><span class="token variable">%NODE_ARCH%</span></span>
+<span class="token command"><span class="token keyword keyword-SET">SET</span> <span class="token variable">NODE_URL</span><span class="token operator">=</span>https:<span class="token operator">/</span><span class="token operator">/</span>nodejs.org<span class="token operator">/</span>dist<span class="token operator">/</span><span class="token variable">%NODE_VERSION%</span><span class="token operator">/</span><span class="token variable">%NODE_NAME%</span>.zip</span>
+<span class="token command"><span class="token keyword keyword-ECHO">ECHO</span> <span class="token variable">%NODE_NAME%</span></span>
+
+<span class="token comment">REM &#x4E0B;&#x8F7D;</span>
+<span class="token comment">REM wget &quot;%NODE_URL%&quot; -O &quot;%NODE_LOCAL%\%NODE_NAME%.zip&quot;</span>
+<span class="token command"><span class="token keyword keyword-aria2c">aria2c</span> <span class="token parameter attr-name">-c</span> <span class="token parameter attr-name">-x</span> <span class="token number">8</span> <span class="token parameter attr-name">-j</span> <span class="token number">4</span> <span class="token parameter attr-name">-d</span> <span class="token string">&quot;%NODE_LOCAL%&quot;</span> <span class="token string">&quot;%NODE_URL%&quot;</span></span>
+
+<span class="token comment">REM &#x5B89;&#x88C5;</span>
+<span class="token command"><span class="token keyword keyword-unzip">unzip</span> <span class="token string">&quot;%NODE_LOCAL%/%NODE_NAME%.zip&quot;</span> <span class="token parameter attr-name">-d</span> <span class="token string">&quot;%NODE_LOCAL%&quot;</span></span>
+<span class="token command"><span class="token keyword keyword-SET">SET</span> <span class="token variable">PATH</span><span class="token operator">=</span><span class="token variable">%NODE_LOCAL%</span><span class="token operator">/</span><span class="token variable">%NODE_NAME%</span>;<span class="token variable">%PATH%</span></span>
+
+<span class="token comment">REM &#x5220;&#x9664;&#x5386;&#x53F2;&#x914D;&#x7F6E;</span>
 <span class="token command"><span class="token keyword keyword-DEL">DEL</span> <span class="token parameter attr-name">/F</span> <span class="token parameter attr-name">/Q</span> <span class="token variable">%Userprofile%</span>\.npmrc</span>
 <span class="token command"><span class="token keyword keyword-DEL">DEL</span> <span class="token parameter attr-name">/F</span> <span class="token parameter attr-name">/Q</span> <span class="token variable">%Userprofile%</span>\.yarnrc</span>
-</pre><pre data-role="codeBlock" data-info="batch" class="language-batch"><span class="token comment">REM &#x4E34;&#x65F6;&#x73AF;&#x5883;</span>
-<span class="token command"><span class="token keyword keyword-SET">SET</span> <span class="token variable">NODE_HOME</span><span class="token operator">=</span>D:\ProgramFiles\Programming\Nodejs\node<span class="token operator">-</span>v14.<span class="token number">17</span>.<span class="token number">3</span><span class="token operator">-</span>win<span class="token operator">-</span>x64</span>
-<span class="token command"><span class="token keyword keyword-CD">CD</span> <span class="token parameter attr-name">/D</span> <span class="token string">&quot;%NODE_HOME%&quot;</span></span>
 
-<span class="token comment">REM &#x51C6;&#x5907;&#x76EE;&#x5F55;</span>
-<span class="token command"><span class="token keyword keyword-MKDIR">MKDIR</span> .\bin</span>
-<span class="token command"><span class="token keyword keyword-MKDIR">MKDIR</span> .\cache</span>
-<span class="token command"><span class="token keyword keyword-MKDIR">MKDIR</span> .\cache\npm</span>
-
-<span class="token comment">REM &#x51C6;&#x5907;NPM&#x3001;Yarn</span>
-<span class="token command"><span class="token keyword keyword-SET">SET</span> <span class="token variable">NPM</span><span class="token operator">=</span>node <span class="token string">&quot;%NODE_HOME%\node_modules\npm\bin\npm-cli.js&quot;</span></span>
-%NPM% config set registry https://registry.npm.taobao.org/
-%NPM% config set cache &quot;%NODE_HOME%\cache\npm&quot;
-%NPM% config set prefix &quot;%NODE_HOME%\bin&quot;
-%NPM% -g i npm yarn
-%NPM% config delete prefix
-
-<span class="token comment">REM &#x51C6;&#x5907;Node</span>
-<span class="token command"><span class="token keyword keyword-COPY">COPY</span> <span class="token parameter attr-name">/y</span> .\node.exe .\bin\node.exe</span>
-
-<span class="token comment">REM &#x914D;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;</span>
-<span class="token command"><span class="token keyword keyword-SETX">SETX</span> NODE_HOME <span class="token string">&quot;%NODE_HOME%&quot;</span></span>
-<span class="token comment">REM SET NODE_HOME=</span>
-<span class="token comment">REM SETX NODE_PATH &quot;%NODE_HOME%\bin\node_modules&quot;</span>
-</pre><ul>
-<li>&#x624B;&#x52A8;&#x6DFB;&#x52A0;<code>%NODE_HOME%\bin</code>&#x5230;<code>%PATH%</code>&#x4E2D;</li>
-</ul>
-<pre data-role="codeBlock" data-info="batch" class="language-batch"><span class="token comment">REM &#x6D4B;&#x8BD5;</span>
-<span class="token command"><span class="token keyword keyword-node">node</span> <span class="token parameter attr-name">-v</span></span>
+<span class="token comment">REM &#x914D;&#x7F6E;&#x955C;&#x50CF;</span>
+<span class="token command"><span class="token keyword keyword-npm">npm</span> config set registry https://registry.npm.taobao.org/</span>
+<span class="token command"><span class="token keyword keyword-npm">npm</span> config set NVM_NODEJS_ORG_MIRROR=http://npm.taobao.org/mirrors/node/</span>
+<span class="token command"><span class="token keyword keyword-npm">npm</span> config set NVMW_NPM_MIRROR=http://npm.taobao.org/mirrors/npm/</span>
+<span class="token command"><span class="token keyword keyword-npm">npm</span> config set ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/</span>
+<span class="token command"><span class="token keyword keyword-npm">npm</span> config set ELECTRON_BUILDER_BINARIES_MIRROR=http://npm.taobao.org/mirrors/electron-builder-binaries/</span>
+<span class="token command"><span class="token keyword keyword-npm">npm</span> config set SASS_BINARY_SITE=http://npm.taobao.org/mirrors/node-sass/</span>
+<span class="token command"><span class="token keyword keyword-npm">npm</span> config set PYTHON_MIRROR=http://npm.taobao.org/mirrors/python/</span>
 <span class="token command"><span class="token keyword keyword-npm">npm</span> config ls</span>
-<span class="token command"><span class="token keyword keyword-yarn">yarn</span> config list</span>
 
-<span class="token comment">REM &#x914D;&#x7F6E;YARN</span>
-<span class="token command"><span class="token keyword keyword-MKDIR">MKDIR</span> <span class="token string">&quot;%NODE_HOME%\cache\yarn&quot;</span></span>
-<span class="token command"><span class="token keyword keyword-MKDIR">MKDIR</span> <span class="token string">&quot;%NODE_HOME%\cache\modules&quot;</span></span>
+<span class="token comment">REM &#x5B89;&#x88C5;Yarn</span>
+<span class="token command"><span class="token keyword keyword-npm">npm</span> <span class="token parameter attr-name">-g</span> i yarn</span>
+
+<span class="token comment">REM &#x73AF;&#x5883;&#x53D8;&#x91CF;</span>
+<span class="token command"><span class="token keyword keyword-SETX">SETX</span> <span class="token string">&quot;NODE_HOME&quot;</span> <span class="token string">&quot;%NODE_LOCAL%\%NODE_NAME%&quot;</span></span>
+</pre><p>&#x624B;&#x52A8;&#x6DFB;&#x52A0;<code>%NODE_HOME%</code>&#x5230;<code>%PATH%</code>&#x4E2D;</p>
+<pre data-role="codeBlock" data-info="batch" class="language-batch"><span class="token comment">REM &#x914D;&#x7F6E;&#x7F13;&#x5B58;&#x76EE;&#x5F55;</span>
+<span class="token command"><span class="token keyword keyword-IF">IF</span> <span class="token keyword keyword-NOT">NOT</span> <span class="token keyword keyword-EXIST">EXIST</span> <span class="token string">&quot;%NODE_HOME%\cache\npm&quot;</span></span>  <span class="token command"><span class="token keyword keyword-MKDIR">MKDIR</span> <span class="token string">&quot;%NODE_HOME%\cache\npm&quot;</span></span>
+<span class="token command"><span class="token keyword keyword-IF">IF</span> <span class="token keyword keyword-NOT">NOT</span> <span class="token keyword keyword-EXIST">EXIST</span> <span class="token string">&quot;%NODE_HOME%\cache\yarn&quot;</span></span> <span class="token command"><span class="token keyword keyword-MKDIR">MKDIR</span> <span class="token string">&quot;%NODE_HOME%\cache\yarn&quot;</span></span>
+<span class="token command"><span class="token keyword keyword-npm">npm</span> config set cache <span class="token string">&quot;%NODE_HOME%\cache\npm&quot;</span></span>
 <span class="token command"><span class="token keyword keyword-yarn">yarn</span> config set cache-folder <span class="token string">&quot;%NODE_HOME%\cache\yarn&quot;</span></span>
-<span class="token command"><span class="token keyword keyword-yarn">yarn</span> config set global-folder <span class="token string">&quot;%NODE_HOME%\cache\modules&quot;</span></span>
+
+<span class="token comment">REM &#x914D;&#x7F6E;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x76EE;&#x5F55;&#xFF08;&#x4E0D;&#x5EFA;&#x8BAE;&#xFF09;</span>
+<span class="token command"><span class="token keyword keyword-npm">npm</span> config set prefix <span class="token string">&quot;%NODE_HOME%&quot;</span></span>
+<span class="token command"><span class="token keyword keyword-yarn">yarn</span> config set global-folder <span class="token string">&quot;%NODE_HOME%&quot;</span></span>
 </pre><h3 class="mume-header" id="node-gyp">node-gyp</h3>
 
 <blockquote>
@@ -352,16 +358,6 @@ pre[data-line] .line-highlight[data-end]:after {
 <span class="token command"><span class="token keyword keyword-reg">reg</span> add <span class="token string">&quot;HKCR\.ts&quot;</span> <span class="token parameter attr-name">/f</span> <span class="token parameter attr-name">/ve</span> <span class="token parameter attr-name">/t</span> REG_SZ <span class="token parameter attr-name">/d</span> <span class="token string">&quot;TSFile&quot;</span></span>
 <span class="token command"><span class="token keyword keyword-reg">reg</span> add <span class="token string">&quot;HKCR\TSFile\DefaultIcon&quot;</span> <span class="token parameter attr-name">/f</span> <span class="token parameter attr-name">/ve</span> <span class="token parameter attr-name">/t</span> REG_SZ <span class="token parameter attr-name">/d</span> <span class="token string">&quot;\&quot;%NODE_HOME%\bin\node.exe\&quot;&quot;</span></span>
 <span class="token command"><span class="token keyword keyword-reg">reg</span> add <span class="token string">&quot;HKCR\TSFile\Shell\Open\Command&quot;</span> <span class="token parameter attr-name">/f</span> <span class="token parameter attr-name">/ve</span> <span class="token parameter attr-name">/t</span> REG_SZ <span class="token parameter attr-name">/d</span> <span class="token string">&quot;\&quot;%NODE_HOME%\bin\ts-node.cmd\&quot; \&quot;%1\&quot; %*&quot;</span></span>
-</pre><h3 class="mume-header" id="%E9%95%9C%E5%83%8F%E8%AE%BE%E7%BD%AE">&#x955C;&#x50CF;&#x8BBE;&#x7F6E;</h3>
-
-<pre data-role="codeBlock" data-info="bash" class="language-bash"><span class="token function">npm</span> config <span class="token builtin class-name">set</span> registry https://registry.npm.taobao.org/
-<span class="token function">npm</span> config <span class="token builtin class-name">set</span> <span class="token assign-left variable">NVM_NODEJS_ORG_MIRROR</span><span class="token operator">=</span>http://npm.taobao.org/mirrors/node/
-<span class="token function">npm</span> config <span class="token builtin class-name">set</span> <span class="token assign-left variable">NVMW_NPM_MIRROR</span><span class="token operator">=</span>http://npm.taobao.org/mirrors/npm/
-<span class="token function">npm</span> config <span class="token builtin class-name">set</span> <span class="token assign-left variable">ELECTRON_MIRROR</span><span class="token operator">=</span>https://npm.taobao.org/mirrors/electron/
-<span class="token function">npm</span> config <span class="token builtin class-name">set</span> <span class="token assign-left variable">ELECTRON_BUILDER_BINARIES_MIRROR</span><span class="token operator">=</span>http://npm.taobao.org/mirrors/electron-builder-binaries/
-<span class="token function">npm</span> config <span class="token builtin class-name">set</span> <span class="token assign-left variable">SASS_BINARY_SITE</span><span class="token operator">=</span>http://npm.taobao.org/mirrors/node-sass/
-<span class="token function">npm</span> config <span class="token builtin class-name">set</span> <span class="token assign-left variable">PYTHON_MIRROR</span><span class="token operator">=</span>http://npm.taobao.org/mirrors/python/
-<span class="token function">npm</span> config <span class="token function">ls</span>
 </pre><h2 class="mume-header" id="%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8">&#x5305;&#x7BA1;&#x7406;&#x5668;</h2>
 
 <h3 class="mume-header" id="npm">NPM</h3>
@@ -401,10 +397,7 @@ pre[data-line] .line-highlight[data-end]:after {
 
 <span class="token comment"># &#x5168;&#x5C40;&#x5B89;&#x88C5;&#xFF08;&#x4E0D;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;&#xFF09;</span>
 <span class="token function">yarn</span> global <span class="token function">add</span> <span class="token operator">&lt;</span>package_name<span class="token operator">&gt;</span>
-</pre><h2 class="mume-header" id="a-hrefjavascriptgotorepositorysrc%E6%9F%A5%E7%9C%8B%E4%BB%93%E5%BA%93a"><a href="javascript:gotoRepository(&apos;src&apos;)">&#x67E5;&#x770B;&#x4ED3;&#x5E93;</a></h2>
-
-<script src="../gotoRepository.js"></script>
-
+</pre>
       </div>
       
       
