@@ -1,6 +1,6 @@
-# 创建本地程序
+## 创建本地程序
 
-## 初始化项目
+### 初始化项目
 
 ```bash
 mkdir src src/assets
@@ -93,7 +93,7 @@ module.exports = {
 }
 ```
 
-## 调试项目
+### 调试项目
 
 ```bash
 # Linux
@@ -105,7 +105,7 @@ REM Windows
 pushd src & npx ts-node --scope-dir . index.ts & popd
 ```
 
-## 打包项目
+### 打包项目
 
 ```bash
 npx webpack

@@ -1,6 +1,6 @@
-# 创建网页
+## 创建网页
 
-## 初始化项目
+### 初始化项目
 
 ```bash
 mkdir src src/assets
@@ -136,13 +136,13 @@ module.exports = {
 };
 ```
 
-## 调试项目
+### 调试项目
 
 ```bash
 npx webpack-dev-server --inline --progress
 ```
 
-## 打包项目
+### 打包项目
 
 ```bash
 npx webpack
