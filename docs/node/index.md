@@ -5,7 +5,7 @@
 
 [TOC]
 
-## 环境配置
+## Environment
 
 下载[Binary NodeJs](https://nodejs.org/en/download/)
 
@@ -77,7 +77,9 @@ npm -g i node-gyp
 node-gyp rebuild
 ```
 
-### 关联JS启动
+### 关联启动
+
+`.js`
 
 ```batch
 REM 在管理员命令窗口中输入
@@ -85,19 +87,19 @@ REM C:\Windows\System32\CScript.exe "%1" %*
 reg add "HKCR\JSFile\Shell\Open\Command" /f /ve /t REG_SZ /d "\"%NODE_HOME%\bin\node.exe\" \"%1\" %*"
 ```
 
-### 关联TS启动
+`.ts`
 
 ```batch
-npm -g i typescript ts-node
+npm -g i @types/node typescript ts-node
 REM 在管理员命令窗口中输入
 reg add "HKCR\.ts" /f /ve /t REG_SZ /d "TSFile"
 reg add "HKCR\TSFile\DefaultIcon" /f /ve /t REG_SZ /d "\"%NODE_HOME%\bin\node.exe\""
 reg add "HKCR\TSFile\Shell\Open\Command" /f /ve /t REG_SZ /d "\"%NODE_HOME%\bin\ts-node.cmd\" \"%1\" %*"
 ```
 
-## 包管理器
+## Package
 
-### NPM
+### npm
 
 ```bash
 # npm init
@@ -119,7 +121,7 @@ npm -S un <package_name>
 npm -g un <package_name>
 ```
 
-### YARN
+### yarn
 
 ```bash
 yarn init
@@ -138,4 +140,169 @@ yarn remove <package_name>
 
 # 全局安装（不建议使用）
 yarn global add <package_name>
+```
+
+## Module
+
+### CommonJS
+
+`exports`是`module.exports`的引用。
+
+```js
+/**
+ * @file mod0.js
+ */
+exports.name = "CommonoJSModule0"
+let count = 0;
+exports.count = count;
+exports.plus = function() {
+    count++;
+}
+exports.say = function() {
+    console.log(this.name, "Number is", this.count);
+};
+```
+
+```js
+/**
+ * @file mod0.js
+ */
+let count = 0;
+module.exports = {
+    name: "CommonoJSModule1",
+    count: count,
+    plus: function() {
+        count++;
+    },
+    say: function() {
+        console.log(this.name, "Number is", this.count);
+    }
+};
+```
+
+```js
+/**
+ * @file index.js
+ */
+const mod0 = require("./mod0.js");
+mod0.say();
+mod0.plus();
+mod0.say();
+// CommonoJSModule0 Number is 0
+// CommonoJSModule0 Number is 0
+
+const mod1 = require("./mod1.js");
+mod1.say();
+mod1.plus();
+mod1.say();
+// CommonoJSModule1 Number is 0
+// CommonoJSModule1 Number is 0
+```
+
+### ECMAScript6
+
+```ts
+/**
+ * @file mod.ts
+ */
+export let name = "ECMAScript6Module";
+export let count = 0;
+export function plus() {
+    count++;
+}
+export function say() {
+    console.log(name, "Number is", count);
+}
+```
+
+```ts
+/**
+ * @file index.ts
+ */
+import { plus, say } from "./mod";
+say();
+plus();
+say();
+// ECMAScript6Module Number is 0
+// ECMAScript6Module Number is 1
+```
+
+## File
+
+```js
+const fs = require("fs");
+const path = require("path");
+/**
+ * 定义回调方法
+ * @callback ReadDirectoryCallback
+ * @param {string} name
+ * @param {fs.Stats} stat
+ */
+/**
+ * 枚举目录下所有文件和文件夹
+ * @param {string} location
+ * @param {ReadDirectoryCallback} callback
+ */
+const enumDirectory = (location, callback) => {
+    try {
+        const stat = fs.statSync(location);
+        if(!stat.isDirectory()) return false;
+        callback(location.replace(/\\/g, '/'), stat);
+    } catch(err) { return false }
+    const recursion = (loc) => {
+        const files = fs.readdirSync(loc);
+        for (let file of files) {
+            const name = path.join(loc, file);
+            const stat = fs.statSync(name);
+            callback(name.replace(/\\/g, '/'), stat);
+            if (stat.isDirectory()) {
+                recursion(name);
+            }
+        }
+    };
+    recursion(location);
+    return true;
+};
+
+enumDirectory("C:/Windows/System32/Boot", (name, stat) => {
+    if (stat.isFile()) {
+        console.log("f", name, stat.size);
+    } else if (stat.isDirectory()) {
+        console.log("d", name, stat.size);
+    } else {
+        console.log("o", name, stat.size);
+    }
+});
+```
+
+## Http
+
+```js
+const http = require("http");
+const serverOptions = { port: 9999, host: "127.0.0.1" };
+const server = http.createServer((request, response) => {
+    const contentLength = parseInt(request.headers['content-length'] || '0');
+    response.writeHead(200, { 'Content-Type': 'text/plain' });
+    // Line
+    response.write(`HTTP${request.httpVersion} ${request.method} ${request.url}`);
+    response.write("\n");
+    // Headers
+    response.write(JSON.stringify(request.headers, undefined, "    "));
+    response.write("\n");
+    // Body
+    if (contentLength > 0) {
+        request.on('data', (chunk) => {
+            response.write(chunk);
+        });
+        request.on('end', () => {
+            response.end();
+        });
+    } else {
+        response.end();
+    }
+    // response.pipe(response);
+});
+server.listen(serverOptions.port, serverOptions.host, () => {
+    console.log("Web Server started at http://".concat(serverOptions.host, ":").concat(serverOptions.port));
+});
 ```
