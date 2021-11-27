@@ -44,62 +44,60 @@
 
 ## 选择器
 
-### 基础选择器
+|                 | 说明       |
+| --------------: | :--------- |
+|          `* {}` | 通配选择器 |
+|    `TagName {}` | 标签选择器 |
+| `.ClassName {}` | 类选择器   |
+|        `#ID {}` | ID选择器   |
 
-- `tag_name {}`：标签选择器
-- `.cls_name {}`：类选择器
-- `#id_name {}`：ID选择器
-- `* {}`：通配选择器
+|                 | 说明                         | 例子                |
+| --------------: | :--------------------------- | :------------------ |
+|      `S1,S2 {}` | 并集                         | `h1,h2,h3`          |
+|       `S2S2 {}` | 交集                         | `div#id`、`div.cls` |
+| `S2:not(S2) {}` | 排除                         | `.hint:not(h1,h2)`  |
+|      `S1+S2 {}` | 首平（后一个紧挨的平级标签） | `h2+p`              |
+|      `S1~S2 {}` | 平辈（之后所有的平级标签）   | `h1~h2`             |
+|      `S1>S2 {}` | 子代（孙代不算）             | `tr>td`             |
+|      `S1 S2 {}` | 后代（孙代也算）             | `table td`          |
 
-### 逻辑选择器
+|                   伪类 | 说明                           |
+| ---------------------: | :----------------------------- |
+|            `a:link {}` | 未访问过的链接                 |
+|         `a:visited {}` | 访问过的链接，只能设置字体颜色 |
+|           `S:hover {}` | 鼠标悬停时样式                 |
+|          `S:active {}` | 鼠标点击时样式                 |
+|       `input:focus {}` | 文本框获得焦点时样式           |
+|      `S::selection {}` | （Chrome）选中的文字样式       |
+| `S::-moz-selection {}` | （Firefox）选中的文字样式      |
+|     `S:first-child {}` | （当前容器内）第一个子元素     |
+|      `S:last-child {}` | （当前容器内）最后一个子元素   |
+|    `S:nth-child(n) {}` | （当前容器内）第n个子元素      |
+| `S:nth-child(even) {}` | （当前容器内）偶数位置         |
+|  `S:nth-child(odd) {}` | （当前容器内）奇数位置         |
+|   `S:first-of-type {}` | 第一个元素                     |
+|    `S:last-of-type {}` | 最后一个元素                   |
+|     `S:nth-of-type {}` | 第n个元素                      |
 
-- `selector1,selector2 {}`：并集选择器
-- `selector2selector2 {}`：交集选择器（若有标签选择器，则必须为第一个）
-- `selector2:not(selector2) {}`：排除选择器
-- `selector1+selector2 {}`：兄弟选择器（后一个紧挨的平级标签）
-- `selector1~selector2 {}`：兄弟选择器（后边所有的平级标签）
-- `selector1 selector2 {}`：后代选择器（后代的后代也可被选中）
-- `selector1>selector2 {}`：子元素选择器（必须为直系）
+|                                    伪元素 | 说明               |
+| ----------------------------------------: | ------------------ |
+|                       `p:first-letter {}` | 首字母样式         |
+|                         `p:first-line {}` | 首行样式           |
+|   `p:before  {content:"[前]";color:red;}` | 每行之前，添加内容 |
+| `p:after  {content:"[后]";color:orange;}` | 每行之后，添加内容 |
 
-### 伪类选择器
-
-- `a:link {}`：未访问过的链接
-- `a:visited {}`：访问过的链接，只能设置字体颜色
-- `selector:hover {}`：鼠标悬停时样式
-- `selector:active {}`：鼠标点击时样式
-- `input:focus {}`：文本框获得焦点时样式
-- `selector::selection {}`：（Chrome）选中的文字样式
-- `selector::-moz-selection {}`：（Firefox）选中的文字样式
-- `selector:first-child {}`：（当前容器内）第一个子元素
-- `selector:last-child {}`：（当前容器内）最后一个子元素
-- `selector:nth-child(n) {}`：（当前容器内）第n个子元素
-- `selector:nth-child(even) {}`：（当前容器内）偶数位置
-- `selector:nth-child(odd) {}`：（当前容器内）奇数位置
-- `selector:first-of-type {}`：第一个元素
-- `selector:last-of-type {}`：最后一个元素
-- `selector:nth-of-type {}`：第n个元素
-
-### 伪元素选择器
-
-- `p:first-letter {}`：首字母样式
-- `p:first-line {}`：首行样式
-- `p:before {content:"[前]";color:red;}`：每行之前，添加内容
-- `p:after {content:"[后]";color:orange;}`：每行之后，添加内容
-
-### 属性选择器
-
-- `selector[attr] {}`：选取含有指定属性的元素
-- `selector[attr1][attr2] {}`：同时含有属性attr1和attr2的元素
-- `selector[attr="value"] {}`：含有指定属性且值为value的元素
-- `selector[attr|="value"] {}`：含有指定属性且值为value或值以value开头的元素
-- `selector[attr^="head"] {}`：含有指定属性且值以head开头的元素
-- `selector[attr$="tail"] {}`：含有指定属性且值以tail结尾的元素
-- `selector[attr*="content"] {}`：含有指定属性且值包含content的元素
-- `selector[attr~="content"] {}`：含有指定属性且值以空格断句时可出现content的元素
+|                 属性 | 说明                                              |
+| -------------------: | ------------------------------------------------- |
+|            `S[A] {}` | 含有指定属性的元素                                |
+|       `S[A1][A2] {}` | 同时含有属性A1和A2的元素                          |
+|    `S[A="value"] {}` | 含有指定属性且，值为value的元素                   |
+|   `S[A|="value"] {}` | 含有指定属性且，值为value或值以value开头的元素    |
+|    `S[A^="head"] {}` | 含有指定属性且，值以head开头的元素                |
+|    `S[A$="tail"] {}` | 含有指定属性且，值以tail结尾的元素                |
+| `S[A*="content"] {}` | 含有指定属性且，值包含content的元素               |
+| `S[A~="content"] {}` | 含有指定属性且，值以空格断句时可出现content的元素 |
 
 ## 长度单位
-
-### 绝对长度
 
 | Value  | Explain |
 | :- | :-: |
@@ -107,8 +105,6 @@
 | cm | 厘米
 | mm | 毫米
 | in | 英寸
-
-### 相对长度
 
 | Value  | Explain |
 | :-  | :-: |
@@ -189,48 +185,137 @@
 
 ![缩写规则](./images/trbl.png)
 
-| 边框样式 | 效果 |
-| :-:     | :-: |
-| non     | 无边框
-| hidden  | 无边框，用于解决`table`边框冲突
-| dotted  | 点状
-| dashed  | 虚线
-| solid   | 实线
-| double  | 双线
-| groove  | 3D 凹槽
-| ridge   | 3D 垄状
-| inset   | 3D inset
-| outset  | 3D outset
-| inherit | 从父元素继承边框样式。
-
-### Rect
+| `border-style` | 效果 |
+| --:     | :-- |
+| `none` | 无边框 |
+| `hidden` | 无边框，用于解决`table`边框冲突 |
+| `dotted` | 点状 |
+| `dashed` | 虚线 |
+| `solid` | 实线 |
+| `double` | 双线 |
+| `inherit` | 从父元素继承 |
 
 ![client_offser_scroll](images/client_offser_scroll.png)
 
-### Margin
+```js
+document.documentElement.clientWidth
+document.documentElement.clientHeight
 
-- [垂直外边距折叠](./src/marginfold.html)
+document.documentElement.offsetWidth
+document.documentElement.offsetHeight
+document.documentElement.offsetLeft
+document.documentElement.offsetTop
+
+document.documentElement.scrollWidth
+document.documentElement.scrollHeight
+document.documentElement.scrollLeft
+document.documentElement.scrollTop
+```
+
+### 垂直外边距折叠
+
+**相邻兄弟元素之间的垂直外边距以最大值决定**:
+
+@import "src/marginfold/demo-max.html"
+
+```css
+.box1 { margin-bottom: 100px; background: darkcyan; }
+.box2 { margin-top: 50px; background: hotpink; }
+```
+
+**子元素的上外边距会传递给父元素**：
+
+@import "src/marginfold/demo-top.html"
+
+```css
+.box1 { background: darkcyan; }
+.box2 { margin-top: 50px; background: hotpink; }
+```
+
+**解决外边界传递**：
+
+@import "src/marginfold/demo-resolve.html"
+
+```css
+/* box1追加类 */
+.ResolveDeliver:before {content: ''; display: table;}
+.box1 { background: darkcyan; }
+.box2 { margin-top: 50px; background: hotpink; }
+```
 
 ### Overflow
 
-- [内容溢出](./src/overflow.html)
+**直接可见**：
+
+@import "src/overflow/demo-visible.html"
+
+<br><br>
+
+**不可见**：
+
+@import "src/overflow/demo-hidden.html"
+
+**增加滚动条**：
+
+@import "src/overflow/demo-scroll.html"
+
+**溢出后再自动增加滚动条**：
+
+@import "src/overflow/demo-auto.html"
 
 ### Container
 
-- [容器](./src/container.html)
+**Block容器**：
+
+@import "src/container/demo-block.html"
+
+**Flex容器**：
+
+@import "src/container/demo-flex.html"
 
 ## 布局
 
-### [Position](./src/position.html)
+### Position
 
-- 绝对布局
-- 相对布局
+```css
+? {
+    /*
+        relative: 以本身为定位对象进行偏移
+        absolute: 以父对象的padding为定位起始进行偏移
+        fixed   : 以body为定位对象的特殊absolute
+    */
+    position: ?;
+
+    /* 偏移量，只取其二 */
+    top: ?;
+    left: ?;
+    right: ?;
+    bottom: ?;
+
+    /* 显示层级，越大越靠上，可取负值 */
+    z-index: ?;
+}
+```
 
 ### [Float](./src/float.html)
 
-- 浮动布局
+**子元素不能撑开父元素**：
 
-#### Clearfix
+@import "src/float/demo-collapse.html"
+
+<br>
+
+**解决浮动塌陷1**：
+
+@import "src/float/demo-resolve1.html"
+
+**清除浮动**：
+
+@import "src/float/demo-clear.html"
+
+**解决浮动塌陷2**：
+
+@import "src/float/demo-resolve2.html"
 
 ```css
 /* 解决浮动布局高度塌陷和外边界传递（兼容IE6） */
@@ -242,11 +327,9 @@
 }
 ```
 
-### [Flex](./src/flex.html)
+### Flex
 
-- Flex布局
-
-#### 容器属性
+**容器属性**：
 
 ```css
 {
@@ -271,13 +354,13 @@
 ```
 
 - justify-content
-  - ![](images/justify-content.png)
+  - ![justify-content](images/justify-content.png)
 - align-items
-  - ![](images/align-items.png)
+  - ![align-items](images/align-items.png)
 - align-content
-  - ![](images/align-content.png)
+  - ![align-content](images/align-content.png)
 
-#### 子对象属性
+**子对象属性**：
 
 ```css
 {
@@ -300,3 +383,5 @@
     align-self: auto | flex-start | flex-end | center | baseline | stretch;
 }
 ```
+
+<iframe style="width: 500px; height: 1250px; border:none" src="src/flex.html"></iframe>
