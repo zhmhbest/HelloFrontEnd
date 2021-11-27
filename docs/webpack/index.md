@@ -10,5 +10,3 @@
 @import "./node.md"
 
 @import "./html.md"
-
-@import "./lib.md"

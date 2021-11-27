@@ -268,26 +268,13 @@ pre[data-line] .line-highlight[data-end]:after {
 <ul>
 <li><a href="#webpackindexhtml">Webpack</a>
 <ul>
-<li><a href="#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE">&#x57FA;&#x672C;&#x914D;&#x7F6E;</a></li>
-<li><a href="#%E5%88%9B%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%A8%8B%E5%BA%8F">&#x521B;&#x5EFA;&#x672C;&#x5730;&#x7A0B;&#x5E8F;</a>
-<ul>
-<li><a href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE">&#x521D;&#x59CB;&#x5316;&#x9879;&#x76EE;</a></li>
-<li><a href="#%E8%B0%83%E8%AF%95%E9%A1%B9%E7%9B%AE">&#x8C03;&#x8BD5;&#x9879;&#x76EE;</a></li>
-<li><a href="#%E6%89%93%E5%8C%85%E9%A1%B9%E7%9B%AE">&#x6253;&#x5305;&#x9879;&#x76EE;</a></li>
-</ul>
-</li>
-<li><a href="#%E5%88%9B%E5%BB%BA%E7%BD%91%E9%A1%B5">&#x521B;&#x5EFA;&#x7F51;&#x9875;</a>
-<ul>
-<li><a href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE-1">&#x521D;&#x59CB;&#x5316;&#x9879;&#x76EE;</a></li>
-<li><a href="#%E8%B0%83%E8%AF%95%E9%A1%B9%E7%9B%AE-1">&#x8C03;&#x8BD5;&#x9879;&#x76EE;</a></li>
-<li><a href="#%E6%89%93%E5%8C%85%E9%A1%B9%E7%9B%AE-1">&#x6253;&#x5305;&#x9879;&#x76EE;</a></li>
-</ul>
-</li>
-<li><a href="#%E5%88%9B%E5%BB%BA%E5%BA%93">&#x521B;&#x5EFA;&#x5E93;</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE">&#x914D;&#x7F6E;</a></li>
+<li><a href="#%E6%9C%AC%E5%9C%B0">&#x672C;&#x5730;</a></li>
+<li><a href="#%E7%BD%91%E9%A1%B5">&#x7F51;&#x9875;</a></li>
 </ul>
 </li>
 </ul>
-<h2 class="mume-header" id="%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE">&#x57FA;&#x672C;&#x914D;&#x7F6E;</h2>
+<h2 class="mume-header" id="%E9%85%8D%E7%BD%AE">&#x914D;&#x7F6E;</h2>
 
 <p><code>webpack.config.js</code></p>
 <pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword keyword-const">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;path&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -297,6 +284,9 @@ pre[data-line] .line-highlight[data-end]:after {
 module<span class="token punctuation">.</span><span class="token property-access">exports</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
     <span class="token comment">// &#x53D1;&#x5E03; | &#x8C03;&#x5F0F;</span>
     mode<span class="token operator">:</span> <span class="token operator">?</span><span class="token punctuation">,</span> <span class="token comment">// &apos;production&apos; | &apos;development&apos;</span>
+
+    <span class="token comment">// &#x7F16;&#x8BD1;&#x76EE;&#x6807;</span>
+    target<span class="token operator">:</span> <span class="token operator">?</span><span class="token punctuation">,</span> <span class="token comment">// &apos;web&apos; | &apos;node&apos;</span>
 
     <span class="token comment">// &#x5165;&#x53E3;&#x6587;&#x4EF6;</span>
     entry<span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -310,12 +300,16 @@ module<span class="token punctuation">.</span><span class="token property-access
         <span class="token comment">// &#x8F93;&#x51FA;&#x6587;&#x4EF6;&#x540D;</span>
         filename<span class="token operator">:</span> <span class="token string">&apos;static/js/[name]-[hash].js&apos;</span><span class="token punctuation">,</span>
 
-        <span class="token comment">// libraryTarget: &quot;var&quot;,</span>
-        <span class="token comment">// library: &quot;libraryName&quot;,</span>
-        <span class="token comment">// globalObject: &quot;this&quot;,</span>
+        <span class="token comment">// &#x5E93;&#x5BFC;&#x51FA;</span>
+        library<span class="token operator">:</span> <span class="token punctuation">{</span>
+            type<span class="token operator">:</span> <span class="token string">&apos;var&apos;</span><span class="token punctuation">,</span>
+            name<span class="token operator">:</span> <span class="token string">&apos;libraryName&apos;</span><span class="token punctuation">,</span>
+            <span class="token keyword module keyword-export">export</span><span class="token operator">:</span> <span class="token string">&apos;default&apos;</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
 
     <span class="token comment">// CDN&#x5F15;&#x5165;&#x7684;&#x8D44;&#x6E90;</span>
+    <span class="token comment">// &#x6B64;&#x5904;&#x5F15;&#x5165;&#x7684;CDN&#x8D44;&#x6E90;&#x5C06;&#x4F7F;&#x7528;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x4EE3;&#x66FF;&#x5305;&#x5F15;&#x5165;&#xFF0C;&#x6700;&#x7EC8;&#x6253;&#x5305;&#x7ED3;&#x679C;&#x5C06;&#x4E0D;&#x4F1A;&#x5305;&#x62EC;&#x76F8;&#x5173;&#x5305;</span>
     externals<span class="token operator">:</span> <span class="token punctuation">{</span>
         <span class="token comment">// localModuleName: globalModuleName</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -329,7 +323,7 @@ module<span class="token punctuation">.</span><span class="token property-access
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
 
-    <span class="token comment">// &#x8C03;&#x8BD5;&#x8FD0;&#x884C;&#x76F8;&#x5173;</span>
+    <span class="token comment">// &#x8C03;&#x8BD5;&#x8FD0;&#x884C;&#x76F8;&#x5173;&#xFF08;&#x4F9D;&#x8D56;&#x4E8E;HtmlWebpackPlugin&#xFF09;</span>
     devServer<span class="token operator">:</span> <span class="token punctuation">{</span>
         port<span class="token operator">:</span> <span class="token number">9999</span><span class="token punctuation">,</span>
         progress<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
@@ -362,7 +356,9 @@ module<span class="token punctuation">.</span><span class="token property-access
             <span class="token punctuation">{</span>
                 test<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.json5$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
                 loader<span class="token operator">:</span> <span class="token string">&apos;json5-loader&apos;</span>
-            <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+            <span class="token punctuation">{</span>
                 test<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.(png|jpe?g|gif|icon?)$</span><span class="token regex-delimiter">/</span><span class="token regex-flags">i</span></span><span class="token punctuation">,</span>
                 use<span class="token operator">:</span> <span class="token punctuation">[</span>
                     <span class="token punctuation">{</span>
@@ -373,13 +369,17 @@ module<span class="token punctuation">.</span><span class="token property-access
                         <span class="token punctuation">}</span>
                     <span class="token punctuation">}</span>
                 <span class="token punctuation">]</span>
-            <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+            <span class="token punctuation">{</span>
                 test<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.css$</span><span class="token regex-delimiter">/</span><span class="token regex-flags">i</span></span><span class="token punctuation">,</span>
                 use<span class="token operator">:</span> <span class="token punctuation">[</span>
                     <span class="token maybe-class-name">MiniCssExtractPlugin</span><span class="token punctuation">.</span><span class="token property-access">loader</span><span class="token punctuation">,</span>
                     <span class="token string">&apos;css-loader&apos;</span>
                 <span class="token punctuation">]</span>
-            <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+            <span class="token punctuation">{</span>
                 test<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.(sass|scss)$</span><span class="token regex-delimiter">/</span><span class="token regex-flags">i</span></span><span class="token punctuation">,</span>
                 use<span class="token operator">:</span> <span class="token punctuation">[</span>
                     <span class="token maybe-class-name">MiniCssExtractPlugin</span><span class="token punctuation">.</span><span class="token property-access">loader</span><span class="token punctuation">,</span>
@@ -433,12 +433,14 @@ module<span class="token punctuation">.</span><span class="token property-access
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-</pre><h2 class="mume-header" id="%E5%88%9B%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%A8%8B%E5%BA%8F">&#x521B;&#x5EFA;&#x672C;&#x5730;&#x7A0B;&#x5E8F;</h2>
+</pre><h2 class="mume-header" id="%E6%9C%AC%E5%9C%B0">&#x672C;&#x5730;</h2>
 
-<h3 class="mume-header" id="%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE">&#x521D;&#x59CB;&#x5316;&#x9879;&#x76EE;</h3>
-
-<pre data-role="codeBlock" data-info="bash" class="language-bash"><span class="token function">mkdir</span> src src/assets
-<span class="token function">touch</span> src/index.ts src/assets/.gitkeep
+<pre data-role="codeBlock" data-info="bash" class="language-bash"><span class="token function">mkdir</span> src
+<span class="token function">mkdir</span> src/assets
+<span class="token function">touch</span> src/index.ts
+<span class="token function">touch</span> src/assets/.gitkeep
+<span class="token function">touch</span> tsconfig.json
+<span class="token function">touch</span> webpack.config.js
 <span class="token function">npm</span> init -y
 
 <span class="token comment"># Webpack</span>
@@ -517,21 +519,20 @@ module<span class="token punctuation">.</span><span class="token property-access
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
     <span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
-</pre><h3 class="mume-header" id="%E8%B0%83%E8%AF%95%E9%A1%B9%E7%9B%AE">&#x8C03;&#x8BD5;&#x9879;&#x76EE;</h3>
-
+</pre><p><strong>&#x8C03;&#x8BD5;&#x9879;&#x76EE;</strong>&#xFF1A;</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash"><span class="token comment"># Linux</span>
 <span class="token function">pushd</span> src<span class="token punctuation">;</span> npx ts-node --scope-dir <span class="token builtin class-name">.</span> index.ts<span class="token punctuation">;</span> <span class="token function">popd</span>
 </pre><pre data-role="codeBlock" data-info="batch" class="language-batch"><span class="token comment">REM Windows</span>
 <span class="token command"><span class="token keyword keyword-pushd">pushd</span> src </span><span class="token operator">&amp;</span> <span class="token command"><span class="token keyword keyword-npx">npx</span> ts-node <span class="token parameter attr-name">--scope-dir</span> . index.ts </span><span class="token operator">&amp;</span> <span class="token command"><span class="token keyword keyword-popd">popd</span></span>
-</pre><h3 class="mume-header" id="%E6%89%93%E5%8C%85%E9%A1%B9%E7%9B%AE">&#x6253;&#x5305;&#x9879;&#x76EE;</h3>
-
+</pre><p><strong>&#x6253;&#x5305;&#x9879;&#x76EE;</strong>&#xFF1A;</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash">npx webpack
-</pre><h2 class="mume-header" id="%E5%88%9B%E5%BB%BA%E7%BD%91%E9%A1%B5">&#x521B;&#x5EFA;&#x7F51;&#x9875;</h2>
+</pre><h2 class="mume-header" id="%E7%BD%91%E9%A1%B5">&#x7F51;&#x9875;</h2>
 
-<h3 class="mume-header" id="%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE-1">&#x521D;&#x59CB;&#x5316;&#x9879;&#x76EE;</h3>
-
-<pre data-role="codeBlock" data-info="bash" class="language-bash"><span class="token function">mkdir</span> src src/assets
-<span class="token function">touch</span> src/index.js src/index.ejs src/assets/.gitkeep
+<pre data-role="codeBlock" data-info="bash" class="language-bash"><span class="token function">mkdir</span> src
+<span class="token function">mkdir</span> src/assets
+<span class="token function">touch</span> src/index.js
+<span class="token function">touch</span> src/index.ejs
+<span class="token function">touch</span> src/assets/.gitkeep
 <span class="token function">npm</span> init -y
 
 <span class="token comment"># Webpack</span>
@@ -653,16 +654,11 @@ module<span class="token punctuation">.</span><span class="token property-access
         <span class="token punctuation">]</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-</pre><h3 class="mume-header" id="%E8%B0%83%E8%AF%95%E9%A1%B9%E7%9B%AE-1">&#x8C03;&#x8BD5;&#x9879;&#x76EE;</h3>
-
+</pre><p><strong>&#x8C03;&#x8BD5;&#x9879;&#x76EE;</strong>&#xFF1A;</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash">npx webpack-dev-server --inline --progress
-</pre><h3 class="mume-header" id="%E6%89%93%E5%8C%85%E9%A1%B9%E7%9B%AE-1">&#x6253;&#x5305;&#x9879;&#x76EE;</h3>
-
+</pre><p><strong>&#x6253;&#x5305;&#x9879;&#x76EE;</strong>&#xFF1A;</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash">npx webpack
-</pre><h2 class="mume-header" id="%E5%88%9B%E5%BB%BA%E5%BA%93">&#x521B;&#x5EFA;&#x5E93;</h2>
-
-<p>&#x5F85;&#x8865;&#x5145;</p>
-
+</pre>
       </div>
       
       

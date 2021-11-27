@@ -1,10 +1,11 @@
-## 创建网页
-
-### 初始化项目
+## 网页
 
 ```bash
-mkdir src src/assets
-touch src/index.js src/index.ejs src/assets/.gitkeep
+mkdir src
+mkdir src/assets
+touch src/index.js
+touch src/index.ejs
+touch src/assets/.gitkeep
 npm init -y
 
 # Webpack
@@ -113,13 +114,13 @@ module.exports = {
 };
 ```
 
-### 调试项目
+**调试项目**：
 
 ```bash
 npx webpack-dev-server --inline --progress
 ```
 
-### 打包项目
+**打包项目**：
 
 ```bash
 npx webpack

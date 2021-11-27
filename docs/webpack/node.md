@@ -1,10 +1,12 @@
-## 创建本地程序
-
-### 初始化项目
+## 本地
 
 ```bash
-mkdir src src/assets
-touch src/index.ts src/assets/.gitkeep
+mkdir src
+mkdir src/assets
+touch src/index.ts
+touch src/assets/.gitkeep
+touch tsconfig.json
+touch webpack.config.js
 npm init -y
 
 # Webpack
@@ -93,7 +95,7 @@ module.exports = {
 }
 ```
 
-### 调试项目
+**调试项目**：
 
 ```bash
 # Linux
@@ -105,7 +107,7 @@ REM Windows
 pushd src & npx ts-node --scope-dir . index.ts & popd
 ```
 
-### 打包项目
+**打包项目**：
 
 ```bash
 npx webpack

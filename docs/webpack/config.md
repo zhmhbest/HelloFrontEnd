@@ -1,5 +1,5 @@
 
-## 基本配置
+## 配置
 
 `webpack.config.js`
 
@@ -11,6 +11,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     // 发布 | 调式
     mode: ?, // 'production' | 'development'
+
+    // 编译目标
+    target: ?, // 'web' | 'node'
 
     // 入口文件
     entry: {
@@ -24,12 +27,16 @@ module.exports = {
         // 输出文件名
         filename: 'static/js/[name]-[hash].js',
 
-        // libraryTarget: "var",
-        // library: "libraryName",
-        // globalObject: "this",
+        // 库导出
+        library: {
+            type: 'var',
+            name: 'libraryName',
+            export: 'default',
+        }
     },
 
     // CDN引入的资源
+    // 此处引入的CDN资源将使用全局变量代替包引入，最终打包结果将不会包括相关包
     externals: {
         // localModuleName: globalModuleName
     },
@@ -43,7 +50,7 @@ module.exports = {
         }
     },
 
-    // 调试运行相关
+    // 调试运行相关（依赖于HtmlWebpackPlugin）
     devServer: {
         port: 9999,
         progress: true,
@@ -76,7 +83,9 @@ module.exports = {
             {
                 test: /\.json5$/,
                 loader: 'json5-loader'
-            }, {
+            },
+
+            {
                 test: /\.(png|jpe?g|gif|icon?)$/i,
                 use: [
                     {
@@ -87,13 +96,17 @@ module.exports = {
                         }
                     }
                 ]
-            }, {
+            },
+
+            {
                 test: /\.css$/i,
                 use: [
                     MiniCssExtractPlugin.loader,
                     'css-loader'
                 ]
-            }, {
+            },
+
+            {
                 test: /\.(sass|scss)$/i,
                 use: [
                     MiniCssExtractPlugin.loader,
