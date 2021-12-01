@@ -1,5 +1,5 @@
 
-## 配置
+## Config
 
 `webpack.config.js`
 

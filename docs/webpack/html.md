@@ -1,29 +1,38 @@
-## 网页
+## Web
 
-```bash
-mkdir src
-mkdir src/assets
-touch src/index.js
-touch src/index.ejs
-touch src/assets/.gitkeep
-npm init -y
-
-# Webpack
-yarn -D add webpack@^4 webpack-cli@^3
-yarn -D add webpack-dev-server@^3 html-webpack-plugin@^4
-yarn -D add copy-webpack-plugin@^6
-
-# Loaders
-yarn -D add mini-css-extract-plugin@^1 css-loader@^5
-yarn -D add json5-loader
-
-# Common Library
-yarn add axios
+```txt
+├── dist
+├── node_modules
+├── src
+│   ├── assets
+│   ├── index.ejs
+│   └── index.js
+├── webpack.config.js
+├── package.json
+└── yarn.lock
 ```
 
-`index.ejs`
+`packages.json`
 
-@import "index.ejs"
+```json
+"scripts": {
+    "build": "webpack",
+    "serve": "webpack-dev-server --inline --progress"
+},
+"devDependencies": {
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.3",
+    "html-webpack-plugin": "^4.5.2",
+    "copy-webpack-plugin": "^6.4.1",
+    "mini-css-extract-plugin": "^1.6.2",
+    "css-loader": "^5.2.7",
+    "json5-loader": "^4.0.1"
+},
+"dependencies": {
+    "axios": "^0.24.0"
+}
+```
 
 `webpack.config.js`
 
@@ -45,7 +54,6 @@ const cdnResources = [
         js: 'https://cdn.bootcss.com/axios/0.21.0/axios.min.js'
     },
 ];
-
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -61,7 +69,7 @@ module.exports = {
     },
     devServer: {
         host: '0.0.0.0',
-        port: 9000,
+        port: 5000,
         progress: true,
         contentBase: false,
         compress: true
@@ -114,14 +122,12 @@ module.exports = {
 };
 ```
 
-**调试项目**：
+`index.ejs`
 
-```bash
-npx webpack-dev-server --inline --progress
-```
+@import "index.ejs"
 
-**打包项目**：
+`index.js`
 
-```bash
-npx webpack
+```js
+document.querySelector('#app').innerText = "Hello";
 ```

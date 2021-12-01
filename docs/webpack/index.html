@@ -268,13 +268,14 @@ pre[data-line] .line-highlight[data-end]:after {
 <ul>
 <li><a href="#webpackindexhtml">Webpack</a>
 <ul>
-<li><a href="#%E9%85%8D%E7%BD%AE">&#x914D;&#x7F6E;</a></li>
-<li><a href="#%E6%9C%AC%E5%9C%B0">&#x672C;&#x5730;</a></li>
-<li><a href="#%E7%BD%91%E9%A1%B5">&#x7F51;&#x9875;</a></li>
+<li><a href="#config">Config</a></li>
+<li><a href="#node">Node</a></li>
+<li><a href="#web">Web</a></li>
+<li><a href="#vue">Vue</a></li>
 </ul>
 </li>
 </ul>
-<h2 class="mume-header" id="%E9%85%8D%E7%BD%AE">&#x914D;&#x7F6E;</h2>
+<h2 class="mume-header" id="config">Config</h2>
 
 <p><code>webpack.config.js</code></p>
 <pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword keyword-const">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;path&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -433,27 +434,34 @@ module<span class="token punctuation">.</span><span class="token property-access
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-</pre><h2 class="mume-header" id="%E6%9C%AC%E5%9C%B0">&#x672C;&#x5730;</h2>
+</pre><h2 class="mume-header" id="node">Node</h2>
 
-<pre data-role="codeBlock" data-info="bash" class="language-bash"><span class="token function">mkdir</span> src
-<span class="token function">mkdir</span> src/assets
-<span class="token function">touch</span> src/index.ts
-<span class="token function">touch</span> src/assets/.gitkeep
-<span class="token function">touch</span> tsconfig.json
-<span class="token function">touch</span> webpack.config.js
-<span class="token function">npm</span> init -y
-
-<span class="token comment"># Webpack</span>
-<span class="token function">yarn</span> -D <span class="token function">add</span> webpack@^4 webpack-cli@^3
-
-<span class="token comment"># Webpack-Plugins</span>
-<span class="token function">yarn</span> -D <span class="token function">add</span> copy-webpack-plugin@^6 ts-loader@^8
-
-<span class="token comment"># Typescript</span>
-<span class="token function">yarn</span> -D <span class="token function">add</span> typescript ts-node @types/node
-
-<span class="token comment"># Common Library</span>
-<span class="token function">yarn</span> <span class="token function">add</span> json5
+<pre data-role="codeBlock" data-info="txt" class="language-txt">&#x251C;&#x2500;&#x2500; dist
+&#x251C;&#x2500;&#x2500; node_modules
+&#x251C;&#x2500;&#x2500; src
+&#x2502;   &#x251C;&#x2500;&#x2500; assets
+&#x2502;   &#x2514;&#x2500;&#x2500; index.ts
+&#x251C;&#x2500;&#x2500; webpack.config.js
+&#x251C;&#x2500;&#x2500; tsconfig.json
+&#x251C;&#x2500;&#x2500; package.json
+&#x2514;&#x2500;&#x2500; yarn.lock
+</pre><p><code>package.json</code></p>
+<pre data-role="codeBlock" data-info="json" class="language-json"><span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;build&quot;</span><span class="token operator">:</span> <span class="token string">&quot;webpack&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;test&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ts-node --dir ./src/ ./index.ts&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token property">&quot;devDependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;@types/node&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^16.11.11&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;copy-webpack-plugin&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^6.4.1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;ts-loader&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^8.3.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;ts-node&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^10.4.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;typescript&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.5.2&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;webpack&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.46.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;webpack-cli&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^3.3.12&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token property">&quot;dependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;json5&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^2.2.0&quot;</span>
+<span class="token punctuation">}</span>
 </pre><p><code>tsconfig.json</code></p>
 <pre data-role="codeBlock" data-info="json" class="language-json"><span class="token punctuation">{</span>
     <span class="token property">&quot;compilerOptions&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -519,57 +527,39 @@ module<span class="token punctuation">.</span><span class="token property-access
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
     <span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
-</pre><p><strong>&#x8C03;&#x8BD5;&#x9879;&#x76EE;</strong>&#xFF1A;</p>
-<pre data-role="codeBlock" data-info="bash" class="language-bash"><span class="token comment"># Linux</span>
-<span class="token function">pushd</span> src<span class="token punctuation">;</span> npx ts-node --scope-dir <span class="token builtin class-name">.</span> index.ts<span class="token punctuation">;</span> <span class="token function">popd</span>
-</pre><pre data-role="codeBlock" data-info="batch" class="language-batch"><span class="token comment">REM Windows</span>
-<span class="token command"><span class="token keyword keyword-pushd">pushd</span> src </span><span class="token operator">&amp;</span> <span class="token command"><span class="token keyword keyword-npx">npx</span> ts-node <span class="token parameter attr-name">--scope-dir</span> . index.ts </span><span class="token operator">&amp;</span> <span class="token command"><span class="token keyword keyword-popd">popd</span></span>
-</pre><p><strong>&#x6253;&#x5305;&#x9879;&#x76EE;</strong>&#xFF1A;</p>
-<pre data-role="codeBlock" data-info="bash" class="language-bash">npx webpack
-</pre><h2 class="mume-header" id="%E7%BD%91%E9%A1%B5">&#x7F51;&#x9875;</h2>
+</pre><p><code>index.ts</code></p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword module keyword-import">import</span> <span class="token imports"><span class="token operator">*</span> <span class="token keyword module keyword-as">as</span> path</span> <span class="token keyword module keyword-from">from</span> <span class="token string">&apos;path&apos;</span>
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>path<span class="token punctuation">.</span><span class="token method function property-access">resolve</span><span class="token punctuation">(</span><span class="token string">&quot;.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><h2 class="mume-header" id="web">Web</h2>
 
-<pre data-role="codeBlock" data-info="bash" class="language-bash"><span class="token function">mkdir</span> src
-<span class="token function">mkdir</span> src/assets
-<span class="token function">touch</span> src/index.js
-<span class="token function">touch</span> src/index.ejs
-<span class="token function">touch</span> src/assets/.gitkeep
-<span class="token function">npm</span> init -y
-
-<span class="token comment"># Webpack</span>
-<span class="token function">yarn</span> -D <span class="token function">add</span> webpack@^4 webpack-cli@^3
-<span class="token function">yarn</span> -D <span class="token function">add</span> webpack-dev-server@^3 html-webpack-plugin@^4
-<span class="token function">yarn</span> -D <span class="token function">add</span> copy-webpack-plugin@^6
-
-<span class="token comment"># Loaders</span>
-<span class="token function">yarn</span> -D <span class="token function">add</span> mini-css-extract-plugin@^1 css-loader@^5
-<span class="token function">yarn</span> -D <span class="token function">add</span> json5-loader
-
-<span class="token comment"># Common Library</span>
-<span class="token function">yarn</span> <span class="token function">add</span> axios
-</pre><p><code>index.ejs</code></p>
-<pre data-role="codeBlock" data-info="ejs" class="language-ejs"><span class="token language-javascript"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token constant">DOCTYPE</span> html<span class="token operator">&gt;</span>
-<span class="token operator">&lt;</span>html lang<span class="token operator">=</span><span class="token string">&quot;zh&quot;</span><span class="token operator">&gt;</span>
-
-<span class="token operator">&lt;</span>head<span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>meta charset<span class="token operator">=</span><span class="token string">&quot;UTF-8&quot;</span><span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>meta name<span class="token operator">=</span><span class="token string">&quot;viewport&quot;</span> content<span class="token operator">=</span><span class="token string">&quot;width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no&quot;</span><span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>meta http<span class="token operator">-</span>equiv<span class="token operator">=</span><span class="token string">&quot;Access-Control-Allow-Origin&quot;</span> content<span class="token operator">=</span><span class="token string">&quot;*&quot;</span><span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>link rel<span class="token operator">=</span><span class="token string">&quot;shortcut icon&quot;</span> href<span class="token operator">=</span><span class="token string">&quot;&quot;</span> type<span class="token operator">=</span><span class="token string">&quot;image/x-icon&quot;</span><span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>title<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>title<span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span><span class="token operator">%</span> <span class="token keyword control-flow keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-let">let</span> item <span class="token keyword keyword-of">of</span> cdnResources<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token operator">%</span><span class="token operator">&gt;</span>
-        <span class="token operator">&lt;</span><span class="token operator">%</span> <span class="token keyword control-flow keyword-if">if</span><span class="token punctuation">(</span><span class="token keyword nil keyword-undefined">undefined</span> <span class="token operator">!==</span> item<span class="token punctuation">.</span><span class="token property-access">js</span><span class="token punctuation">)</span> <span class="token operator">%</span><span class="token operator">&gt;</span>
-        <span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">&quot;&lt;%- item.js %&gt;&quot;</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
-        <span class="token operator">&lt;</span><span class="token operator">%</span> <span class="token keyword control-flow keyword-if">if</span><span class="token punctuation">(</span><span class="token keyword nil keyword-undefined">undefined</span> <span class="token operator">!==</span> item<span class="token punctuation">.</span><span class="token property-access">css</span><span class="token punctuation">)</span> <span class="token operator">%</span><span class="token operator">&gt;</span>
-        <span class="token operator">&lt;</span>link href<span class="token operator">=</span><span class="token string">&quot;&lt;%- item.css %&gt;&quot;</span> rel<span class="token operator">=</span><span class="token string">&quot;stylesheet&quot;</span><span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span><span class="token operator">%</span> <span class="token punctuation">}</span> <span class="token operator">%</span><span class="token operator">&gt;</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>head<span class="token operator">&gt;</span>
-
-<span class="token operator">&lt;</span>body<span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">&quot;app&quot;</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>body<span class="token operator">&gt;</span>
-
-<span class="token operator">&lt;</span><span class="token operator">/</span>html<span class="token operator">&gt;</span>
-</span></pre><p><code>webpack.config.js</code></p>
+<pre data-role="codeBlock" data-info="txt" class="language-txt">&#x251C;&#x2500;&#x2500; dist
+&#x251C;&#x2500;&#x2500; node_modules
+&#x251C;&#x2500;&#x2500; src
+&#x2502;   &#x251C;&#x2500;&#x2500; assets
+&#x2502;   &#x251C;&#x2500;&#x2500; index.ejs
+&#x2502;   &#x2514;&#x2500;&#x2500; index.js
+&#x251C;&#x2500;&#x2500; webpack.config.js
+&#x251C;&#x2500;&#x2500; package.json
+&#x2514;&#x2500;&#x2500; yarn.lock
+</pre><p><code>packages.json</code></p>
+<pre data-role="codeBlock" data-info="json" class="language-json"><span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;build&quot;</span><span class="token operator">:</span> <span class="token string">&quot;webpack&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;serve&quot;</span><span class="token operator">:</span> <span class="token string">&quot;webpack-dev-server --inline --progress&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token property">&quot;devDependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;webpack&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.46.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;webpack-cli&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^3.3.12&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;webpack-dev-server&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^3.11.3&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;html-webpack-plugin&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.5.2&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;copy-webpack-plugin&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^6.4.1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;mini-css-extract-plugin&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^1.6.2&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;css-loader&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^5.2.7&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;json5-loader&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.0.1&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token property">&quot;dependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;axios&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^0.24.0&quot;</span>
+<span class="token punctuation">}</span>
+</pre><p><code>webpack.config.js</code></p>
 <pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword keyword-const">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;path&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword keyword-const">const</span> root <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token method function property-access">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword keyword-const">const</span> sourcePath <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token method function property-access">resolve</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> <span class="token string">&apos;src&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -587,7 +577,6 @@ module<span class="token punctuation">.</span><span class="token property-access
         js<span class="token operator">:</span> <span class="token string">&apos;https://cdn.bootcss.com/axios/0.21.0/axios.min.js&apos;</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
 <span class="token punctuation">]</span><span class="token punctuation">;</span>
-
 <span class="token keyword keyword-const">const</span> <span class="token maybe-class-name">HtmlWebpackPlugin</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;html-webpack-plugin&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword keyword-const">const</span> <span class="token maybe-class-name">CopyWebpackPlugin</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;copy-webpack-plugin&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword keyword-const">const</span> <span class="token maybe-class-name">MiniCssExtractPlugin</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;mini-css-extract-plugin&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -603,7 +592,7 @@ module<span class="token punctuation">.</span><span class="token property-access
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
     devServer<span class="token operator">:</span> <span class="token punctuation">{</span>
         host<span class="token operator">:</span> <span class="token string">&apos;0.0.0.0&apos;</span><span class="token punctuation">,</span>
-        port<span class="token operator">:</span> <span class="token number">9000</span><span class="token punctuation">,</span>
+        port<span class="token operator">:</span> <span class="token number">5000</span><span class="token punctuation">,</span>
         progress<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
         contentBase<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
         compress<span class="token operator">:</span> <span class="token boolean">true</span>
@@ -654,10 +643,138 @@ module<span class="token punctuation">.</span><span class="token property-access
         <span class="token punctuation">]</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-</pre><p><strong>&#x8C03;&#x8BD5;&#x9879;&#x76EE;</strong>&#xFF1A;</p>
-<pre data-role="codeBlock" data-info="bash" class="language-bash">npx webpack-dev-server --inline --progress
-</pre><p><strong>&#x6253;&#x5305;&#x9879;&#x76EE;</strong>&#xFF1A;</p>
-<pre data-role="codeBlock" data-info="bash" class="language-bash">npx webpack
+</pre><p><code>index.ejs</code></p>
+<pre data-role="codeBlock" data-info="ejs" class="language-ejs"><span class="token language-javascript"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token constant">DOCTYPE</span> html<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>html lang<span class="token operator">=</span><span class="token string">&quot;zh&quot;</span><span class="token operator">&gt;</span>
+
+<span class="token operator">&lt;</span>head<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>meta charset<span class="token operator">=</span><span class="token string">&quot;UTF-8&quot;</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>meta name<span class="token operator">=</span><span class="token string">&quot;viewport&quot;</span> content<span class="token operator">=</span><span class="token string">&quot;width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no&quot;</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>meta http<span class="token operator">-</span>equiv<span class="token operator">=</span><span class="token string">&quot;Access-Control-Allow-Origin&quot;</span> content<span class="token operator">=</span><span class="token string">&quot;*&quot;</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>link rel<span class="token operator">=</span><span class="token string">&quot;shortcut icon&quot;</span> href<span class="token operator">=</span><span class="token string">&quot;&quot;</span> type<span class="token operator">=</span><span class="token string">&quot;image/x-icon&quot;</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>title<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>title<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">%</span> <span class="token keyword control-flow keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-let">let</span> item <span class="token keyword keyword-of">of</span> cdnResources<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token operator">%</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">%</span> <span class="token keyword control-flow keyword-if">if</span><span class="token punctuation">(</span><span class="token keyword nil keyword-undefined">undefined</span> <span class="token operator">!==</span> item<span class="token punctuation">.</span><span class="token property-access">js</span><span class="token punctuation">)</span> <span class="token operator">%</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">&quot;&lt;%- item.js %&gt;&quot;</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">%</span> <span class="token keyword control-flow keyword-if">if</span><span class="token punctuation">(</span><span class="token keyword nil keyword-undefined">undefined</span> <span class="token operator">!==</span> item<span class="token punctuation">.</span><span class="token property-access">css</span><span class="token punctuation">)</span> <span class="token operator">%</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>link href<span class="token operator">=</span><span class="token string">&quot;&lt;%- item.css %&gt;&quot;</span> rel<span class="token operator">=</span><span class="token string">&quot;stylesheet&quot;</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">%</span> <span class="token punctuation">}</span> <span class="token operator">%</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>head<span class="token operator">&gt;</span>
+
+<span class="token operator">&lt;</span>body<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">&quot;app&quot;</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>body<span class="token operator">&gt;</span>
+
+<span class="token operator">&lt;</span><span class="token operator">/</span>html<span class="token operator">&gt;</span>
+</span></pre><p><code>index.js</code></p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token method function property-access">querySelector</span><span class="token punctuation">(</span><span class="token string">&apos;#app&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token property-access">innerText</span> <span class="token operator">=</span> <span class="token string">&quot;Hello&quot;</span><span class="token punctuation">;</span>
+</pre><h2 class="mume-header" id="vue">Vue</h2>
+
+<pre data-role="codeBlock" data-info="txt." class="language-txt."><code>&#x251C;&#x2500;&#x2500; dist
+&#x251C;&#x2500;&#x2500; node_modules
+&#x251C;&#x2500;&#x2500; src
+&#x2502;&#xA0;&#xA0; &#x251C;&#x2500;&#x2500; app.vue
+&#x2502;&#xA0;&#xA0; &#x251C;&#x2500;&#x2500; index.ejs
+&#x2502;&#xA0;&#xA0; &#x2514;&#x2500;&#x2500; index.js
+&#x251C;&#x2500;&#x2500; webpack.config.js
+&#x251C;&#x2500;&#x2500; package.json
+&#x2514;&#x2500;&#x2500; yarn.lock
+</code></pre><p><code>package.json</code></p>
+<pre data-role="codeBlock" data-info="json" class="language-json"><span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;build&quot;</span><span class="token operator">:</span> <span class="token string">&quot;webpack&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;serve&quot;</span><span class="token operator">:</span> <span class="token string">&quot;webpack-dev-server --inline --progress&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token property">&quot;devDependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;webpack&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.46.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;webpack-cli&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^3.3.12&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;webpack-dev-server&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^3.11.2&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;html-webpack-plugin&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.5.2&quot;</span><span class="token punctuation">,</span>
+
+    <span class="token property">&quot;css-loader&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^5.2.7&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;style-loader&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^2.0.0&quot;</span><span class="token punctuation">,</span>
+
+    <span class="token property">&quot;vue-loader&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^15.9.7&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;vue-template-compiler&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^2.6.14&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token property">&quot;dependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;vue&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^2.6.14&quot;</span>
+<span class="token punctuation">}</span>
+</pre><p><code>webpack.config.js</code></p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword keyword-const">const</span> <span class="token maybe-class-name">HtmlWebpackPlugin</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;html-webpack-plugin&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-const">const</span> <span class="token maybe-class-name">VueLoaderPlugin</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;vue-loader/lib/plugin&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span><span class="token property-access">exports</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+    mode<span class="token operator">:</span> <span class="token string">&apos;development&apos;</span><span class="token punctuation">,</span>
+    entry<span class="token operator">:</span> <span class="token punctuation">{</span>
+        index<span class="token operator">:</span> <span class="token string">&apos;./src/index.js&apos;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    devServer<span class="token operator">:</span> <span class="token punctuation">{</span>
+        host<span class="token operator">:</span> <span class="token string">&apos;0.0.0.0&apos;</span><span class="token punctuation">,</span>
+        port<span class="token operator">:</span> <span class="token number">5000</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    resolve<span class="token operator">:</span> <span class="token punctuation">{</span>
+        extensions<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&apos;.js&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;.vue&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    plugins<span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token keyword keyword-new">new</span> <span class="token class-name">HtmlWebpackPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            template<span class="token operator">:</span> <span class="token string">&apos;./src/index.ejs&apos;</span><span class="token punctuation">,</span>
+            templateParameters<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+            filename<span class="token operator">:</span> <span class="token string">&apos;index.html&apos;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token keyword keyword-new">new</span> <span class="token class-name">VueLoaderPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    module<span class="token operator">:</span> <span class="token punctuation">{</span>
+        rules<span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                test<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.css$</span><span class="token regex-delimiter">/</span><span class="token regex-flags">i</span></span><span class="token punctuation">,</span>
+                use<span class="token operator">:</span> <span class="token punctuation">[</span>
+                    <span class="token string">&apos;style-loader&apos;</span><span class="token punctuation">,</span>
+                    <span class="token string">&apos;css-loader&apos;</span>
+                <span class="token punctuation">]</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+                test<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.vue$</span><span class="token regex-delimiter">/</span><span class="token regex-flags">i</span></span><span class="token punctuation">,</span>
+                loader<span class="token operator">:</span> <span class="token string">&apos;vue-loader&apos;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre><p><code>index.ejs</code></p>
+<pre data-role="codeBlock" data-info="html" class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>zh<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>UTF-8<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>viewport<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>Access-Control-Allow-Origin<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>*<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>app<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</pre><p><code>index.js</code></p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword keyword-const">const</span> <span class="token maybe-class-name">Vue</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;vue&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword module keyword-default">default</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-const">const</span> <span class="token maybe-class-name">App</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;./app.vue&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword module keyword-default">default</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-new">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token function-variable function">render</span><span class="token operator">:</span> <span class="token parameter">h</span> <span class="token arrow operator">=&gt;</span> <span class="token function">h</span><span class="token punctuation">(</span><span class="token maybe-class-name">App</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">$mount</span><span class="token punctuation">(</span><span class="token string">&quot;#app&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p><code>app.vue</code></p>
+<pre data-role="codeBlock" data-info="html" class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>demo<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>{{ msg }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword module keyword-export">export</span> <span class="token keyword module keyword-default">default</span> <span class="token punctuation">{</span>
+    <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword control-flow keyword-return">return</span> <span class="token punctuation">{</span>
+            msg<span class="token operator">:</span> <span class="token string">&quot;Hello world!&quot;</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">scoped</span><span class="token punctuation">&gt;</span></span><span class="token style"><span class="token language-css">
+<span class="token selector"><span class="token class">.demo</span></span> <span class="token punctuation">{</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> <span class="token color">red</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
 </pre>
       </div>
       

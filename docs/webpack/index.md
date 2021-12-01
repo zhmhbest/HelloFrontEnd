@@ -10,3 +10,5 @@
 @import "./node.md"
 
 @import "./html.md"
+
+@import "./vue.md"

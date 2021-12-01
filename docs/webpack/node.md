@@ -1,25 +1,36 @@
-## 本地
+## Node
 
-```bash
-mkdir src
-mkdir src/assets
-touch src/index.ts
-touch src/assets/.gitkeep
-touch tsconfig.json
-touch webpack.config.js
-npm init -y
+```txt
+├── dist
+├── node_modules
+├── src
+│   ├── assets
+│   └── index.ts
+├── webpack.config.js
+├── tsconfig.json
+├── package.json
+└── yarn.lock
+```
 
-# Webpack
-yarn -D add webpack@^4 webpack-cli@^3
+`package.json`
 
-# Webpack-Plugins
-yarn -D add copy-webpack-plugin@^6 ts-loader@^8
-
-# Typescript
-yarn -D add typescript ts-node @types/node
-
-# Common Library
-yarn add json5
+```json
+"scripts": {
+    "build": "webpack",
+    "test": "ts-node --dir ./src/ ./index.ts"
+},
+"devDependencies": {
+    "@types/node": "^16.11.11",
+    "copy-webpack-plugin": "^6.4.1",
+    "ts-loader": "^8.3.0",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.2",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12"
+},
+"dependencies": {
+    "json5": "^2.2.0"
+}
 ```
 
 `tsconfig.json`
@@ -95,20 +106,9 @@ module.exports = {
 }
 ```
 
-**调试项目**：
+`index.ts`
 
-```bash
-# Linux
-pushd src; npx ts-node --scope-dir . index.ts; popd
-```
-
-```batch
-REM Windows
-pushd src & npx ts-node --scope-dir . index.ts & popd
-```
-
-**打包项目**：
-
-```bash
-npx webpack
+```js
+import * as path from 'path'
+console.log(path.resolve("."))
 ```
