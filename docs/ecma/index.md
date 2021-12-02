@@ -44,11 +44,28 @@ pos.y = 768;
 console.log(pos);
 ```
 
+**枚举**：
+
+```js
+/**
+ * 文件类型
+ * @enum
+ * @property {number} FileType.Image 图片
+ * @property {number} FileType.Video 视频
+ * @property {number} FileType.Audio 音频
+ */
+const FileType = {
+    Image: 1,
+    Video: 2,
+    Audio: 3,
+}
+```
+
 **回调函数**：
 
 ```js
 /**
- * @callback Callback
+ * @callback CallbackName
  * @param {string} name
  * ...
  * @return {number}
@@ -60,6 +77,7 @@ console.log(pos);
 ```js
 /**
  * 说你好
+ * @function
  * @param {string} name
  * @param {string} [age]
  * @return {void}
@@ -76,6 +94,92 @@ const sayHello = (name, age) => {
 ### 数据类型
 
 `string`、`number`、`boolean`、`function`、`object`、`undefined`
+
+### string
+
+```js
+/**
+ * 以左侧第一次发现的separator将字符串切割为两部分
+ * @function String#splitFirstString
+ * @this {string}
+ * @param {string} separator 切割字符
+ * @return {Array<string>}
+ */
+String.prototype.splitFirstString = function(separator) {
+    const s = this;
+    const p = s.indexOf(separator);
+    if (-1 === p) return [s, ""];
+    return [
+        s.substr(0, p),
+        s.substr(p + 1, s.length - p - 1)
+    ];
+}
+"1|2|3".splitFirstString("|");
+```
+
+```js
+/**
+ * Object->String
+ * @function Object#stringify
+ * @this {object}
+ * @param {string} [sep] Separator
+ * @param {string} [eqs] Equal-sign
+ * @return {string}
+ */
+ Object.prototype.stringify = function(sep, eqs) {
+    sep = sep || '&';
+    eqs = eqs || '=';
+    const ret = [];
+    const obj = this;
+    for (let key of Object.keys(obj)) {
+        let val = obj[key];
+        ret.push(`${key}${eqs}${encodeURIComponent(JSON.stringify(val))}`);
+    }
+    return ret.join(sep);
+}
+
+/**
+ * String->Object
+ * @function String#parseUrlForm
+ * @this {string}
+ * @param {string} [sep] Separator
+ * @param {string} [eqs] Equal-sign
+ * @return {object}
+ */
+String.prototype.parseUrlForm = function(sep, eqs) {
+    sep = sep || '&';
+    eqs = eqs || '=';
+    const str = this;
+    let obj = {};
+    if (0 === str.length) return obj;
+    for (let item of str.split(sep)) {
+        let [k, v] = item.split(eqs, 2);
+        Object.defineProperty(obj, k, {
+            // enumerable: false,
+            // configurable: false,
+            // writable: false,
+            value: JSON.parse(decodeURIComponent(v))
+        });
+    }
+    return obj;
+}
+
+// demo
+(() => {
+    const o1 = {
+        x: 123,
+        y: [4, 5, 6],
+        z: {
+            a: 1,
+            b: 2
+        }
+    }
+    const s1 = o1.stringify();
+    const o2 = s1.parseUrlForm();
+    console.log(s1);
+    console.log(o2);
+})();
+```
 
 ### arguments
 

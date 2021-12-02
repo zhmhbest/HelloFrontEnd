@@ -268,11 +268,352 @@ pre[data-line] .line-highlight[data-end]:after {
 <ul>
 <li><a href="#webjsindexhtml">WebJS</a>
 <ul>
+<li><a href="#screen">Screen</a></li>
+<li><a href="#hash">Hash</a></li>
+<li><a href="#cookie">Cookie</a></li>
+<li><a href="#download">Download</a></li>
+<li><a href="#openfile">OpenFile</a></li>
 <li><a href="#xmlhttprequest">XMLHttpRequest</a></li>
 </ul>
 </li>
 </ul>
-<h2 class="mume-header" id="xmlhttprequest">XMLHttpRequest</h2>
+<h2 class="mume-header" id="screen">Screen</h2>
+
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token doc-comment comment">/**
+ * &#x83B7;&#x53D6;dom&#x5927;&#x5C0F;
+ * <span class="token keyword keyword-@function">@function</span>
+ * <span class="token keyword keyword-@returns">@returns</span> <span class="token class-name"><span class="token punctuation">{</span>Array<span class="token punctuation">&lt;</span>Array<span class="token punctuation">&lt;</span>number<span class="token punctuation">,</span> number<span class="token punctuation">&gt;</span><span class="token punctuation">,</span> Array<span class="token punctuation">&lt;</span>number<span class="token punctuation">,</span> number<span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span><span class="token punctuation">}</span></span>
+ */</span>
+<span class="token keyword keyword-const">const</span> <span class="token function-variable function">getDocumentRect</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword control-flow keyword-return">return</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">[</span>
+            <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token property-access">documentElement</span><span class="token punctuation">.</span><span class="token property-access">clientLeft</span><span class="token punctuation">,</span>
+            <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token property-access">documentElement</span><span class="token punctuation">.</span><span class="token property-access">clientTop</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+            <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token property-access">documentElement</span><span class="token punctuation">.</span><span class="token property-access">clientWidth</span><span class="token punctuation">,</span>
+            <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token property-access">documentElement</span><span class="token punctuation">.</span><span class="token property-access">clientHeight</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre><pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token doc-comment comment">/**
+ * <span class="token keyword keyword-@callback">@callback</span> onScreenResize
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>number<span class="token punctuation">}</span></span> <span class="token parameter">width</span>
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>number<span class="token punctuation">}</span></span> <span class="token parameter">height</span>
+ * <span class="token keyword keyword-@return">@return</span> <span class="token class-name"><span class="token punctuation">{</span><span class="token keyword keyword-void">void</span><span class="token punctuation">}</span></span>
+ */</span>
+<span class="token doc-comment comment">/**
+ * &#x7A97;&#x53E3;&#x5C3A;&#x5BF8;&#x8C03;&#x6574;&#x54CD;&#x5E94;
+ * <span class="token keyword keyword-@function">@function</span>
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>onScreenResize<span class="token punctuation">}</span></span> <span class="token parameter">fn</span>
+ * <span class="token keyword keyword-@return">@return</span> <span class="token class-name"><span class="token punctuation">{</span><span class="token keyword keyword-void">void</span><span class="token punctuation">}</span></span>
+ */</span>
+<span class="token keyword keyword-const">const</span> <span class="token function-variable function">pushOnScreenResize</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">fn</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-const">const</span> pr <span class="token operator">=</span> <span class="token dom variable">window</span><span class="token punctuation">.</span><span class="token property-access">onresize</span><span class="token punctuation">;</span>
+    <span class="token keyword control-flow keyword-if">if</span> <span class="token punctuation">(</span><span class="token keyword null nil keyword-null">null</span> <span class="token operator">===</span> pr <span class="token operator">||</span> <span class="token keyword nil keyword-undefined">undefined</span> <span class="token operator">===</span> pr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token doc-comment comment">/**
+         * <span class="token keyword keyword-@this">@this</span> <span class="token class-name"><span class="token punctuation">{</span>GlobalEventHandlers<span class="token punctuation">}</span></span>
+         * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>UIEvent<span class="token punctuation">}</span></span> <span class="token parameter">ev</span>
+         */</span>
+        <span class="token dom variable">window</span><span class="token punctuation">.</span><span class="token method-variable function-variable method function property-access">onresize</span> <span class="token operator">=</span> <span class="token keyword keyword-function">function</span><span class="token punctuation">(</span><span class="token parameter">ev</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">fn</span><span class="token punctuation">(</span><span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token property-access">documentElement</span><span class="token punctuation">.</span><span class="token property-access">clientWidth</span><span class="token punctuation">,</span> <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token property-access">documentElement</span><span class="token punctuation">.</span><span class="token property-access">clientHeight</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword control-flow keyword-else">else</span> <span class="token punctuation">{</span>
+        <span class="token doc-comment comment">/**
+         * <span class="token keyword keyword-@this">@this</span> <span class="token class-name"><span class="token punctuation">{</span>GlobalEventHandlers<span class="token punctuation">}</span></span>
+         * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>UIEvent<span class="token punctuation">}</span></span> <span class="token parameter">ev</span>
+         */</span>
+        <span class="token dom variable">window</span><span class="token punctuation">.</span><span class="token method-variable function-variable method function property-access">onresize</span> <span class="token operator">=</span> <span class="token keyword keyword-function">function</span> <span class="token punctuation">(</span><span class="token parameter">ev</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            pr<span class="token punctuation">.</span><span class="token method function property-access">call</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">,</span> ev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">fn</span><span class="token punctuation">(</span><span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token property-access">documentElement</span><span class="token punctuation">.</span><span class="token property-access">clientWidth</span><span class="token punctuation">,</span> <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token property-access">documentElement</span><span class="token punctuation">.</span><span class="token property-access">clientHeight</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token function">pushOnScreenResize</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">w<span class="token punctuation">,</span> h</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> w<span class="token punctuation">,</span> h<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">pushOnScreenResize</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">w<span class="token punctuation">,</span> h</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> w<span class="token punctuation">,</span> h<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><h2 class="mume-header" id="hash">Hash</h2>
+
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token doc-comment comment">/**
+ * <span class="token keyword keyword-@callback">@callback</span> onHashChange
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">}</span></span> <span class="token parameter">value</span>
+ * <span class="token keyword keyword-@return">@return</span> <span class="token class-name"><span class="token punctuation">{</span><span class="token keyword keyword-void">void</span><span class="token punctuation">}</span></span>
+ */</span>
+<span class="token doc-comment comment">/**
+ * &#x8FDE;&#x63A5;Hash&#x6539;&#x53D8;
+ * <span class="token keyword keyword-@function">@function</span>
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>onHashChange<span class="token punctuation">}</span></span> <span class="token parameter">fn</span>
+ * <span class="token keyword keyword-@return">@return</span> <span class="token class-name"><span class="token punctuation">{</span><span class="token keyword keyword-void">void</span><span class="token punctuation">}</span></span>
+ */</span>
+ <span class="token keyword keyword-const">const</span> <span class="token function-variable function">pushOnHashChange</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">fn</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-const">const</span> pr <span class="token operator">=</span> <span class="token dom variable">window</span><span class="token punctuation">.</span><span class="token property-access">onhashchange</span><span class="token punctuation">;</span>
+    <span class="token keyword control-flow keyword-if">if</span> <span class="token punctuation">(</span><span class="token keyword null nil keyword-null">null</span> <span class="token operator">===</span> pr <span class="token operator">||</span> <span class="token keyword nil keyword-undefined">undefined</span> <span class="token operator">===</span> pr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token doc-comment comment">/**
+         * <span class="token keyword keyword-@this">@this</span> <span class="token class-name"><span class="token punctuation">{</span>WindowEventHandlers<span class="token punctuation">}</span></span>
+         * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>Event<span class="token punctuation">}</span></span> <span class="token parameter">ev</span>
+         */</span>
+        <span class="token dom variable">window</span><span class="token punctuation">.</span><span class="token method-variable function-variable method function property-access">onhashchange</span> <span class="token operator">=</span> <span class="token keyword keyword-function">function</span><span class="token punctuation">(</span><span class="token parameter">ev</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">fn</span><span class="token punctuation">(</span><span class="token dom variable">window</span><span class="token punctuation">.</span><span class="token property-access">location</span><span class="token punctuation">.</span><span class="token property-access">hash</span><span class="token punctuation">.</span><span class="token method function property-access">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">substr</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword control-flow keyword-else">else</span> <span class="token punctuation">{</span>
+        <span class="token doc-comment comment">/**
+         * <span class="token keyword keyword-@this">@this</span> <span class="token class-name"><span class="token punctuation">{</span>WindowEventHandlers<span class="token punctuation">}</span></span>
+         * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>Event<span class="token punctuation">}</span></span> <span class="token parameter">ev</span>
+         */</span>
+        <span class="token dom variable">window</span><span class="token punctuation">.</span><span class="token method-variable function-variable method function property-access">onhashchange</span> <span class="token operator">=</span> <span class="token keyword keyword-function">function</span> <span class="token punctuation">(</span><span class="token parameter">ev</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            pr<span class="token punctuation">.</span><span class="token method function property-access">call</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">,</span> ev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">fn</span><span class="token punctuation">(</span><span class="token dom variable">window</span><span class="token punctuation">.</span><span class="token property-access">location</span><span class="token punctuation">.</span><span class="token property-access">hash</span><span class="token punctuation">.</span><span class="token method function property-access">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">substr</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token function">pushOnHashChange</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">v</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> v<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">pushOnHashChange</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">v</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> v<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token doc-comment comment">/**
+ * <span class="token keyword keyword-@dependency">@dependency</span> String.splitFirstString
+ * <span class="token keyword keyword-@dependency">@dependency</span> String.parseUrlForm
+ * &#x8BFB;&#x53D6;Hash&#x4E2D;&#x7684;&#x6570;&#x636E;
+ * <span class="token keyword keyword-@function">@function</span>
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">}</span></span> <span class="token parameter">hashValue</span>
+ * <span class="token keyword keyword-@return">@return</span> <span class="token class-name"><span class="token punctuation">{</span>object<span class="token punctuation">}</span></span>
+ */</span>
+<span class="token keyword keyword-const">const</span> <span class="token function-variable function">getHashParamsData</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">hashValue</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-const">const</span> <span class="token punctuation">[</span><span class="token punctuation">,</span> v<span class="token punctuation">]</span> <span class="token operator">=</span> hashValue<span class="token punctuation">.</span><span class="token method function property-access">splitFirstString</span><span class="token punctuation">(</span><span class="token string">&apos;?&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword control-flow keyword-return">return</span> v<span class="token punctuation">.</span><span class="token method function property-access">parseUrlForm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token doc-comment comment">/**
+ * <span class="token keyword keyword-@dependency">@dependency</span> String.splitFirstString
+ * <span class="token keyword keyword-@dependency">@dependency</span> Object.stringify
+ * &#x8BBE;&#x7F6E;Hash&#x4E2D;&#x7684;&#x6570;&#x636E;
+ * <span class="token keyword keyword-@function">@function</span>
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>object<span class="token punctuation">}</span></span> <span class="token parameter">params</span>
+ * <span class="token keyword keyword-@return">@return</span> <span class="token class-name"><span class="token punctuation">{</span><span class="token keyword keyword-void">void</span><span class="token punctuation">}</span></span>
+ */</span>
+<span class="token keyword keyword-const">const</span> <span class="token function-variable function">setHashParamsData</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">params</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-const">const</span> hashValue <span class="token operator">=</span> <span class="token dom variable">window</span><span class="token punctuation">.</span><span class="token property-access">location</span><span class="token punctuation">.</span><span class="token property-access">hash</span><span class="token punctuation">.</span><span class="token method function property-access">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">substr</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-const">const</span> <span class="token punctuation">[</span>v<span class="token punctuation">,</span> <span class="token punctuation">]</span> <span class="token operator">=</span> hashValue<span class="token punctuation">.</span><span class="token method function property-access">splitFirstString</span><span class="token punctuation">(</span><span class="token string">&apos;?&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token dom variable">window</span><span class="token punctuation">.</span><span class="token property-access">location</span><span class="token punctuation">.</span><span class="token property-access">hash</span> <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>v<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">?</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>params<span class="token punctuation">.</span><span class="token method function property-access">stringify</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre><h2 class="mume-header" id="cookie">Cookie</h2>
+
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token doc-comment comment">/**
+ * &#x83B7;&#x53D6;&#x5230;&#x671F;&#x65F6;&#x95F4;
+ * <span class="token keyword keyword-@function">@function</span>
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>Date <span class="token operator">|</span> string <span class="token operator">|</span> number<span class="token punctuation">}</span></span> <span class="token parameter">expire</span>
+ * <span class="token keyword keyword-@return">@return</span> <span class="token class-name"><span class="token punctuation">{</span><span class="token keyword keyword-undefined">undefined</span><span class="token operator">|</span>Date<span class="token punctuation">}</span></span>
+ */</span>
+<span class="token keyword keyword-const">const</span> <span class="token function-variable function">getExpireTime</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">expire</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword control-flow keyword-if">if</span> <span class="token punctuation">(</span>expire <span class="token keyword keyword-instanceof">instanceof</span> <span class="token class-name">Date</span><span class="token punctuation">)</span> <span class="token keyword control-flow keyword-return">return</span> expire<span class="token punctuation">;</span>
+    <span class="token keyword control-flow keyword-if">if</span> <span class="token punctuation">(</span><span class="token string">&apos;string&apos;</span> <span class="token operator">===</span> <span class="token keyword keyword-typeof">typeof</span> expire<span class="token punctuation">)</span> <span class="token keyword control-flow keyword-return">return</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>expire<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword control-flow keyword-if">if</span> <span class="token punctuation">(</span><span class="token string">&apos;number&apos;</span> <span class="token operator">===</span> <span class="token keyword keyword-typeof">typeof</span> expire<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword keyword-let">let</span> d <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        d<span class="token punctuation">.</span><span class="token method function property-access">setTime</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span><span class="token method function property-access">getTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span>expire <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword control-flow keyword-return">return</span> d<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword control-flow keyword-return">return</span> <span class="token keyword nil keyword-undefined">undefined</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+
+<span class="token doc-comment comment">/**
+ * &#x8BBE;&#x7F6E;Cookie
+ * <span class="token keyword keyword-@function">@function</span>
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">}</span></span> <span class="token parameter">name</span>
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>object <span class="token operator">|</span> string <span class="token operator">|</span> number<span class="token punctuation">}</span></span> <span class="token parameter">value</span>
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>Date <span class="token operator">|</span> string <span class="token operator">|</span> number<span class="token punctuation">}</span></span> <span class="token optional-parameter"><span class="token punctuation">[</span><span class="token parameter">expire</span><span class="token punctuation">]</span></span>
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">}</span></span> <span class="token optional-parameter"><span class="token punctuation">[</span><span class="token parameter">path</span><span class="token punctuation">]</span></span>
+ * <span class="token keyword keyword-@return">@return</span> <span class="token class-name"><span class="token punctuation">{</span><span class="token keyword keyword-void">void</span><span class="token punctuation">}</span></span>
+ */</span>
+<span class="token keyword keyword-const">const</span> <span class="token function-variable function">setCookie</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> value<span class="token punctuation">,</span> expire<span class="token punctuation">,</span> path</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+    expire <span class="token operator">=</span> <span class="token function">getExpireTime</span><span class="token punctuation">(</span>expire<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-const">const</span> buffer <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment">// K-V</span>
+    buffer<span class="token punctuation">.</span><span class="token method function property-access">push</span><span class="token punctuation">(</span>name<span class="token punctuation">.</span><span class="token method function property-access">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    buffer<span class="token punctuation">.</span><span class="token method function property-access">push</span><span class="token punctuation">(</span><span class="token string">&apos;=&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    buffer<span class="token punctuation">.</span><span class="token method function property-access">push</span><span class="token punctuation">(</span><span class="token function">encodeURIComponent</span><span class="token punctuation">(</span><span class="token known-class-name class-name">JSON</span><span class="token punctuation">.</span><span class="token method function property-access">stringify</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// expire</span>
+    <span class="token keyword control-flow keyword-if">if</span> <span class="token punctuation">(</span><span class="token keyword nil keyword-undefined">undefined</span> <span class="token operator">!==</span> expire<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        buffer<span class="token punctuation">.</span><span class="token method function property-access">push</span><span class="token punctuation">(</span><span class="token string">&apos;;expires=&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        buffer<span class="token punctuation">.</span><span class="token method function property-access">push</span><span class="token punctuation">(</span>expire<span class="token punctuation">.</span><span class="token method function property-access">toUTCString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// path</span>
+    <span class="token keyword control-flow keyword-if">if</span> <span class="token punctuation">(</span><span class="token keyword nil keyword-undefined">undefined</span> <span class="token operator">!==</span> path<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        buffer<span class="token punctuation">.</span><span class="token method function property-access">push</span><span class="token punctuation">(</span><span class="token string">&apos;;path=&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        buffer<span class="token punctuation">.</span><span class="token method function property-access">push</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token property-access">cookie</span> <span class="token operator">=</span> buffer<span class="token punctuation">.</span><span class="token method function property-access">join</span><span class="token punctuation">(</span><span class="token string">&apos;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+
+<span class="token doc-comment comment">/**
+ * &#x5220;&#x9664;Cookie
+ * <span class="token keyword keyword-@function">@function</span>
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">}</span></span> <span class="token parameter">name</span>
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">}</span></span> <span class="token optional-parameter"><span class="token punctuation">[</span><span class="token parameter">path</span><span class="token punctuation">]</span></span>
+ * <span class="token keyword keyword-@return">@return</span> <span class="token class-name"><span class="token punctuation">{</span><span class="token keyword keyword-void">void</span><span class="token punctuation">}</span></span>
+ */</span>
+<span class="token keyword keyword-const">const</span> <span class="token function-variable function">delCookie</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> path</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-const">const</span> buffer <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment">// K-V</span>
+    buffer<span class="token punctuation">.</span><span class="token method function property-access">push</span><span class="token punctuation">(</span>name<span class="token punctuation">.</span><span class="token method function property-access">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    buffer<span class="token punctuation">.</span><span class="token method function property-access">push</span><span class="token punctuation">(</span><span class="token string">&apos;=&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// expires</span>
+    buffer<span class="token punctuation">.</span><span class="token method function property-access">push</span><span class="token punctuation">(</span><span class="token string">&apos;;expires=&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    buffer<span class="token punctuation">.</span><span class="token method function property-access">push</span><span class="token punctuation">(</span><span class="token keyword keyword-new">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">toUTCString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// path</span>
+    <span class="token keyword control-flow keyword-if">if</span> <span class="token punctuation">(</span><span class="token keyword nil keyword-undefined">undefined</span> <span class="token operator">!==</span> path<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        buffer<span class="token punctuation">.</span><span class="token method function property-access">push</span><span class="token punctuation">(</span><span class="token string">&apos;;path=&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        buffer<span class="token punctuation">.</span><span class="token method function property-access">push</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token property-access">cookie</span> <span class="token operator">=</span> buffer<span class="token punctuation">.</span><span class="token method function property-access">join</span><span class="token punctuation">(</span><span class="token string">&apos;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+
+<span class="token doc-comment comment">/**
+ * &#x52A0;&#x8F7D;Cookies
+ * <span class="token keyword keyword-@function">@function</span>
+ * <span class="token keyword keyword-@return">@return</span> <span class="token class-name"><span class="token punctuation">{</span>object<span class="token punctuation">}</span></span>
+ */</span>
+<span class="token keyword keyword-const">const</span> <span class="token function-variable function">getCookies</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-let">let</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-const">const</span> cookies <span class="token operator">=</span> <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token property-access">cookie</span><span class="token punctuation">.</span><span class="token method function property-access">split</span><span class="token punctuation">(</span><span class="token string">&apos;;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword control-flow keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-let">let</span> cookie <span class="token keyword keyword-of">of</span> cookies<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword keyword-let">let</span> <span class="token punctuation">[</span>k<span class="token punctuation">,</span> v<span class="token punctuation">]</span> <span class="token operator">=</span> cookie<span class="token punctuation">.</span><span class="token method function property-access">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">split</span><span class="token punctuation">(</span><span class="token string">&apos;=&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token known-class-name class-name">Object</span><span class="token punctuation">.</span><span class="token method function property-access">defineProperty</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> k<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+            <span class="token comment">// enumerable: false,</span>
+            <span class="token comment">// configurable: false,</span>
+            <span class="token comment">// writable: false,</span>
+            value<span class="token operator">:</span> <span class="token known-class-name class-name">JSON</span><span class="token punctuation">.</span><span class="token method function property-access">parse</span><span class="token punctuation">(</span><span class="token function">decodeURIComponent</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword control-flow keyword-return">return</span> obj<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre><h2 class="mume-header" id="download">Download</h2>
+
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token doc-comment comment">/**
+ * <span class="token keyword keyword-@function">@function</span>
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>Blob<span class="token punctuation">}</span></span> <span class="token parameter">blob</span>
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">}</span></span> <span class="token optional-parameter"><span class="token punctuation">[</span><span class="token parameter">filename</span><span class="token punctuation">]</span></span>
+ * <span class="token keyword keyword-@return">@return</span> <span class="token class-name"><span class="token punctuation">{</span><span class="token keyword keyword-void">void</span><span class="token punctuation">}</span></span>
+ */</span>
+<span class="token keyword keyword-const">const</span> <span class="token function-variable function">downloadBlob</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">blob<span class="token punctuation">,</span> filename</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+    filename <span class="token operator">=</span> filename <span class="token operator">||</span> <span class="token string">&quot;file&quot;</span> <span class="token operator">+</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">getTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token doc-comment comment">/** <span class="token keyword keyword-@type">@type</span> <span class="token class-name"><span class="token punctuation">{</span>HTMLAnchorElement<span class="token punctuation">}</span></span> */</span>
+    <span class="token keyword keyword-const">const</span> <span class="token constant">A</span> <span class="token operator">=</span> <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token method function property-access">createElement</span><span class="token punctuation">(</span><span class="token string">&apos;a&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token constant">A</span><span class="token punctuation">.</span><span class="token property-access">href</span> <span class="token operator">=</span> <span class="token dom variable">window</span><span class="token punctuation">.</span><span class="token constant">URL</span><span class="token punctuation">.</span><span class="token method function property-access">createObjectURL</span><span class="token punctuation">(</span>blob<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token constant">A</span><span class="token punctuation">.</span><span class="token property-access">download</span> <span class="token operator">=</span> filename<span class="token punctuation">;</span>
+    <span class="token constant">A</span><span class="token punctuation">.</span><span class="token method function property-access">click</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token constant">A</span><span class="token punctuation">.</span><span class="token method function property-access">remove</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+
+<span class="token doc-comment comment">/**
+ * <span class="token keyword keyword-@function">@function</span>
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token operator">|</span>object<span class="token punctuation">}</span></span> <span class="token parameter">text</span>
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">}</span></span> <span class="token optional-parameter"><span class="token punctuation">[</span><span class="token parameter">filename</span><span class="token punctuation">]</span></span>
+ * <span class="token keyword keyword-@return">@return</span> <span class="token class-name"><span class="token punctuation">{</span><span class="token keyword keyword-void">void</span><span class="token punctuation">}</span></span>
+ */</span>
+<span class="token keyword keyword-const">const</span> <span class="token function-variable function">downloadText</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">text<span class="token punctuation">,</span> filename</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-let">let</span> blob <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">Blob</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+        text <span class="token keyword keyword-instanceof">instanceof</span> <span class="token class-name">Object</span> <span class="token operator">?</span> <span class="token known-class-name class-name">JSON</span><span class="token punctuation">.</span><span class="token method function property-access">stringify</span><span class="token punctuation">(</span>text<span class="token punctuation">,</span> <span class="token keyword nil keyword-undefined">undefined</span><span class="token punctuation">,</span> <span class="token string">&apos;    &apos;</span><span class="token punctuation">)</span> <span class="token operator">:</span> text
+    <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">downloadBlob</span><span class="token punctuation">(</span>blob<span class="token punctuation">,</span> filename<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre><h2 class="mume-header" id="openfile">OpenFile</h2>
+
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token doc-comment comment">/**
+ * <span class="token keyword keyword-@callback">@callback</span> onFilesSelectCallback
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>FileList<span class="token punctuation">}</span></span> <span class="token parameter">files</span>
+ */</span>
+<span class="token doc-comment comment">/**
+ * <span class="token keyword keyword-@constructor">@constructor</span>
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>onFilesSelectCallback<span class="token punctuation">}</span></span> <span class="token optional-parameter"><span class="token punctuation">[</span><span class="token parameter">callback</span><span class="token punctuation">]</span></span>
+ */</span>
+<span class="token keyword keyword-function">function</span> <span class="token function"><span class="token maybe-class-name">FileSelector</span></span><span class="token punctuation">(</span><span class="token parameter">callback</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-const">const</span> self <span class="token operator">=</span> <span class="token keyword keyword-this">this</span><span class="token punctuation">;</span>
+    self<span class="token punctuation">.</span><span class="token property-access">input</span> <span class="token operator">=</span> <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token method function property-access">createElement</span><span class="token punctuation">(</span><span class="token string">&apos;input&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    self<span class="token punctuation">.</span><span class="token property-access">input</span><span class="token punctuation">.</span><span class="token property-access">type</span> <span class="token operator">=</span> <span class="token string">&apos;file&apos;</span><span class="token punctuation">;</span>
+    <span class="token doc-comment comment">/**
+     * <span class="token keyword keyword-@function">@function</span>
+     * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">}</span></span> <span class="token parameter">field</span>
+     * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">}</span></span> <span class="token parameter">value</span>
+     */</span>
+    self<span class="token punctuation">.</span><span class="token method-variable function-variable method function property-access">setAttribute</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">field<span class="token punctuation">,</span> value</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+        self<span class="token punctuation">.</span><span class="token property-access">input</span><span class="token punctuation">.</span><span class="token method function property-access">setAttribute</span><span class="token punctuation">(</span>field<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token doc-comment comment">/**
+     * <span class="token keyword keyword-@function">@function</span>
+     * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>onFilesSelectCallback<span class="token punctuation">}</span></span> <span class="token parameter">callback</span>
+     */</span>
+    self<span class="token punctuation">.</span><span class="token method-variable function-variable method function property-access">bindCallback</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">callback</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token doc-comment comment">/**
+         * <span class="token keyword keyword-@this">@this</span> <span class="token class-name"><span class="token punctuation">{</span>GlobalEventHandlers<span class="token punctuation">}</span></span>
+         * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>Event<span class="token punctuation">}</span></span> <span class="token parameter">ev</span>
+         */</span>
+         self<span class="token punctuation">.</span><span class="token property-access">input</span><span class="token punctuation">.</span><span class="token method-variable function-variable method function property-access">onchange</span> <span class="token operator">=</span> <span class="token keyword keyword-function">function</span> <span class="token punctuation">(</span><span class="token parameter">ev</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">callback</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span><span class="token property-access">input</span><span class="token punctuation">.</span><span class="token property-access">files</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token doc-comment comment">/**
+     * <span class="token keyword keyword-@function">@function</span>
+     */</span>
+    self<span class="token punctuation">.</span><span class="token method-variable function-variable method function property-access">open</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+        self<span class="token punctuation">.</span><span class="token property-access">input</span><span class="token punctuation">.</span><span class="token property-access">value</span> <span class="token operator">=</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">;</span>
+        self<span class="token punctuation">.</span><span class="token property-access">input</span><span class="token punctuation">.</span><span class="token method function property-access">click</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//</span>
+    <span class="token keyword control-flow keyword-if">if</span><span class="token punctuation">(</span><span class="token keyword nil keyword-undefined">undefined</span> <span class="token operator">!==</span> callback<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        self<span class="token punctuation">.</span><span class="token method function property-access">bindCallback</span><span class="token punctuation">(</span>callback<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token doc-comment comment">/**
+ * <span class="token keyword keyword-@callback">@callback</span> onFileDoneCallback
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>ArrayBuffer <span class="token operator">|</span> string <span class="token operator">|</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">}</span></span> <span class="token parameter">content</span>
+ */</span>
+
+<span class="token doc-comment comment">/**
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>File <span class="token operator">|</span> Blob<span class="token punctuation">}</span></span> <span class="token parameter">file</span>
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>onFileDoneCallback<span class="token punctuation">}</span></span> <span class="token parameter">callback</span>
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">}</span></span> <span class="token optional-parameter"><span class="token punctuation">[</span><span class="token parameter">mode</span><span class="token punctuation">]</span></span> &apos;b&apos; | &apos;u&apos; | &apos;t&apos;
+ */</span>
+<span class="token keyword keyword-const">const</span> <span class="token function-variable function">readFileContent</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">file<span class="token punctuation">,</span> callback<span class="token punctuation">,</span> mode</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-const">const</span> reader <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">FileReader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword control-flow keyword-if">if</span><span class="token punctuation">(</span><span class="token string">&apos;b&apos;</span> <span class="token operator">===</span> mode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Binary</span>
+        reader<span class="token punctuation">.</span><span class="token method function property-access">readAsBinaryString</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword control-flow keyword-else">else</span> <span class="token keyword control-flow keyword-if">if</span><span class="token punctuation">(</span><span class="token string">&apos;u&apos;</span> <span class="token operator">===</span> mode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Base64</span>
+        reader<span class="token punctuation">.</span><span class="token method function property-access">readAsDataURL</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword control-flow keyword-else">else</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Text</span>
+        reader<span class="token punctuation">.</span><span class="token method function property-access">readAsText</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token doc-comment comment">/**
+     * <span class="token keyword keyword-@this">@this</span> <span class="token class-name"><span class="token punctuation">{</span>FileReader<span class="token punctuation">}</span></span>
+     * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>ProgressEvent<span class="token punctuation">&lt;</span>FileReader<span class="token punctuation">&gt;</span><span class="token punctuation">}</span></span> <span class="token parameter">ev</span>
+     */</span>
+    reader<span class="token punctuation">.</span><span class="token method-variable function-variable method function property-access">onload</span> <span class="token operator">=</span> <span class="token keyword keyword-function">function</span> <span class="token punctuation">(</span><span class="token parameter">ev</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">callback</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">.</span><span class="token property-access">result</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// demo</span>
+<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+    selector <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">FileSelector</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">files</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>files<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">readFileContent</span><span class="token punctuation">(</span>files<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">content</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+            <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">&apos;b&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    selector<span class="token punctuation">.</span><span class="token method function property-access">open</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><h2 class="mume-header" id="xmlhttprequest">XMLHttpRequest</h2>
 
 <pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token doc-comment comment">/**
  * <span class="token keyword keyword-@callback">@callback</span> onStateChangeCallback
