@@ -272,10 +272,10 @@ pre[data-line] .line-highlight[data-end]:after {
 <li><a href="#es5">ES5</a>
 <ul>
 <li><a href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">&#x6570;&#x636E;&#x7C7B;&#x578B;</a></li>
-<li><a href="#%E5%8A%A8%E6%80%81%E5%8F%82%E6%95%B0">&#x52A8;&#x6001;&#x53C2;&#x6570;</a></li>
+<li><a href="#arguments">arguments</a></li>
 <li><a href="#this">this</a></li>
-<li><a href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F">&#x5DE5;&#x5382;&#x6A21;&#x5F0F;</a></li>
-<li><a href="#%E5%8E%9F%E5%9E%8B%E9%93%BE">&#x539F;&#x578B;&#x94FE;</a></li>
+<li><a href="#factory">Factory</a></li>
+<li><a href="#prototype">Prototype</a></li>
 <li><a href="#array">Array</a></li>
 <li><a href="#date">Date</a></li>
 </ul>
@@ -302,7 +302,6 @@ pre[data-line] .line-highlight[data-end]:after {
 <li><a href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-1">&#x9762;&#x5411;&#x5BF9;&#x8C61;</a></li>
 </ul>
 </li>
-<li><a href="#xmlhttprequest">XMLHttpRequest</a></li>
 </ul>
 </li>
 </ul>
@@ -358,7 +357,7 @@ pos<span class="token punctuation">.</span><span class="token property-access">y
 <h3 class="mume-header" id="%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">&#x6570;&#x636E;&#x7C7B;&#x578B;</h3>
 
 <p><code>string</code>&#x3001;<code>number</code>&#x3001;<code>boolean</code>&#x3001;<code>function</code>&#x3001;<code>object</code>&#x3001;<code>undefined</code></p>
-<h3 class="mume-header" id="%E5%8A%A8%E6%80%81%E5%8F%82%E6%95%B0">&#x52A8;&#x6001;&#x53C2;&#x6570;</h3>
+<h3 class="mume-header" id="arguments">arguments</h3>
 
 <pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword keyword-function">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token keyword keyword-typeof">typeof</span> arguments<span class="token punctuation">,</span> arguments<span class="token punctuation">.</span><span class="token property-access">length</span><span class="token punctuation">,</span> arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -395,7 +394,7 @@ printThisName<span class="token punctuation">.</span><span class="token method f
 <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
     <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">.</span><span class="token property-access">name</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">call</span><span class="token punctuation">(</span><span class="token punctuation">{</span>name<span class="token operator">:</span> <span class="token string">&apos;lambda&apos;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</pre><h3 class="mume-header" id="%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F">&#x5DE5;&#x5382;&#x6A21;&#x5F0F;</h3>
+</pre><h3 class="mume-header" id="factory">Factory</h3>
 
 <pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token comment">// &#x62FC;&#x63A5;&#x5BF9;&#x8C61;1</span>
 <span class="token keyword keyword-function">function</span> <span class="token function">newFactory1</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -447,7 +446,7 @@ printThisName<span class="token punctuation">.</span><span class="token method f
 <span class="token keyword keyword-var">var</span> objF2_1 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">Factory2</span><span class="token punctuation">(</span><span class="token string">&apos;&#x94B1;9&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword keyword-var">var</span> objF2_2 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">Factory2</span><span class="token punctuation">(</span><span class="token string">&apos;&#x5B8B;A&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>objF2_1<span class="token punctuation">.</span><span class="token property-access">sayName</span> <span class="token operator">===</span> objF2_2<span class="token punctuation">.</span><span class="token property-access">sayName</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</pre><h3 class="mume-header" id="%E5%8E%9F%E5%9E%8B%E9%93%BE">&#x539F;&#x578B;&#x94FE;</h3>
+</pre><h3 class="mume-header" id="prototype">Prototype</h3>
 
 <table>
 <thead>
@@ -1080,87 +1079,6 @@ TheSpace<span class="token punctuation">.</span><span class="token function">say
 <span class="token punctuation">}</span>
 <span class="token keyword keyword-let">let</span> p<span class="token operator">:</span> People <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">People</span><span class="token punctuation">(</span><span class="token string">&quot;Peter&quot;</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 p<span class="token punctuation">.</span><span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</pre><h2 class="mume-header" id="xmlhttprequest">XMLHttpRequest</h2>
-
-<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token doc-comment comment">/**
- * <span class="token keyword keyword-@callback">@callback</span> onStateChangeCallback
- * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>number<span class="token punctuation">}</span></span> <span class="token parameter">state</span>
- * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>XMLHttpRequest<span class="token punctuation">}</span></span> <span class="token parameter">request</span>
- * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>Event<span class="token punctuation">}</span></span> <span class="token parameter">ev</span>
- * <span class="token keyword keyword-@return">@return</span> <span class="token class-name"><span class="token punctuation">{</span><span class="token keyword keyword-void">void</span><span class="token punctuation">}</span></span>
- */</span>
-
-<span class="token doc-comment comment">/**
- * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">}</span></span> <span class="token parameter">requestUrl</span>
- * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">}</span></span> <span class="token parameter">requestMethod</span>
- * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>BodyInit <span class="token operator">|</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">}</span></span> <span class="token parameter">requestBody</span>
- * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>onStateChangeCallback<span class="token punctuation">}</span></span> <span class="token parameter">stateCallback</span>
- * <span class="token keyword keyword-@return">@return</span> <span class="token class-name"><span class="token punctuation">{</span><span class="token keyword keyword-void">void</span><span class="token punctuation">}</span></span>
- */</span>
- <span class="token keyword keyword-const">const</span> <span class="token function-variable function">requestBase</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">requestUrl<span class="token punctuation">,</span> requestMethod<span class="token punctuation">,</span> requestBody<span class="token punctuation">,</span> stateCallback</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
-    <span class="token keyword keyword-const">const</span> request <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token doc-comment comment">/**
-     * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>XMLHttpRequest<span class="token punctuation">}</span></span> <span class="token parameter">this</span>
-     * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>Event<span class="token punctuation">}</span></span> <span class="token parameter">ev</span>
-     */</span>
-    request<span class="token punctuation">.</span><span class="token method-variable function-variable method function property-access">onreadystatechange</span> <span class="token operator">=</span> <span class="token keyword keyword-function">function</span> <span class="token punctuation">(</span><span class="token parameter">ev</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment">/*readyState
-            0 === XMLHttpRequest.UNSENT
-            1 === XMLHttpRequest.OPENED
-            2 === XMLHttpRequest.HEADERS_RECEIVED
-            3 === XMLHttpRequest.LOADING
-            4 === XMLHttpRequest.DONE
-        */</span>
-        <span class="token function">stateCallback</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">.</span><span class="token property-access">readyState</span><span class="token punctuation">,</span> <span class="token keyword keyword-this">this</span><span class="token punctuation">,</span> ev<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">;</span>
-    request<span class="token punctuation">.</span><span class="token method function property-access">open</span><span class="token punctuation">(</span>requestMethod<span class="token punctuation">,</span> requestUrl<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    request<span class="token punctuation">.</span><span class="token method function property-access">send</span><span class="token punctuation">(</span>requestBody<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-<span class="token doc-comment comment">/**
- * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">}</span></span> <span class="token parameter">requestUrl</span>
- * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">}</span></span> <span class="token optional-parameter"><span class="token punctuation">[</span><span class="token parameter">requestMethod</span><span class="token punctuation">]</span></span>
- * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>XMLHttpRequestResponseType<span class="token punctuation">}</span></span> <span class="token optional-parameter"><span class="token punctuation">[</span><span class="token parameter">expectType</span><span class="token punctuation">]</span></span> default json
- * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>BodyInit <span class="token operator">|</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">}</span></span> <span class="token optional-parameter"><span class="token punctuation">[</span><span class="token parameter">requestBody</span><span class="token punctuation">]</span></span> default null
- * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>object<span class="token punctuation">}</span></span> <span class="token optional-parameter"><span class="token punctuation">[</span><span class="token parameter">requestHeaders</span><span class="token punctuation">]</span></span> default nothing
- * <span class="token keyword keyword-@return">@return</span> <span class="token class-name"><span class="token punctuation">{</span>Promise<span class="token punctuation">&lt;</span>any<span class="token punctuation">&gt;</span><span class="token punctuation">}</span></span>
- */</span>
-<span class="token keyword keyword-const">const</span> <span class="token function-variable function">requestCommon</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">requestUrl<span class="token punctuation">,</span> requestMethod<span class="token punctuation">,</span> expectType<span class="token punctuation">,</span> requestBody<span class="token punctuation">,</span> requestHeaders</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
-    <span class="token keyword control-flow keyword-return">return</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
-        <span class="token function">requestBase</span><span class="token punctuation">(</span>
-            requestUrl<span class="token punctuation">,</span>
-            <span class="token punctuation">(</span>requestMethod <span class="token operator">||</span> <span class="token string">&apos;GET&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-            <span class="token punctuation">(</span>requestBody <span class="token operator">||</span> <span class="token keyword null nil keyword-null">null</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-            <span class="token punctuation">(</span><span class="token parameter">state<span class="token punctuation">,</span> request<span class="token punctuation">,</span> ev</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
-                <span class="token keyword control-flow keyword-switch">switch</span> <span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                    <span class="token keyword keyword-case">case</span> <span class="token maybe-class-name">XMLHttpRequest</span><span class="token punctuation">.</span><span class="token constant">OPENED</span><span class="token operator">:</span>
-                        <span class="token comment">// &#x8BBE;&#x7F6E;&#x63A5;&#x53D7;&#x503C;</span>
-                        request<span class="token punctuation">.</span><span class="token property-access">responseType</span> <span class="token operator">=</span> expectType <span class="token operator">||</span> <span class="token string">&apos;json&apos;</span><span class="token punctuation">;</span>
-                        <span class="token comment">// &#x8BBE;&#x7F6E;&#x8BF7;&#x6C42;&#x5934;</span>
-                        <span class="token keyword control-flow keyword-if">if</span> <span class="token punctuation">(</span><span class="token keyword nil keyword-undefined">undefined</span> <span class="token operator">!==</span> requestHeaders<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                            <span class="token keyword control-flow keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-let">let</span> key <span class="token keyword keyword-of">of</span> <span class="token known-class-name class-name">Object</span><span class="token punctuation">.</span><span class="token method function property-access">keys</span><span class="token punctuation">(</span>requestHeaders<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                                request<span class="token punctuation">.</span><span class="token method function property-access">setRequestHeader</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> requestHeaders<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                            <span class="token punctuation">}</span>
-                        <span class="token punctuation">}</span>
-                        <span class="token keyword control-flow keyword-break">break</span><span class="token punctuation">;</span>
-                    <span class="token keyword keyword-case">case</span> <span class="token maybe-class-name">XMLHttpRequest</span><span class="token punctuation">.</span><span class="token constant">DONE</span><span class="token operator">:</span>
-                        <span class="token keyword control-flow keyword-if">if</span> <span class="token punctuation">(</span>
-                            request<span class="token punctuation">.</span><span class="token property-access">status</span> <span class="token operator">&gt;=</span> <span class="token number">200</span> <span class="token operator">&amp;&amp;</span> request<span class="token punctuation">.</span><span class="token property-access">status</span> <span class="token operator">&lt;</span> <span class="token number">300</span> <span class="token operator">||</span>
-                            <span class="token number">304</span> <span class="token operator">===</span> request<span class="token punctuation">.</span><span class="token property-access">status</span> <span class="token comment">/* ReadCache */</span>
-                        <span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                            <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-                                header<span class="token operator">:</span> request<span class="token punctuation">.</span><span class="token method function property-access">getAllResponseHeaders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">split</span><span class="token punctuation">(</span><span class="token string">&apos;\n&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-                                data<span class="token operator">:</span> request<span class="token punctuation">.</span><span class="token property-access">response</span>
-                            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                        <span class="token punctuation">}</span> <span class="token keyword control-flow keyword-else">else</span> <span class="token punctuation">{</span>
-                            <span class="token function">reject</span><span class="token punctuation">(</span><span class="token keyword keyword-new">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span><span class="token property-access">statusText</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                        <span class="token punctuation">}</span>
-                        <span class="token keyword control-flow keyword-break">break</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
 </pre>
       </div>
       

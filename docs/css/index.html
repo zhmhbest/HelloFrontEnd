@@ -277,9 +277,8 @@ pre[data-line] .line-highlight[data-end]:after {
 <li><a href="#%E5%AD%97%E4%BD%93">&#x5B57;&#x4F53;</a></li>
 <li><a href="#%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B">&#x76D2;&#x5B50;&#x6A21;&#x578B;</a>
 <ul>
-<li><a href="#%E5%9E%82%E7%9B%B4%E5%A4%96%E8%BE%B9%E8%B7%9D%E6%8A%98%E5%8F%A0">&#x5782;&#x76F4;&#x5916;&#x8FB9;&#x8DDD;&#x6298;&#x53E0;</a></li>
-<li><a href="#overflow">Overflow</a></li>
-<li><a href="#container">Container</a></li>
+<li><a href="#%E5%9E%82%E7%9B%B4%E5%A4%96%E8%BE%B9%E8%B7%9D%E6%8A%98%E5%8F%A0%E5%8F%8A%E4%BC%A0%E9%80%92">&#x5782;&#x76F4;&#x5916;&#x8FB9;&#x8DDD;&#x6298;&#x53E0;&#x53CA;&#x4F20;&#x9012;</a></li>
+<li><a href="#%E5%86%85%E5%AE%B9%E6%BA%A2%E5%87%BA">&#x5185;&#x5BB9;&#x6EA2;&#x51FA;</a></li>
 </ul>
 </li>
 <li><a href="#%E5%B8%83%E5%B1%80">&#x5E03;&#x5C40;</a>
@@ -724,23 +723,49 @@ pre[data-line] .line-highlight[data-end]:after {
 <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token property-access">documentElement</span><span class="token punctuation">.</span><span class="token property-access">scrollHeight</span>
 <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token property-access">documentElement</span><span class="token punctuation">.</span><span class="token property-access">scrollLeft</span>
 <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token property-access">documentElement</span><span class="token punctuation">.</span><span class="token property-access">scrollTop</span>
-</pre><h3 class="mume-header" id="%E5%9E%82%E7%9B%B4%E5%A4%96%E8%BE%B9%E8%B7%9D%E6%8A%98%E5%8F%A0">&#x5782;&#x76F4;&#x5916;&#x8FB9;&#x8DDD;&#x6298;&#x53E0;</h3>
+</pre><h3 class="mume-header" id="%E5%9E%82%E7%9B%B4%E5%A4%96%E8%BE%B9%E8%B7%9D%E6%8A%98%E5%8F%A0%E5%8F%8A%E4%BC%A0%E9%80%92">&#x5782;&#x76F4;&#x5916;&#x8FB9;&#x8DDD;&#x6298;&#x53E0;&#x53CA;&#x4F20;&#x9012;</h3>
 
 <p><strong>&#x76F8;&#x90BB;&#x5144;&#x5F1F;&#x5143;&#x7D20;&#x4E4B;&#x95F4;&#x7684;&#x5782;&#x76F4;&#x5916;&#x8FB9;&#x8DDD;&#x4EE5;&#x6700;&#x5927;&#x503C;&#x51B3;&#x5B9A;</strong>:</p>
 <div><div style="background: bisque; width: 200px;">
-    <hr style="padding: 0; margin: 0;">
-    <div style="margin-bottom: 100px; width: 100px; height: 100px; background: darkcyan;"></div>
-    <div style="margin-top: 50px; width: 50px; height: 50px; background: hotpink;"></div>
-</div></div>  
+    <hr style="padding: 0; margin: 0; background-color: lime">
+    <div style="display: flex; flex-direction: row">
+        <!-- 第一列 -->
+        <div>
+            <div style="width: 5px; height: 50px; background: black;"></div>
+            <div style="width: 5px; height: 50px; background: white;"></div>
+            <div style="width: 5px; height: 50px; background: black;"></div>
+            <div style="width: 5px; height: 50px; background: white;"></div>
+            <div style="width: 5px; height: 50px; background: black;"></div>
+        </div>
+        <!-- 第二列 -->
+        <div>
+            <div style="margin-bottom: 100px; width: 100px; height: 100px; background: darkcyan;"></div>
+            <div style="margin-top: 50px; width: 50px; height: 50px; background: hotpink;"></div>
+        </div>
+    </div>
+</div>
+<br></div>  
 <pre data-role="codeBlock" data-info="css" class="language-css"><span class="token selector"><span class="token class">.box1</span></span> <span class="token punctuation">{</span> <span class="token property">margin-bottom</span><span class="token punctuation">:</span> <span class="token number">100</span><span class="token unit">px</span><span class="token punctuation">;</span> <span class="token property">background</span><span class="token punctuation">:</span> <span class="token color">darkcyan</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
 <span class="token selector"><span class="token class">.box2</span></span> <span class="token punctuation">{</span> <span class="token property">margin-top</span><span class="token punctuation">:</span> <span class="token number">50</span><span class="token unit">px</span><span class="token punctuation">;</span> <span class="token property">background</span><span class="token punctuation">:</span> <span class="token color">hotpink</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
 </pre><p><strong>&#x5B50;&#x5143;&#x7D20;&#x7684;&#x4E0A;&#x5916;&#x8FB9;&#x8DDD;&#x4F1A;&#x4F20;&#x9012;&#x7ED9;&#x7236;&#x5143;&#x7D20;</strong>&#xFF1A;</p>
 <div><div style="background: bisque; width: 200px;">
-    <hr style="padding: 0; margin: 0;">
-    <div style="width: 100px; height: 100px; background: darkcyan;">
-        <div style="margin-top: 50px; width: 50px; height: 50px; background: hotpink;"></div>
+    <hr style="padding: 0; margin: 0; background-color: lime">
+    <div style="display: flex; flex-direction: row">
+        <!-- 第一列 -->
+        <div>
+            <div style="width: 5px; height: 50px; background: black;"></div>
+            <div style="width: 5px; height: 50px; background: white;"></div>
+            <div style="width: 5px; height: 50px; background: black;"></div>
+        </div>
+        <!-- 第二列 -->
+        <div>
+            <div style="width: 100px; height: 100px; background: darkcyan;">
+                <div style="margin-top: 50px; width: 50px; height: 50px; background: hotpink;"></div>
+            </div>
+        </div>
     </div>
-</div></div>  
+</div>
+<br></div>  
 <pre data-role="codeBlock" data-info="css" class="language-css"><span class="token selector"><span class="token class">.box1</span></span> <span class="token punctuation">{</span> <span class="token property">background</span><span class="token punctuation">:</span> <span class="token color">darkcyan</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
 <span class="token selector"><span class="token class">.box2</span></span> <span class="token punctuation">{</span> <span class="token property">margin-top</span><span class="token punctuation">:</span> <span class="token number">50</span><span class="token unit">px</span><span class="token punctuation">;</span> <span class="token property">background</span><span class="token punctuation">:</span> <span class="token color">hotpink</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
 </pre><p><strong>&#x89E3;&#x51B3;&#x5916;&#x8FB9;&#x754C;&#x4F20;&#x9012;</strong>&#xFF1A;</p>
@@ -748,62 +773,91 @@ pre[data-line] .line-highlight[data-end]:after {
     .ResolveDeliver:before {content: ''; display: table;}
 </style>
 <div style="background: bisque; width: 200px;">
-    <hr style="padding: 0; margin: 0;">
-    <div class="ResolveDeliver" style="width: 100px; height: 100px; background: darkcyan;">
-        <div style="margin-top: 50px; width: 50px; height: 50px; background: hotpink;"></div>
+    <hr style="padding: 0; margin: 0; background-color: lime">
+    <div style="display: flex; flex-direction: row">
+        <!-- 第一列 -->
+        <div>
+            <div style="width: 5px; height: 50px; background: black;"></div>
+            <div style="width: 5px; height: 50px; background: white;"></div>
+        </div>
+        <!-- 第二列 -->
+        <div>
+            <div class="ResolveDeliver" style="width: 100px; height: 100px; background: darkcyan;">
+                <div style="margin-top: 50px; width: 50px; height: 50px; background: hotpink;"></div>
+            </div>
+        </div>
     </div>
-</div></div>  
+</div>
+<br></div>  
 <pre data-role="codeBlock" data-info="css" class="language-css"><span class="token comment">/* box1&#x8FFD;&#x52A0;&#x7C7B; */</span>
 <span class="token selector"><span class="token class">.ResolveDeliver</span><span class="token pseudo-element">:before</span></span> <span class="token punctuation">{</span><span class="token property">content</span><span class="token punctuation">:</span> <span class="token string">&apos;&apos;</span><span class="token punctuation">;</span> <span class="token property">display</span><span class="token punctuation">:</span> table<span class="token punctuation">;</span><span class="token punctuation">}</span>
 <span class="token selector"><span class="token class">.box1</span></span> <span class="token punctuation">{</span> <span class="token property">background</span><span class="token punctuation">:</span> <span class="token color">darkcyan</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
 <span class="token selector"><span class="token class">.box2</span></span> <span class="token punctuation">{</span> <span class="token property">margin-top</span><span class="token punctuation">:</span> <span class="token number">50</span><span class="token unit">px</span><span class="token punctuation">;</span> <span class="token property">background</span><span class="token punctuation">:</span> <span class="token color">hotpink</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
-</pre><h3 class="mume-header" id="overflow">Overflow</h3>
+</pre><h3 class="mume-header" id="%E5%86%85%E5%AE%B9%E6%BA%A2%E5%87%BA">&#x5185;&#x5BB9;&#x6EA2;&#x51FA;</h3>
 
-<p><strong>&#x76F4;&#x63A5;&#x53EF;&#x89C1;</strong>&#xFF1A;</p>
-<div><div style="background: bisque; width: 200px; overflow: visible">
-    <div style="background: darkcyan; width: 100px; height: 100px;">&#x8FD9;&#x662F;&#x80CC;&#x666F;
-        <div style="background: grey; width: 50px;">
-            <div>0</div><div>1</div><div>2</div><div>3</div><div>4</div>
+<pre data-role="codeBlock" data-info="css" class="language-css"><span class="token comment">/* visible | hidden | scroll | auto */</span>
+<span class="token property">overflow</span><span class="token punctuation">:</span> ?<span class="token punctuation">;</span>
+</pre><p><strong>&#x76F4;&#x63A5;&#x53EF;&#x89C1;</strong>&#xFF1A;</p>
+<div><div style="background: bisque; color: black; width: 200px; overflow: visible">
+    <hr style="padding: 0; margin: 0; background-color: lime">
+    <div style="background: darkcyan; width: 100px; height: 100px;">
+        <div style="height: 25px;">0</div>
+        <div style="background: hotpink; width: 50px;">
+            <div style="height: 25px; background: grey;">1</div>
+            <div style="height: 25px; background: darkgray;">2</div>
+            <div style="height: 25px; background: grey;">3</div>
+            <div style="height: 25px; background: darkgray;">4</div>
+            <div style="height: 25px; background: grey;">5</div>
         </div>
     </div>
-</div></div>  
-<p><br><br></p>
+</div>
+<br><br><br>
+</div>  
 <p><strong>&#x4E0D;&#x53EF;&#x89C1;</strong>&#xFF1A;</p>
-<div><div style="background: bisque; width: 200px; overflow: hidden">
-    <div style="background: darkcyan; width: 100px; height: 100px;">&#x8FD9;&#x662F;&#x80CC;&#x666F;
-        <div style="background: grey; width: 50px;">
-            <div>0</div><div>1</div><div>2</div><div>3</div><div>4</div>
+<div><div style="background: bisque; color: black; width: 200px; overflow: hidden">
+    <hr style="padding: 0; margin: 0; background-color: lime">
+    <div style="background: darkcyan; width: 100px; height: 100px;">
+        <div style="height: 25px;">0</div>
+        <div style="background: hotpink; width: 50px;">
+            <div style="height: 25px; background: grey;">1</div>
+            <div style="height: 25px; background: darkgray;">2</div>
+            <div style="height: 25px; background: grey;">3</div>
+            <div style="height: 25px; background: darkgray;">4</div>
+            <div style="height: 25px; background: grey;">5</div>
         </div>
     </div>
-</div></div>  
+</div>
+<br></div>  
 <p><strong>&#x589E;&#x52A0;&#x6EDA;&#x52A8;&#x6761;</strong>&#xFF1A;</p>
-<div><div style="background: bisque; width: 200px; overflow: scroll">
-    <div style="background: darkcyan; width: 100px; height: 100px;">&#x8FD9;&#x662F;&#x80CC;&#x666F;
-        <div style="background: grey; width: 50px;">
-            <div>0</div><div>1</div><div>2</div><div>3</div><div>4</div>
+<div><div style="background: bisque; color: black; width: 200px; overflow: scroll">
+    <hr style="padding: 0; margin: 0; background-color: lime">
+    <div style="background: darkcyan; width: 100px; height: 100px;">
+        <div style="height: 25px;">0</div>
+        <div style="background: hotpink; width: 50px;">
+            <div style="height: 25px; background: grey;">1</div>
+            <div style="height: 25px; background: darkgray;">2</div>
+            <div style="height: 25px; background: grey;">3</div>
+            <div style="height: 25px; background: darkgray;">4</div>
+            <div style="height: 25px; background: grey;">5</div>
         </div>
     </div>
-</div></div>  
+</div>
+<br></div>  
 <p><strong>&#x6EA2;&#x51FA;&#x540E;&#x518D;&#x81EA;&#x52A8;&#x589E;&#x52A0;&#x6EDA;&#x52A8;&#x6761;</strong>&#xFF1A;</p>
-<div><div style="background: bisque; width: 200px; overflow: auto">
-    <div style="background: darkcyan; width: 100px; height: 100px;">&#x8FD9;&#x662F;&#x80CC;&#x666F;
-        <div style="background: grey; width: 50px;">
-            <div>0</div><div>1</div><div>2</div><div>3</div><div>4</div>
+<div><div style="background: bisque; color: black; width: 200px; overflow: auto">
+    <hr style="padding: 0; margin: 0; background-color: lime">
+    <div style="background: darkcyan; width: 100px; height: 100px;">
+        <div style="height: 25px;">0</div>
+        <div style="background: hotpink; width: 50px;">
+            <div style="height: 25px; background: grey;">1</div>
+            <div style="height: 25px; background: darkgray;">2</div>
+            <div style="height: 25px; background: grey;">3</div>
+            <div style="height: 25px; background: darkgray;">4</div>
+            <div style="height: 25px; background: grey;">5</div>
         </div>
     </div>
-</div></div>  
-<h3 class="mume-header" id="container">Container</h3>
-
-<p><strong>Block&#x5BB9;&#x5668;</strong>&#xFF1A;</p>
-<div><div style="display: block; background: bisque; width: 200px;">
-    <div style="display: inline-block; width: 50%; background: cadetblue;">50%</div>
-    <div style="display: inline-block; width: 50%; background: lightskyblue;">50%</div>
-</div></div>  
-<p><strong>Flex&#x5BB9;&#x5668;</strong>&#xFF1A;</p>
-<div><div style="display: flex; background: bisque; width: 200px">
-    <div style="display: inline-block; width: 50%; background: cadetblue;">50%</div>
-    <div style="display: inline-block; width: 50%; background: lightskyblue;">50%</div>
-</div></div>  
+</div>
+<br></div>  
 <h2 class="mume-header" id="%E5%B8%83%E5%B1%80">&#x5E03;&#x5C40;</h2>
 
 <h3 class="mume-header" id="position">Position</h3>
@@ -828,58 +882,66 @@ pre[data-line] .line-highlight[data-end]:after {
 </pre><h3 class="mume-header" id="floatsrcfloathtml"><a href="./src/float.html">Float</a></h3>
 
 <p><strong>&#x5B50;&#x5143;&#x7D20;&#x4E0D;&#x80FD;&#x6491;&#x5F00;&#x7236;&#x5143;&#x7D20;</strong>&#xFF1A;</p>
-<div><div style="background: bisque; width: 600px">
-    <hr style="padding: 0; margin: 0;">
+<div><div style="background: bisque; color:black; width: 600px">
+    <hr style="padding: 0; margin: 0; background-color: lime">
     <div style="float: left; width: 75px; height: 75px; background: darkcyan;">1</div>
     <div style="float: left; width: 75px; height: 75px; background: fuchsia;">2</div>
     <div style="float: right; width: 75px; height: 75px; background: brown;">3</div>
     <div style="float: right; width: 75px; height: 75px; background: cornflowerblue;">4</div>
     &#x7236;&#x5143;&#x7D20;&#x5185;&#x5BB9;
-</div><div style="background: coral; width: 600px">&#x6D6E;&#x52A8;&#x540E;&#x5185;&#x5BB9;</div></div>  
-<br>
+</div><div style="background: Coral; color:black; width: 600px">&#x6D6E;&#x52A8;&#x540E;&#x5185;&#x5BB9;</div>
+</div><div style="background: OrangeRed; color:black; width: 600px; clear: both">Clear&#x540E;&#x5185;&#x5BB9;</div>
+<br>  
 <p><strong>&#x89E3;&#x51B3;&#x6D6E;&#x52A8;&#x584C;&#x9677;1</strong>&#xFF1A;</p>
 <div><style>
-    .ResolveCollapse1 {overflow: hidden; zoom:1}
-    .ResolveCollapse1 { zoom:1 }
+    .ResolveCollapse1 {overflow: hidden}
 </style>
-<div class="ResolveCollapse1" style="background: bisque; width: 600px">
-    <hr style="padding: 0; margin: 0;">
+<div class="ResolveCollapse1" style="background: bisque; color:black; width: 600px">
+    <hr style="padding: 0; margin: 0; background-color: lime">
     <div style="float: left; width: 75px; height: 75px; background: darkcyan;">1</div>
     <div style="float: left; width: 75px; height: 75px; background: fuchsia;">2</div>
     <div style="float: right; width: 75px; height: 75px; background: brown;">3</div>
     <div style="float: right; width: 75px; height: 75px; background: cornflowerblue;">4</div>
     &#x7236;&#x5143;&#x7D20;&#x5185;&#x5BB9;
-</div><div style="background: coral; width: 600px">&#x6D6E;&#x52A8;&#x540E;&#x5185;&#x5BB9;</div></div>  
-<p><strong>&#x6E05;&#x9664;&#x6D6E;&#x52A8;</strong>&#xFF1A;</p>
-<div><div style="background: bisque; width: 600px">
-    <hr style="padding: 0; margin: 0;">
-    <div style="float: left; width: 75px; height: 75px; background: darkcyan;">1</div>
-    <div style="float: left; width: 75px; height: 75px; background: fuchsia;">2</div>
-    <div style="float: right; width: 75px; height: 75px; background: brown;">3</div>
-    <div style="float: right; width: 75px; height: 75px; background: cornflowerblue;">4</div>
-    &#x7236;&#x5143;&#x7D20;&#x5185;&#x5BB9;
-</div><div style="background: coral; width: 600px; clear: both">&#x6D6E;&#x52A8;&#x540E;&#x5185;&#x5BB9;</div></div>  
-<p><strong>&#x89E3;&#x51B3;&#x6D6E;&#x52A8;&#x584C;&#x9677;2</strong>&#xFF1A;</p>
+</div><div style="background: coral; color:black; width: 600px">&#x6D6E;&#x52A8;&#x540E;&#x5185;&#x5BB9;</div>
+<br></div>  
+<pre data-role="codeBlock" data-info="css" class="language-css"><span class="token selector"><span class="token class">.ResolveCollapse1</span></span> <span class="token punctuation">{</span>
+    <span class="token property">overflow</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p><strong>&#x89E3;&#x51B3;&#x6D6E;&#x52A8;&#x584C;&#x9677;2</strong>&#xFF1A;</p>
 <div><style>
     .ResolveCollapse2:after {content: ''; display: block; clear: both}
 </style>
-<div class="ResolveCollapse2" style="background: bisque; width: 600px">
-    <hr style="padding: 0; margin: 0;">
+<div class="ResolveCollapse2" style="background: bisque; color:black; width: 600px">
+    <hr style="padding: 0; margin: 0; background-color: lime">
     <div style="float: left; width: 75px; height: 75px; background: darkcyan;">1</div>
     <div style="float: left; width: 75px; height: 75px; background: fuchsia;">2</div>
     <div style="float: right; width: 75px; height: 75px; background: brown;">3</div>
     <div style="float: right; width: 75px; height: 75px; background: cornflowerblue;">4</div>
     &#x7236;&#x5143;&#x7D20;&#x5185;&#x5BB9;
-</div><div style="background: coral; width: 600px">&#x6D6E;&#x52A8;&#x540E;&#x5185;&#x5BB9;</div></div>  
-<pre data-role="codeBlock" data-info="css" class="language-css"><span class="token comment">/* &#x89E3;&#x51B3;&#x6D6E;&#x52A8;&#x5E03;&#x5C40;&#x9AD8;&#x5EA6;&#x584C;&#x9677;&#x548C;&#x5916;&#x8FB9;&#x754C;&#x4F20;&#x9012;&#xFF08;&#x517C;&#x5BB9;IE6&#xFF09; */</span>
-<span class="token selector"><span class="token class">.clearfix</span></span> <span class="token punctuation">{</span><span class="token property">zoom</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">}</span>
-<span class="token selector"><span class="token class">.clearfix</span><span class="token pseudo-element">:before</span><span class="token punctuation">,</span> <span class="token class">.clearfix</span><span class="token pseudo-element">:after</span></span> <span class="token punctuation">{</span>
+</div><div style="background: coral; color:black; width: 600px">&#x6D6E;&#x52A8;&#x540E;&#x5185;&#x5BB9;</div>
+<br></div>  
+<pre data-role="codeBlock" data-info="css" class="language-css"><span class="token selector"><span class="token class">.ResolveCollapse2</span><span class="token pseudo-element">:after</span></span> <span class="token punctuation">{</span>
     <span class="token property">content</span><span class="token punctuation">:</span> <span class="token string">&apos;&apos;</span><span class="token punctuation">;</span>
     <span class="token property">display</span><span class="token punctuation">:</span> table<span class="token punctuation">;</span>
     <span class="token property">clear</span><span class="token punctuation">:</span> both<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </pre><h3 class="mume-header" id="flex">Flex</h3>
 
+<p><strong>Block&#x5BB9;&#x5668;</strong>&#xFF1A;</p>
+<div><div style="display: block; background: bisque; color:black; width: 200px;">
+    <div style="display: inline-block; width: 50%; background: cadetblue;">50%</div>
+    <div style="display: inline-block; width: 50%; background: lightskyblue;">50%</div>
+    <div style="display: inline-block; width: 100%; background: orangered;">100%</div>
+</div>
+<br></div>  
+<p><strong>Flex&#x5BB9;&#x5668;</strong>&#xFF1A;</p>
+<div><div style="display: flex; flex-wrap: wrap; background: bisque; color:black; width: 200px">
+    <div style="display: inline-block; width: 50%; background: cadetblue;">50%</div>
+    <div style="display: inline-block; width: 50%; background: lightskyblue;">50%</div>
+    <div style="display: inline-block; width: 100%; background: orangered;">100%</div>
+</div>
+<br></div>  
 <p><strong>&#x5BB9;&#x5668;&#x5C5E;&#x6027;</strong>&#xFF1A;</p>
 <pre data-role="codeBlock" data-info="css" class="language-css"><span class="token punctuation">{</span>
     <span class="token comment">/* &#x4E3B;&#x8F74;&#x65B9;&#x5411;: &#x5DE6;&#x53F3;&#x6C34;&#x5E73;(&#x9ED8;&#x8BA4;) | &#x53F3;&#x5DE6;&#x6C34;&#x5E73; | &#x4E0A;&#x4E0B;&#x5782;&#x76F4; | &#x4E0B;&#x4E0A;&#x5782;&#x76F4; */</span>
@@ -892,31 +954,232 @@ pre[data-line] .line-highlight[data-end]:after {
     <span class="token comment">/* flex-flow: &lt;flex-direction&gt; &lt;flex-wrap&gt;; */</span>
 
     <span class="token comment">/* &#x6C34;&#x5E73;&#x5982;&#x4F55;&#x5BF9;&#x9F50;: &#x5DE6;&#xFF08;&#x9ED8;&#x8BA4;&#xFF09; | &#x53F3; | &#x4E2D; | &#x4E24;&#x7AEF; | &#x5047;&#x4E24;&#x7AEF; */</span>
-    <span class="token property">justify-content</span><span class="token punctuation">:</span> flex-start | flex-end | center | space-between | space-around<span class="token punctuation">;</span>
+    <span class="token property">justify-content</span><span class="token punctuation">:</span> flex-start | center | flex-end | space-between | space-around<span class="token punctuation">;</span>
 
     <span class="token comment">/* &#x5782;&#x76F4;&#x5982;&#x4F55;&#x5BF9;&#x9F50;: &#x5934; | &#x5C3E; | &#x4E2D;&#x5FC3;&#x8F74; | &#x6587;&#x672C;&#x4F4E;&#x7AEF; | &#x5360;&#x6EE1;&#x9AD8;&#x5EA6;&#xFF08;&#x9ED8;&#x8BA4;&#xFF09; */</span>
-    <span class="token property">align-items</span><span class="token punctuation">:</span> flex-start | flex-end | center | baseline | stretch<span class="token punctuation">;</span>
+    <span class="token property">align-items</span><span class="token punctuation">:</span> flex-start | center | flex-end | baseline | stretch<span class="token punctuation">;</span>
 
     <span class="token comment">/* &#x591A;&#x8F74;&#x5BF9;&#x9F50;: &#x53CC;&#x8F74;&#x8D77;&#x70B9; | &#x53CC;&#x8F74;&#x7EC8;&#x70B9; | &#x5C45;&#x4E2D; |&#x3000;&#x4E24;&#x7AEF; | &#x5047;&#x4E24;&#x7AEF; | &#x5360;&#x6EE1;&#x4EA4;&#x53C9;&#x8F74;&#xFF08;&#x9ED8;&#x8BA4;&#xFF09; */</span>
-    <span class="token property">align-content</span><span class="token punctuation">:</span> flex-start | flex-end | center | space-between | space-around | stretch<span class="token punctuation">;</span>
+    <span class="token property">align-content</span><span class="token punctuation">:</span> flex-start | center | flex-end | space-between | space-around | stretch<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre><ul>
-<li>justify-content
-<ul>
-<li><img src="images/justify-content.png" alt="justify-content"></li>
-</ul>
-</li>
-<li>align-items
-<ul>
-<li><img src="images/align-items.png" alt="align-items"></li>
-</ul>
-</li>
-<li>align-content
-<ul>
-<li><img src="images/align-content.png" alt="align-content"></li>
-</ul>
-</li>
-</ul>
+</pre><div><table style="text-align: center">
+    <thead>
+        <tr>
+            <th style="text-align: right"><code>justify-content</code></th>
+            <th style="text-align: left">&#x6837;&#x4F8B;</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- flex-start -->
+        <tr>
+            <td style="text-align: right"><code>flex-start</code></td>
+            <td>
+                <div style="display: flex; justify-content: flex-start; background: bisque; color:black; width: 300px;">
+                    <div style="display: inline-block; width: 50px; background: cadetblue;">A</div>
+                    <div style="display: inline-block; width: 80px; background: orangered;">B</div>
+                    <div style="display: inline-block; width: 50px; background: lightskyblue;">C</div>
+                </div>
+            </td>
+        </tr>
+        <!-- center  -->
+        <tr>
+            <td style="text-align: right"><code>center</code></td>
+            <td>
+                <div style="display: flex; justify-content: center; background: bisque; color:black; width: 300px;">
+                    <div style="display: inline-block; width: 50px; background: cadetblue;">A</div>
+                    <div style="display: inline-block; width: 80px; background: orangered;">B</div>
+                    <div style="display: inline-block; width: 50px; background: lightskyblue;">C</div>
+                </div>
+            </td>
+        </tr>
+        <!-- flex-end -->
+        <tr>
+            <td style="text-align: right"><code>flex-end</code></td>
+            <td>
+                <div style="display: flex; justify-content: flex-end; background: bisque; color:black; width: 300px;">
+                    <div style="display: inline-block; width: 50px; background: cadetblue;">A</div>
+                    <div style="display: inline-block; width: 80px; background: orangered;">B</div>
+                    <div style="display: inline-block; width: 50px; background: lightskyblue;">C</div>
+                </div>
+            </td>
+        </tr>
+        <!-- space-between -->
+        <tr>
+            <td style="text-align: right"><code>space-between</code></td>
+            <td>
+                <div style="display: flex; justify-content: space-between; background: bisque; color:black; width: 300px;">
+                    <div style="display: inline-block; width: 50px; background: cadetblue;">A</div>
+                    <div style="display: inline-block; width: 80px; background: orangered;">B</div>
+                    <div style="display: inline-block; width: 50px; background: lightskyblue;">C</div>
+                </div>
+            </td>
+        </tr>
+        <!-- space-around -->
+        <tr>
+            <td style="text-align: right"><code>space-around</code></td>
+            <td>
+                <div style="display: flex; justify-content: space-around; background: bisque; color:black; width: 300px;">
+                    <div style="display: inline-block; width: 50px; background: cadetblue;">A</div>
+                    <div style="display: inline-block; width: 80px; background: orangered;">B</div>
+                    <div style="display: inline-block; width: 50px; background: lightskyblue;">C</div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table></div>  
+<div><table style="text-align: center">
+    <thead>
+        <tr>
+            <th style="text-align: right"><code>align-items</code></th>
+            <th style="text-align: left">&#x6837;&#x4F8B;</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- flex-start -->
+        <tr>
+            <td style="text-align: right"><code>flex-start</code></td>
+            <td>
+                <div style="display: flex; align-items: flex-start; background: bisque; color:black; width: 200px; height: 60px;">
+                    <div style="display: inline-block; width: 50px; background: cadetblue; font-size: medium;">A</div>
+                    <div style="display: inline-block; width: 50px; background: orangered; font-size: xx-large;">B</div>
+                    <div style="display: inline-block; width: 50px; background: lightskyblue; font-size: xx-small;">C</div>
+                </div>
+            </td>
+        </tr>
+        <!-- center -->
+        <tr>
+            <td style="text-align: right"><code>center</code></td>
+            <td>
+                <div style="display: flex; align-items: center; background: bisque; color:black; width: 200px; height: 60px;">
+                    <div style="display: inline-block; width: 50px; background: cadetblue; font-size: medium;">A</div>
+                    <div style="display: inline-block; width: 50px; background: orangered; font-size: xx-large;">B</div>
+                    <div style="display: inline-block; width: 50px; background: lightskyblue; font-size: xx-small;">C</div>
+                </div>
+            </td>
+        </tr>
+        <!-- flex-end -->
+        <tr>
+            <td style="text-align: right"><code>flex-end</code></td>
+            <td>
+                <div style="display: flex; align-items: flex-end; background: bisque; color:black; width: 200px; height: 60px;">
+                    <div style="display: inline-block; width: 50px; background: cadetblue; font-size: medium;">A</div>
+                    <div style="display: inline-block; width: 50px; background: orangered; font-size: xx-large;">B</div>
+                    <div style="display: inline-block; width: 50px; background: lightskyblue; font-size: xx-small;">C</div>
+                </div>
+            </td>
+        </tr>
+        <!-- stretch -->
+        <tr>
+            <td style="text-align: right"><code>stretch</code></td>
+            <td>
+                <div style="display: flex; align-items: stretch; background: bisque; color:black; width: 200px; height: 60px;">
+                    <div style="display: inline-block; width: 50px; background: cadetblue; font-size: medium;">A</div>
+                    <div style="display: inline-block; width: 50px; background: orangered; font-size: xx-large;">B</div>
+                    <div style="display: inline-block; width: 50px; background: lightskyblue; font-size: xx-small;">C</div>
+                </div>
+            </td>
+        </tr>
+        <!-- baseline -->
+        <tr>
+            <td style="text-align: right"><code>baseline</code></td>
+            <td>
+                <div style="display: flex; align-items: baseline; background: bisque; color:black; width: 200px; height: 60px;">
+                    <div style="display: inline-block; width: 50px; background: cadetblue; font-size: medium;">A</div>
+                    <div style="display: inline-block; width: 50px; background: orangered; font-size: xx-large;">B</div>
+                    <div style="display: inline-block; width: 50px; background: lightskyblue; font-size: xx-small;">C</div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table></div>  
+<div><table style="text-align: center">
+    <thead>
+        <tr>
+            <th style="text-align: right"><code>align-content</code></th>
+            <th style="text-align: left">&#x6837;&#x4F8B;</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- flex-start -->
+        <tr>
+            <td style="text-align: right"><code>flex-start</code></td>
+            <td>
+                <div style="display: flex; flex-wrap: wrap; align-content: flex-start; background: bisque; color:black; width: 100px; height: 80px;">
+                    <div style="display: inline-block; width: 15px; background: cadetblue;">A</div>
+                    <div style="display: inline-block; width: 50px; background: orangered;">B</div>
+                    <div style="display: inline-block; width: 30px; background: lightskyblue;">C</div>
+                    <div style="display: inline-block; width: 40px; background: hotpink;">D</div>
+                    <div style="display: inline-block; width: 20px; background: gold;">E</div>
+                </div>
+            </td>
+        </tr>
+        <!-- center -->
+        <tr>
+            <td style="text-align: right"><code>center</code></td>
+            <td>
+                <div style="display: flex; flex-wrap: wrap; align-content: center; background: bisque; color:black; width: 100px; height: 80px;">
+                    <div style="display: inline-block; width: 15px; background: cadetblue;">A</div>
+                    <div style="display: inline-block; width: 50px; background: orangered;">B</div>
+                    <div style="display: inline-block; width: 30px; background: lightskyblue;">C</div>
+                    <div style="display: inline-block; width: 40px; background: hotpink;">D</div>
+                    <div style="display: inline-block; width: 20px; background: gold;">E</div>
+                </div>
+            </td>
+        </tr>
+        <!-- flex-end -->
+        <tr>
+            <td style="text-align: right"><code>flex-end</code></td>
+            <td>
+                <div style="display: flex; flex-wrap: wrap; align-content: flex-end; background: bisque; color:black; width: 100px; height: 80px;">
+                    <div style="display: inline-block; width: 15px; background: cadetblue;">A</div>
+                    <div style="display: inline-block; width: 50px; background: orangered;">B</div>
+                    <div style="display: inline-block; width: 30px; background: lightskyblue;">C</div>
+                    <div style="display: inline-block; width: 40px; background: hotpink;">D</div>
+                    <div style="display: inline-block; width: 20px; background: gold;">E</div>
+                </div>
+            </td>
+        </tr>
+        <!-- space-between -->
+        <tr>
+            <td style="text-align: right"><code>space-between</code></td>
+            <td>
+                <div style="display: flex; flex-wrap: wrap; align-content: space-between; background: bisque; color:black; width: 100px; height: 80px;">
+                    <div style="display: inline-block; width: 15px; background: cadetblue;">A</div>
+                    <div style="display: inline-block; width: 50px; background: orangered;">B</div>
+                    <div style="display: inline-block; width: 30px; background: lightskyblue;">C</div>
+                    <div style="display: inline-block; width: 40px; background: hotpink;">D</div>
+                    <div style="display: inline-block; width: 20px; background: gold;">E</div>
+                </div>
+            </td>
+        </tr>
+        <!-- space-around -->
+        <tr>
+            <td style="text-align: right"><code>space-around</code></td>
+            <td>
+                <div style="display: flex; flex-wrap: wrap; align-content: space-around; background: bisque; color:black; width: 100px; height: 80px;">
+                    <div style="display: inline-block; width: 15px; background: cadetblue;">A</div>
+                    <div style="display: inline-block; width: 50px; background: orangered;">B</div>
+                    <div style="display: inline-block; width: 30px; background: lightskyblue;">C</div>
+                    <div style="display: inline-block; width: 40px; background: hotpink;">D</div>
+                    <div style="display: inline-block; width: 20px; background: gold;">E</div>
+                </div>
+            </td>
+        </tr>
+        <!-- stretch -->
+        <tr>
+            <td style="text-align: right"><code>stretch</code></td>
+            <td>
+                <div style="display: flex; flex-wrap: wrap; align-content: stretch; background: bisque; color:black; width: 100px; height: 80px;">
+                    <div style="display: inline-block; width: 15px; background: cadetblue;">A</div>
+                    <div style="display: inline-block; width: 50px; background: orangered;">B</div>
+                    <div style="display: inline-block; width: 30px; background: lightskyblue;">C</div>
+                    <div style="display: inline-block; width: 40px; background: hotpink;">D</div>
+                    <div style="display: inline-block; width: 20px; background: gold;">E</div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table></div>  
 <p><strong>&#x5B50;&#x5BF9;&#x8C61;&#x5C5E;&#x6027;</strong>&#xFF1A;</p>
 <pre data-role="codeBlock" data-info="css" class="language-css"><span class="token punctuation">{</span>
     <span class="token comment">/* &#x9879;&#x76EE;&#x6392;&#x5217;&#x987A;&#x5E8F;&#xFF0C;&#x987A;&#x5E8F;&#x8D8A;&#x5C0F;&#x8D8A;&#x9760;&#x524D; */</span>
@@ -937,7 +1200,21 @@ pre[data-line] .line-highlight[data-end]:after {
     <span class="token comment">/* &#x5141;&#x8BB8;&#x5355;&#x4E2A;&#x5BF9;&#x8C61;&#x6709;&#x4E0E;&#x5176;&#x4ED6;&#x5BF9;&#x8C61;&#x4E0D;&#x4E00;&#x6837;&#x7684;&#x5BF9;&#x9F50;&#x65B9;&#x5F0F; */</span>
     <span class="token property">align-self</span><span class="token punctuation">:</span> auto | flex-start | flex-end | center | baseline | stretch<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre><iframe style="width: 500px; height: 1250px; border:none" src="src/flex.html"></iframe>
+</pre><p><strong>&#x5E94;&#x7528;</strong>&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="css" class="language-css"><span class="token comment">/* &#x5BB9;&#x5668;&#x4E3A;&#x4E00;&#x884C;&#xFF08;&#x5B50;&#x5BF9;&#x8C61;&#x6309;&#x5217;&#x6392;&#x5E03;&#xFF09; */</span>
+<span class="token selector"><span class="token class">.row</span></span> <span class="token punctuation">{</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+    <span class="token property">flex-wrap</span><span class="token punctuation">:</span> wrap<span class="token punctuation">;</span>
+    <span class="token property">flex-direction</span><span class="token punctuation">:</span> row<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* &#x5BB9;&#x5668;&#x4E3A;&#x4E00;&#x5217;&#xFF08;&#x5B50;&#x5BF9;&#x8C61;&#x6309;&#x884C;&#x6392;&#x5E03;&#xFF09; */</span>
+<span class="token selector"><span class="token class">.col</span></span> <span class="token punctuation">{</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+    <span class="token property">flex-wrap</span><span class="token punctuation">:</span> wrap<span class="token punctuation">;</span>
+    <span class="token property">flex-direction</span><span class="token punctuation">:</span> column<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><iframe style="width: 500px; height: 1250px; border:none" src="src/flex/flex-dice.html"></iframe>
 
       </div>
       

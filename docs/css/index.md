@@ -212,7 +212,7 @@ document.documentElement.scrollLeft
 document.documentElement.scrollTop
 ```
 
-### 垂直外边距折叠
+### 垂直外边距折叠及传递
 
 **相邻兄弟元素之间的垂直外边距以最大值决定**:
 
@@ -243,13 +243,16 @@ document.documentElement.scrollTop
 .box2 { margin-top: 50px; background: hotpink; }
 ```
 
-### Overflow
+### 内容溢出
+
+```css
+/* visible | hidden | scroll | auto */
+overflow: ?;
+```
 
 **直接可见**：
 
 @import "src/overflow/demo-visible.html"
-
-<br><br>
 
 **不可见**：
 
@@ -262,16 +265,6 @@ document.documentElement.scrollTop
 **溢出后再自动增加滚动条**：
 
 @import "src/overflow/demo-auto.html"
-
-### Container
-
-**Block容器**：
-
-@import "src/container/demo-block.html"
-
-**Flex容器**：
-
-@import "src/container/demo-flex.html"
 
 ## 布局
 
@@ -303,24 +296,22 @@ document.documentElement.scrollTop
 
 @import "src/float/demo-collapse.html"
 
-<br>
-
 **解决浮动塌陷1**：
 
 @import "src/float/demo-resolve1.html"
 
-**清除浮动**：
-
-@import "src/float/demo-clear.html"
+```css
+.ResolveCollapse1 {
+    overflow: hidden;
+}
+```
 
 **解决浮动塌陷2**：
 
 @import "src/float/demo-resolve2.html"
 
 ```css
-/* 解决浮动布局高度塌陷和外边界传递（兼容IE6） */
-.clearfix {zoom: 1}
-.clearfix:before, .clearfix:after {
+.ResolveCollapse2:after {
     content: '';
     display: table;
     clear: both;
@@ -328,6 +319,14 @@ document.documentElement.scrollTop
 ```
 
 ### Flex
+
+**Block容器**：
+
+@import "src/flex/demo-container-block.html"
+
+**Flex容器**：
+
+@import "src/flex/demo-container-flex.html"
 
 **容器属性**：
 
@@ -343,22 +342,21 @@ document.documentElement.scrollTop
     /* flex-flow: <flex-direction> <flex-wrap>; */
 
     /* 水平如何对齐: 左（默认） | 右 | 中 | 两端 | 假两端 */
-    justify-content: flex-start | flex-end | center | space-between | space-around;
+    justify-content: flex-start | center | flex-end | space-between | space-around;
 
     /* 垂直如何对齐: 头 | 尾 | 中心轴 | 文本低端 | 占满高度（默认） */
-    align-items: flex-start | flex-end | center | baseline | stretch;
+    align-items: flex-start | center | flex-end | baseline | stretch;
 
     /* 多轴对齐: 双轴起点 | 双轴终点 | 居中 |　两端 | 假两端 | 占满交叉轴（默认） */
-    align-content: flex-start | flex-end | center | space-between | space-around | stretch;
+    align-content: flex-start | center | flex-end | space-between | space-around | stretch;
 }
 ```
 
-- justify-content
-  - ![justify-content](images/justify-content.png)
-- align-items
-  - ![align-items](images/align-items.png)
-- align-content
-  - ![align-content](images/align-content.png)
+@import "src/flex/demo-justify-content.html"
+
+@import "src/flex/demo-align-items.html"
+
+@import "src/flex/demo-align-content.html"
 
 **子对象属性**：
 
@@ -384,4 +382,22 @@ document.documentElement.scrollTop
 }
 ```
 
-<iframe style="width: 500px; height: 1250px; border:none" src="src/flex.html"></iframe>
+**应用**：
+
+```css
+/* 容器为一行（子对象按列排布） */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+/* 容器为一列（子对象按行排布） */
+.col {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+```
+
+<iframe style="width: 500px; height: 1250px; border:none" src="src/flex/flex-dice.html"></iframe>
