@@ -286,6 +286,7 @@ pre[data-line] .line-highlight[data-end]:after {
 <li><a href="#%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89">&#x53D8;&#x91CF;&#x5B9A;&#x4E49;</a></li>
 <li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2">&#x5B57;&#x7B26;&#x4E32;</a></li>
 <li><a href="#%E8%A7%A3%E6%9E%84">&#x89E3;&#x6784;</a></li>
+<li><a href="#proxy">Proxy</a></li>
 <li><a href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1">&#x9762;&#x5411;&#x5BF9;&#x8C61;</a></li>
 <li><a href="#set">Set</a></li>
 <li><a href="#map">Map</a></li>
@@ -306,10 +307,6 @@ pre[data-line] .line-highlight[data-end]:after {
 </ul>
 </li>
 </ul>
-<blockquote>
-<p><strong>&#x6309;&#x8BED;&#x6CD5;&#x7248;&#x672C;</strong>&#xFF1A;ES5&#x3001;ES6&#x3001;ES+&#x3001;TS<br>
-<strong>&#x6309;&#x8FD0;&#x884C;&#x73AF;&#x5883;</strong>&#xFF1A;WebJS&#x3001;NodeJS</p>
-</blockquote>
 <h2 class="mume-header" id="js-doc">JS Doc</h2>
 
 <p><strong>&#x53D8;&#x91CF;&#x7C7B;&#x578B;&#x6807;&#x8BB0;</strong>&#xFF1A;</p>
@@ -828,6 +825,29 @@ can you stop angry now?</span><span class="token template-punctuation string">`<
         <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token constant">A</span><span class="token punctuation">,</span> <span class="token constant">B</span><span class="token punctuation">,</span> <span class="token constant">D</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
+</pre><h3 class="mume-header" id="proxy">Proxy</h3>
+
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword keyword-let">let</span> target <span class="token operator">=</span> <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">&apos;&apos;</span><span class="token punctuation">,</span>
+    age<span class="token operator">:</span> <span class="token number">0</span>
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-let">let</span> handler <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">get</span><span class="token operator">:</span> <span class="token keyword keyword-function">function</span><span class="token punctuation">(</span><span class="token parameter">target<span class="token punctuation">,</span> key</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">&apos;get&apos;</span><span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword control-flow keyword-return">return</span> target<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">set</span><span class="token operator">:</span> <span class="token keyword keyword-function">function</span><span class="token punctuation">(</span><span class="token parameter">target<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">&apos;set&apos;</span><span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        target<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-let">let</span> proxy <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">Proxy</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> handler<span class="token punctuation">)</span>
+proxy<span class="token punctuation">.</span><span class="token property-access">name</span> <span class="token operator">=</span> <span class="token string">&quot;Tom&quot;</span>  <span class="token comment">// &#x5B9E;&#x9645;&#x6267;&#x884C; handler.set</span>
+proxy<span class="token punctuation">.</span><span class="token property-access">age</span> <span class="token operator">=</span> <span class="token number">25</span>      <span class="token comment">// &#x5B9E;&#x9645;&#x6267;&#x884C; handler.set</span>
+proxy<span class="token punctuation">.</span><span class="token property-access">name</span>          <span class="token comment">// &#x5B9E;&#x9645;&#x6267;&#x884C; handler.get</span>
+proxy<span class="token punctuation">.</span><span class="token property-access">age</span>           <span class="token comment">// &#x5B9E;&#x9645;&#x6267;&#x884C; handler.get</span>
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span>
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>proxy<span class="token punctuation">)</span>
 </pre><h3 class="mume-header" id="%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1">&#x9762;&#x5411;&#x5BF9;&#x8C61;</h3>
 
 <pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword keyword-class">class</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
