@@ -33,6 +33,8 @@
 
 ### [Vant](https://vant-contrib.oschina.io/vant-weapp)
 
+### [Taro](https://taro.jd.com/)
+
 ### [Katex](https://katex.org/docs/api.html)
 
 ### [Mermaid](https://mermaid-js.github.io/mermaid)
