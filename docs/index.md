@@ -15,4 +15,24 @@
 
 ## [Vue](./vue/index.html)
 
-## [Electron](./electron/index.html)
+## Others
+
+### Video
+
+### WebSocket
+
+### WebGL
+
+### [BootCDN](https://www.bootcdn.cn/)
+
+### [Electron](https://www.electronjs.org/zh/docs/latest)
+
+### [Echarts](https://echarts.apache.org/examples/zh/index.html)
+
+### [Ant Design Vue](https://www.antdv.com)
+
+### [Vant](https://vant-contrib.oschina.io/vant-weapp)
+
+### [Katex](https://katex.org/docs/api.html)
+
+### [Mermaid](https://mermaid-js.github.io/mermaid)
