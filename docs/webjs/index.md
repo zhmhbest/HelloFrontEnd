@@ -308,96 +308,114 @@ const downloadText = (text, filename) => {
 };
 ```
 
-## OpenFile
+## File
+
+### Selector
 
 ```js
 /**
- * @callback onFilesSelectCallback
- * @param {FileList} files
- */
-/**
+ * 文件选择器
  * @constructor
- * @param {onFilesSelectCallback} [callback]
  */
-function FileSelector(callback) {
+ function FileSelector() {
     const self = this;
-    self.input = document.createElement('input');
-    self.input.type = 'file';
+
+    /** @param {FileList} files */
+    self.fn = (files) => {};
+    /** @type {HTMLInputElement} */
+    self.input = document.createElement("input");
+    self.input.type = "file";
+    /** @this {GlobalEventHandlers} @param {Event} ev */
+    self.input.onchange = function (ev) {
+        self.fn(self.input.files);
+    };
+
     /**
-     * @function
-     * @param {string} field
-     * @param {string} value
+     * 是否允许多文件
+     * @param {boolean} on
+     * @return {FileSelector}
      */
-    self.setAttribute = (field, value) => {
-        self.input.setAttribute(field, value);
-    }
+    self.multiple = (on) => {
+        if(on) {
+            self.input.setAttribute("multiple", "multiple");
+        } else {
+            self.input.removeAttribute("multiple");
+        }
+        return self;
+    };
+
     /**
-     * @function
-     * @param {onFilesSelectCallback} callback
+     * 限制文件类型
+     * @param {Array<string>} types
+     * @return {FileSelector}
      */
-    self.bindCallback = (callback) => {
-        /**
-         * @this {GlobalEventHandlers}
-         * @param {Event} ev
-         */
-         self.input.onchange = function (ev) {
-            callback(self.input.files);
-        };
-    }
+     self.accept = (types) => {
+        if(0 === types.length) {
+            self.input.removeAttribute("accept");
+        } else {
+            self.input.setAttribute("accept", types.join(","));
+        }
+        return self;
+    };
+
     /**
-     * @function
+     * 打开窗口（返回选择的文件）
+     * @return {Promise<FileList>}
      */
-    self.open = () => {
+    self.open = () => new Promise((resolve, reject) => {
+        self.fn = (files) => resolve(files);
         self.input.value = "";
         self.input.click();
-    }
-    //
-    if(undefined !== callback) {
-        self.bindCallback(callback);
-    }
+    });
 }
 
-/**
- * @callback onFileDoneCallback
- * @param {ArrayBuffer | string | null} content
- */
+// demo
+new FileSelector()
+    .multiple(true)
+    .accept(["application/pdf", "application/msword"])
+    .open().then(fs => {
+    console.log(fs);
+});
+```
 
+### Reader
+
+```js
 /**
  * @param {File | Blob} file
- * @param {onFileDoneCallback} callback
- * @param {string} [mode] 'b' | 'u' | 't'
+ * @param {string} [mode] 't' | 'u' | 'b'
+ * @return {Promise<ArrayBuffer | string | null>}
  */
-const readFileContent = (file, callback, mode) => {
+const readFileContent = (file, mode) => new Promise((resolve, reject) => {
     const reader = new FileReader();
-    if('b' === mode) {
-        // Binary
-        reader.readAsBinaryString(file);
+    if('t' === mode) {
+        // Text
+        reader.readAsText(file);
     } else if('u' === mode) {
         // Base64
         reader.readAsDataURL(file);
     } else {
-        // Text
-        reader.readAsText(file);
+        // Binary
+        reader.readAsBinaryString(file);
     }
     /**
      * @this {FileReader}
      * @param {ProgressEvent<FileReader>} ev
      */
     reader.onload = function (ev) {
-        callback(this.result)
+        resolve(this.result)
     }
-};
+});
 
 // demo
-(() => {
-    selector = new FileSelector((files) => {
-        console.log(files);
-        readFileContent(files[0], (content) => {
-            console.log(content);
-        }, 'b');
-    });
-    selector.open();
-})();
+new FileSelector()
+    .multiple(false)
+    .accept(["application/pdf", "application/msword"])
+    .open().then(fs => {
+    readFileContent(fs[0]).then(d => {
+        console.log(d);
+    })
+});
 ```
 
 ## XMLHttpRequest
