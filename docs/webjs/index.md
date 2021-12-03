@@ -7,6 +7,23 @@
 
 ## Screen
 
+![client_offser_scroll](images/client_offser_scroll.png)
+
+```js
+document.documentElement.clientWidth
+document.documentElement.clientHeight
+
+document.documentElement.offsetWidth
+document.documentElement.offsetHeight
+document.documentElement.offsetLeft
+document.documentElement.offsetTop
+
+document.documentElement.scrollWidth
+document.documentElement.scrollHeight
+document.documentElement.scrollLeft
+document.documentElement.scrollTop
+```
+
 ```js
 /**
  * 获取dom大小
