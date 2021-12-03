@@ -9,24 +9,48 @@
 ```js
 /**
  * 以左侧第一次发现的separator将字符串切割为两部分
- * @function String#splitFirstString
+ * @function String#splitFirst
  * @this {string}
  * @param {string} separator 切割字符
- * @return {Array<string>}
+ * @return {[string, string]}
  */
-String.prototype.splitFirstString = function(separator) {
+String.prototype.splitFirst = function(separator) {
     const s = this;
     const p = s.indexOf(separator);
     if (-1 === p) return [s, ""];
     return [
         s.substr(0, p),
-        s.substr(p + 1, s.length - p - 1)
+        s.substr(p + separator.length)
     ];
-}
-"1|2|3".splitFirstString("|");
-```
+};
 
-```js
+/**
+ * @dependency String.splitFirst
+ * String->Object
+ * @function String#parseUrlForm
+ * @this {string}
+ * @param {string} [sep] Separator
+ * @param {string} [eqs] Equal-sign
+ * @return {object}
+ */
+String.prototype.parseUrlForm = function(sep, eqs) {
+    sep = sep || '&';
+    eqs = eqs || '=';
+    const str = this;
+    let obj = {};
+    if (0 === str.length) return obj;
+    for (let item of str.split(sep)) {
+        let [k, v] = item.splitFirst(eqs);
+        Object.defineProperty(obj, k, {
+            // enumerable: false,
+            // configurable: false,
+            // writable: false,
+            value: JSON.parse(decodeURIComponent(v))
+        });
+    }
+    return obj;
+};
+
 /**
  * Object->String
  * @function Object#stringify
@@ -45,36 +69,11 @@ String.prototype.splitFirstString = function(separator) {
         ret.push(`${key}${eqs}${encodeURIComponent(JSON.stringify(val))}`);
     }
     return ret.join(sep);
-}
-
-/**
- * String->Object
- * @function String#parseUrlForm
- * @this {string}
- * @param {string} [sep] Separator
- * @param {string} [eqs] Equal-sign
- * @return {object}
- */
-String.prototype.parseUrlForm = function(sep, eqs) {
-    sep = sep || '&';
-    eqs = eqs || '=';
-    const str = this;
-    let obj = {};
-    if (0 === str.length) return obj;
-    for (let item of str.split(sep)) {
-        let [k, v] = item.split(eqs, 2);
-        Object.defineProperty(obj, k, {
-            // enumerable: false,
-            // configurable: false,
-            // writable: false,
-            value: JSON.parse(decodeURIComponent(v))
-        });
-    }
-    return obj;
-}
+};
 
 // demo
 (() => {
+    console.log("1||2||3".splitFirst("||"));
     const o1 = {
         x: 123,
         y: [4, 5, 6],

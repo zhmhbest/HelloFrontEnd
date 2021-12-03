@@ -113,7 +113,7 @@ pushOnHashChange((v) => {
 
 ```js
 /**
- * @dependency String.splitFirstString
+ * @dependency String.splitFirst
  * @dependency String.parseUrlForm
  * 读取Hash中的数据
  * @function
@@ -121,12 +121,12 @@ pushOnHashChange((v) => {
  * @return {object}
  */
 const getHashParamsData = (hashValue) => {
-    const [, v] = hashValue.splitFirstString('?');
+    const [, v] = hashValue.splitFirst('?');
     return v.parseUrlForm();
 };
 
 /**
- * @dependency String.splitFirstString
+ * @dependency String.splitFirst
  * @dependency Object.stringify
  * 设置Hash中的数据
  * @function
@@ -135,9 +135,15 @@ const getHashParamsData = (hashValue) => {
  */
 const setHashParamsData = (params) => {
     const hashValue = window.location.hash.toString().substr(1);
-    const [v, ] = hashValue.splitFirstString('?');
+    const [v, ] = hashValue.splitFirst('?');
     window.location.hash = `${v}?${params.stringify()}`;
 };
+
+// demo
+(() => {
+    setHashParamsData({x: 0, y: [1, 2, 3]});
+    console.log(getHashParamsData(window.location.hash.toString().substr(1)));
+})();
 ```
 
 ## Cookie
@@ -176,7 +182,10 @@ const setCookie = (name, value, expire, path) => {
     // K-V
     buffer.push(name.trim());
     buffer.push('=');
-    buffer.push(encodeURIComponent(JSON.stringify(value)));
+    // buffer.push(encodeURIComponent(JSON.stringify(value)));
+    buffer.push(
+        value instanceof Object ? JSON.stringify(value) : value
+    );
     // expire
     if (undefined !== expire) {
         buffer.push(';expires=');
@@ -213,27 +222,39 @@ const delCookie = (name, path) => {
     }
     document.cookie = buffer.join('');
 };
+```
 
-
+```js
 /**
+ * @dependency String.splitFirst
  * 加载Cookies
  * @function
  * @return {object}
  */
 const getCookies = () => {
     let obj = {};
-    const cookies = document.cookie.split(';');
+    if(0 === document.cookie.length) return obj;
+    const cookies = document.cookie.split('; ');
     for (let cookie of cookies) {
-        let [k, v] = cookie.trim().split('=');
+        let [k, v] = cookie.trim().splitFirst('=');
+        if(
+            v.startsWith('"') && v.endsWith('"') ||
+            v.startsWith('[') && v.endsWith(']') ||
+            v.startsWith('{') && v.endsWith('}')
+        ) v = JSON.parse(v);
+        // v = JSON.parse(decodeURIComponent(v))
         Object.defineProperty(obj, k, {
             // enumerable: false,
             // configurable: false,
             // writable: false,
-            value: JSON.parse(decodeURIComponent(v))
+            value: v
         });
     }
     return obj;
 };
+
+// demo
+getCookies();
 ```
 
 ## Download
