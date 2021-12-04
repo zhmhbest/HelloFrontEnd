@@ -17,24 +17,38 @@
 
 ## Others
 
-### Video
-
 ### WebSocket
 
-### WebGL
-
-### [BootCDN](https://www.bootcdn.cn/)
+### Video
 
 ### [Electron](https://www.electronjs.org/zh/docs/latest)
 
-### [Echarts](https://echarts.apache.org/examples/zh/index.html)
+### CDN
 
-### [Ant Design Vue](https://www.antdv.com)
+- [BootCDN](https://www.bootcdn.cn/)
+- [jsDelivr](https://www.jsdelivr.com/)
+- [Baidu](http://libs.baidu.com)：`ttp://libs.baidu.com/${库名}/${版本}/${文件名}`
 
-### [Vant](https://vant-contrib.oschina.io/vant-weapp)
+### WebGL
 
-### [Taro](https://taro.jd.com/)
+- [Three.js](https://threejs.org/)
 
-### [Katex](https://katex.org/docs/api.html)
+### UI Framework
 
-### [Mermaid](https://mermaid-js.github.io/mermaid)
+- PC
+  - [Ant Design Vue](https://www.antdv.com)
+  - [Vant](https://vant-contrib.oschina.io/vant-weapp)
+  - [Bootstrap Vue](https://bootstrap-vue.org/)
+  - [Element UI](https://element.eleme.cn/)
+- Mobile
+  - [Cube UI](https://didi.github.io/)
+  - [Taro](https://taro.jd.com/)
+  - [Mint](http://mint-ui.github.io/)
+  - [uni-app](https://uniapp.dcloud.io/)
+
+### Lib
+
+- [Echarts](https://echarts.apache.org/examples/zh/index.html)
+- [Katex](https://katex.org/docs/api.html)
+- [Mermaid](https://mermaid-js.github.io/mermaid)
+- [Luckysheet](https://mengshukeji.gitee.io/luckysheetdocs/zh/)
