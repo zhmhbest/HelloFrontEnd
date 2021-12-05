@@ -274,35 +274,3 @@ enumDirectory("C:/Windows/System32/Boot", (name, stat) => {
     }
 });
 ```
-
-## Http
-
-```js
-const http = require("http");
-const serverOptions = { port: 9999, host: "127.0.0.1" };
-const server = http.createServer((request, response) => {
-    const contentLength = parseInt(request.headers['content-length'] || '0');
-    response.writeHead(200, { 'Content-Type': 'text/plain' });
-    // Line
-    response.write(`HTTP${request.httpVersion} ${request.method} ${request.url}`);
-    response.write("\n");
-    // Headers
-    response.write(JSON.stringify(request.headers, undefined, "    "));
-    response.write("\n");
-    // Body
-    if (contentLength > 0) {
-        request.on('data', (chunk) => {
-            response.write(chunk);
-        });
-        request.on('end', () => {
-            response.end();
-        });
-    } else {
-        response.end();
-    }
-    // response.pipe(response);
-});
-server.listen(serverOptions.port, serverOptions.host, () => {
-    console.log("Web Server started at http://".concat(serverOptions.host, ":").concat(serverOptions.port));
-});
-```
