@@ -27,7 +27,7 @@
 
 - [BootCDN](https://www.bootcdn.cn/)
 - [jsDelivr](https://www.jsdelivr.com/)
-- [Baidu](http://libs.baidu.com)：`ttp://libs.baidu.com/${库名}/${版本}/${文件名}`
+- [Baidu](http://libs.baidu.com)：`http://libs.baidu.com/${库名}/${版本}/${文件名}`
 
 ### WebGL
 
