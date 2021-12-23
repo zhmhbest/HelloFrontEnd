@@ -84,7 +84,7 @@ node-gyp rebuild
 ```batch
 REM 在管理员命令窗口中输入
 REM C:\Windows\System32\CScript.exe "%1" %*
-reg add "HKCR\JSFile\Shell\Open\Command" /f /ve /t REG_SZ /d "\"%NODE_HOME%\bin\node.exe\" \"%1\" %*"
+reg add "HKCR\JSFile\Shell\Open\Command" /f /ve /t REG_SZ /d "\"%NODE_HOME%\node.exe\" \"%1\" %*"
 ```
 
 `.ts`
@@ -93,8 +93,8 @@ reg add "HKCR\JSFile\Shell\Open\Command" /f /ve /t REG_SZ /d "\"%NODE_HOME%\bin\
 npm -g i @types/node typescript ts-node
 REM 在管理员命令窗口中输入
 reg add "HKCR\.ts" /f /ve /t REG_SZ /d "TSFile"
-reg add "HKCR\TSFile\DefaultIcon" /f /ve /t REG_SZ /d "\"%NODE_HOME%\bin\node.exe\""
-reg add "HKCR\TSFile\Shell\Open\Command" /f /ve /t REG_SZ /d "\"%NODE_HOME%\bin\ts-node.cmd\" \"%1\" %*"
+reg add "HKCR\TSFile\DefaultIcon" /f /ve /t REG_SZ /d "\"%NODE_HOME%\node.exe\""
+reg add "HKCR\TSFile\Shell\Open\Command" /f /ve /t REG_SZ /d "\"%NODE_HOME%\node.exe\" \"%NODE_HOME%\node_modules\ts-node\dist\bin.js\" \"%1\" %*"
 ```
 
 ## Package
