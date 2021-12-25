@@ -3,52 +3,64 @@
 
 # [FrontEnd](https://github.com/zhmhbest/HelloFrontEnd)
 
-## [CSS](./css/index.html)
+## Style
 
-## [ECMAScript](./ecma/index.html)
+### [CSS](./css/index.html)
+
+### Stylus
+
+### LESS
+
+### SCSS
+
+## Script
+
+### [ECMA](./ecma/index.html)
 
 ### [WebJS](./webjs/index.html)
 
 ### [NodeJS](./nodejs/index.html)
 
-## [Webpack](./webpack/index.html)
+## BuildTools
 
-## [Vue](./vue/index.html)
+### [Webpack](./webpack/index.html)
 
-## Others
+### [Vue CLI](./vue-cli/index.html)
 
-### WebSocket
+## Framework
 
-### Video
+### [Vue](./vue/index.html)
 
-### [Electron](https://www.electronjs.org/zh/docs/latest)
+### React
 
-### CDN
+## UI
 
-- [BootCDN](https://www.bootcdn.cn/)
-- [jsDelivr](https://www.jsdelivr.com/)
-- [Baidu](http://libs.baidu.com)：`http://libs.baidu.com/${库名}/${版本}/${文件名}`
+|             UI | 适用端 | 地址                                 |
+| -------------: | :----: | :----------------------------------- |
+| Ant Design Vue |   PC   | <https://www.antdv.com>              |
+|  Bootstrap Vue |   PC   | <https://bootstrap-vue.org>          |
+|     Element UI |   PC   | <https://element.eleme.cn>           |
+|           Vant | Mobile | <https://vant-contrib.gitee.io/vant> |
+|        Cube UI | Mobile | <https://didi.github.io/cube-ui>     |
+|           Taro | Mobile | <https://taro.jd.com>                |
+|        uni-app | Mobile | <https://uniapp.dcloud.io>           |
+|           Mint | Mobile | <http://mint-ui.github.io>           |
 
-### WebGL
+## CDN
 
-- [Three.js](https://threejs.org/)
+|  CDN资源 | 地址                        |
+| -------: | :-----------------------   |
+|  BootCDN | <https://www.bootcdn.cn>   |
+| jsDelivr | <https://www.jsdelivr.com> |
 
-### UI Framework
+## Technologies
 
-- PC
-  - [Ant Design Vue](https://www.antdv.com)
-  - [Vant](https://vant-contrib.oschina.io/vant-weapp)
-  - [Bootstrap Vue](https://bootstrap-vue.org/)
-  - [Element UI](https://element.eleme.cn/)
-- Mobile
-  - [Cube UI](https://didi.github.io/)
-  - [Taro](https://taro.jd.com/)
-  - [Mint](http://mint-ui.github.io/)
-  - [uni-app](https://uniapp.dcloud.io/)
-
-### Lib
-
-- [Echarts](https://echarts.apache.org/examples/zh/index.html)
-- [Katex](https://katex.org/docs/api.html)
-- [Mermaid](https://mermaid-js.github.io/mermaid)
-- [Luckysheet](https://mengshukeji.gitee.io/luckysheetdocs/zh/)
+|       技术 | 说明               | 地址                                             |
+| ---------: | :----------------- | :----------------------------------------------- |
+|   Electron | 前端技术开发客户端 | <https://www.electronjs.org>                     |
+|    Echarts | 绘制图表           | <https://echarts.apache.org>                     |
+|     JSMpeg | 前端视频流播放     | <https://hub.fastgit.org/phoboslab/jsmpeg>       |
+|    ThreeJS | 3D可视化           | <https://threejs.org>                            |
+|      Katex | 数学公式展示       | <https://katex.org>                              |
+|    Mermaid | 流程图、UML图绘制  | <https://mermaid-js.github.io/mermaid>           |
+| Luckysheet | Excel表格          | <https://mengshukeji.gitee.io/LuckysheetDocs/zh> |

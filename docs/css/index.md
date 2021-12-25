@@ -28,7 +28,7 @@
 ## 隐藏元素
 
 ```css
-{
+? {
     /* 方法1：不占据页面空间 */
     display: none;
 
@@ -117,7 +117,7 @@
 [颜色表](html/color.html)
 
 ```css
-{
+? {
     /* 颜色名
      *   #RRGGBB
      *   rgb(<num:[0, 255]>, <num:[0, 255]>, <num:[0, 255]>)
@@ -140,7 +140,7 @@
 ## 字体
 
 ```css
-{
+? {
     /* 字体类型： Serif | Sans-serif | Monospace | Cursive | Fantasy */
     font-family: Serif;
     /* 可用逗号同时指定多个字体类型 */
@@ -168,7 +168,7 @@
 ![box](images/box.png)
 
 ```css
-{
+? {
     /* 内边距 */
     padding: top right bottom left;
 
@@ -202,8 +202,8 @@
 @import "src/marginfold/demo-max.html"
 
 ```css
-.box1 { margin-bottom: 100px; background: darkcyan; }
-.box2 { margin-top: 50px; background: hotpink; }
+.box1 { margin-bottom: 100px; background: DarkCyan; }
+.box2 { margin-top: 50px; background: HotPink; }
 ```
 
 **子元素的上外边距会传递给父元素**：
@@ -211,8 +211,8 @@
 @import "src/marginfold/demo-top.html"
 
 ```css
-.box1 { background: darkcyan; }
-.box2 { margin-top: 50px; background: hotpink; }
+.box1 { background: DarkCyan; }
+.box2 { margin-top: 50px; background: HotPink; }
 ```
 
 **解决外边界传递**：
@@ -220,18 +220,37 @@
 @import "src/marginfold/demo-resolve.html"
 
 ```css
-/* box1追加类 */
-.ResolveDeliver:before {content: ''; display: table;}
-.box1 { background: darkcyan; }
-.box2 { margin-top: 50px; background: hotpink; }
+.box1 { background: DarkCyan; }
+.box2 { margin-top: 50px; background: HotPink; }
+
+.box1:before { content: ''; display: table; }
 ```
 
 ### 内容溢出
 
 ```css
-/* visible | hidden | scroll | auto */
-overflow: ?;
+? {
+    overflow: ?; /* visible | hidden | scroll | auto */
+
+    overflow-x: scroll; /* 允许横向滚动 */
+    overflow-y: scroll; /* 允许纵向滚动 */
+}
+
+/* 整个滚动条 */
+::-webkit-scrollbar {}
+/* 箭头 */
+::-webkit-scrollbar-button {}
+/* 滑块 */
+::-webkit-scrollbar-thumb {}
+/* 轨道 */
+::-webkit-scrollbar-track {}
+/* 没有滑块的轨道部分 */
+::-webkit-scrollbar-track-piece {}
+/* 垂直滚动条和水平滚动条时交汇的部分 */
+::-webkit-scrollbar-corner {}
 ```
+
+@import "src/overflow/demo.css"
 
 **直接可见**：
 
@@ -314,7 +333,7 @@ overflow: ?;
 **容器属性**：
 
 ```css
-{
+? {
     /* 主轴方向: 左右水平(默认) | 右左水平 | 上下垂直 | 下上垂直 */
     flex-direction: row | row-reverse | column | column-reverse;
 
@@ -344,7 +363,7 @@ overflow: ?;
 **子对象属性**：
 
 ```css
-{
+? {
     /* 项目排列顺序，顺序越小越靠前 */
     order: <integer>;
 
@@ -384,3 +403,88 @@ overflow: ?;
 ```
 
 <iframe style="width: 500px; height: 1250px; border:none" src="src/flex/flex-dice.html"></iframe>
+
+## Media
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!--
+    width        ：宽度
+    initial-scale：初始的缩放比例
+    minimum-scale：允许用户缩放到的最小比例
+    maximum-scale：允许用户缩放到的最大比例
+    user-scalable：用户是否可以手动缩放
+-->
+```
+
+`min-width` & `max-width`：
+
+| width | 效果                                                         |
+| :---: | :----------------------------------------------------------- |
+|  119  | <iframe style="width: 119px; height: 20px; border:none" src="src/media/demo-width.html"></iframe> |
+|  120  | <iframe style="width: 120px; height: 20px; border:none" src="src/media/demo-width.html"></iframe> |
+|  121  | <iframe style="width: 121px; height: 20px; border:none" src="src/media/demo-width.html"></iframe> |
+|  239  | <iframe style="width: 239px; height: 20px; border:none" src="src/media/demo-width.html"></iframe> |
+|  240  | <iframe style="width: 240px; height: 20px; border:none" src="src/media/demo-width.html"></iframe> |
+|  241  | <iframe style="width: 241px; height: 20px; border:none" src="src/media/demo-width.html"></iframe> |
+
+```css
+/* 默认 */
+body {
+    background-color: darkcyan;
+}
+/* 可视宽度 [120, 240) */
+@media screen and (min-width:120px) and (max-width:240px) {
+    body {
+        background-color: springgreen;
+    }
+}
+/* 可视宽度 [0, 120) */
+@media screen and (max-width:120px) {
+    body {
+        background-color: hotpink;
+    }
+}
+```
+
+`orientation`：
+
+| 方向 | 效果                                                         |
+| ---: | :----------------------------------------------------------: |
+| 横屏 | <iframe style="width: 240px; height: 120px; border:none" src="src/media/demo-orientation.html"></iframe> |
+| 竖屏 | <iframe style="width: 120px; height: 240px; border:none" src="src/media/demo-orientation.html"></iframe> |
+
+```css
+/* 横屏 */
+@media screen and (orientation:landscape) {
+    body {
+        background-color: hotpink;
+    }
+}
+/* 竖屏 */
+@media screen and (orientation:portrait) {
+    body {
+        background-color: darkcyan;
+    }
+}
+```
+
+**横屏分类**：
+
+```css
+@media screen and (min-width: 1200px) {
+    /*  */
+}
+@media screen and(min-width: 960px) and (max-width: 1199px) {
+    /*  */
+}
+@media screen and(min-width: 768px) and (max-width: 959px) {
+    /*  */
+}
+@media screen and(min-width: 480px) and (max-width: 767px) {
+    /*  */
+}
+@media screen and (max-width: 479px) {
+    /*  */
+}
+```
