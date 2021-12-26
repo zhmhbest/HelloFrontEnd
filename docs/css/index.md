@@ -137,6 +137,39 @@
 }
 ```
 
+## 背景
+
+```css
+? {
+    /* 背景颜色（无图部分） */
+    background-color: #333;
+
+    /* 背景图像： url(图地址) */
+    background-image: url(bg.png);
+
+    /* 图像对齐位置：<top right bottom left | center> <top right bottom left | center> */
+    background-position: top left;
+
+    /* 图像对齐起点： border-box:边框起 | padding-box:内边起 | content-box:内容起 */
+    background-origin: border-box;
+
+    /* 图像适应范围： border-box | padding-box | content-box */
+    background-clip: border-box;
+
+    /* 图像尺寸： ?px ?px | ?% ?% | cover | contain */
+    background-size: cover;
+
+    /* 图像滚动： scroll | fixed */
+    background-attachment: fixed;
+
+    /* 图像重复： no-repeat | repeat, ... */
+    background-repeat: no-repeat;
+
+    /* 背景： color image repeat attachment position */
+    background: #333 url(bg.png) no-repeat fixed top;
+}
+```
+
 ## 字体
 
 ```css
@@ -160,40 +193,86 @@
     /* 简写 */
     /* font: style family; */
     /* font: style weight size family; */
+
+    /* 字体拉伸： normal | wider | narrower | ... */
+    font-stretch: normal;
+
+    /* 字体阴影： <h-shadow:水平偏移> <v-shadow:垂直偏移> [blur:模糊程度] [color:阴影颜色] */
+    text-shadow: 5px 5px 5px #FF0000;
+
+    /* 字体溢出： clip:裁去溢出区 | ellipsis:显示省略号 */
+    text-overflow: ellipsis;
+
+    /* 长单词换行： normal | break-word:长单词内可换行（单词新换行） */
+    word-wrap: normal;
+    /* 长单词换行： normal | break-all:长单词内可换行（多次切割占满空间） | keep-all:空格或标点换行 */
+    word-break: normal;
+
+    /* 字体线： none | overline:上划线 | line-through:删除线 | underline:下划线 */
+    text-decoration: none;
 }
 ```
+
+@import "src/font/demo-word.html"
 
 ## 盒子模型
 
 ![box](images/box.png)
 
+![缩写规则](./images/trbl.png)
+
 ```css
 ? {
-    /* 内边距 */
-    padding: top right bottom left;
+    /* 内边距： top right bottom left */
+    padding: 2px 2px 2px 2px;
+    /* padding-<top | right | bottom | left>: ?; */
 
-    /* 边框 */
-    border: width style color;
-    border-width: top right bottom left;
-    border-style: top right bottom left;
-    border-color: top right bottom left;
+    /* 外边距： top right bottom left */
+    margin: 2px 2px 2px 2px;
+    /* margin-<top | right | bottom | left>: ?; */
 
-    /* 外边距 */
-    margin: top right bottom left;
+    /* 边框： width style color */
+    border: 2px solid black;
+    /* border-<top | right | bottom | left>-<width | style | color>: ?; */
+    /* border-<top | right | bottom | left>: ? ? ?; */
+    /* border-<width | style | color>: ? ? ? ?; */
+
+    /* 轮廓： width style color */
+    outline: 2px solid red;
+    /* 轮廓偏移： offset */
+    outline-offset: 10px;
+
+    /* 圆角： top right bottom left */
+    border-radius: 30px 30px 30px 30px;
+
+    /* 盒子阴影： h-shadow v-shadow [blur] [spread:阴影大小] [color] [outset | inset] */
+    box-shadow: 10px 10px 5px pink;
+
+    /* 用户可调整： none | both | horizontal | vertical */
+    resize: none;
+
+    /* 盒子大小计算方式： content-box | border-box */
+    /* content-box 设置的是 content*/
+    /* border-box  设置的是 content + padding + border 的和 */
+    box-sizing: content-box;
 }
 ```
 
-![缩写规则](./images/trbl.png)
+`border-style`：
 
-| `border-style` | 效果 |
-| --:     | :-- |
-| `none` | 无边框 |
-| `hidden` | 无边框，用于解决`table`边框冲突 |
-| `dotted` | 点状 |
-| `dashed` | 虚线 |
-| `solid` | 实线 |
-| `double` | 双线 |
-| `inherit` | 从父元素继承 |
+@import "src/box/demo-style.html"
+
+`border-radius`：
+
+@import "src/box/demo-radius.html"
+
+`resize`：
+
+@import "src/box/demo-resize.html"
+
+`box-sizing`：
+
+@import "src/box/demo-sizing.html"
 
 ### 垂直外边距折叠及传递
 
