@@ -268,35 +268,88 @@ pre[data-line] .line-highlight[data-end]:after {
 <h2 class="mume-header" id="%E5%BC%95%E5%85%A5cdn%E8%B5%84%E6%BA%90">&#x5F15;&#x5165;CDN&#x8D44;&#x6E90;</h2>
 
 <p><code>vue.config.js</code></p>
-<pre data-role="codeBlock" data-info="js code_block=true class=&quot;line-numbers&quot;" class="language-javascript line-numbers"><span class="token keyword keyword-const">const</span> <span class="token maybe-class-name">BootCDN</span> <span class="token operator">=</span> <span class="token string">&apos;https://cdn.bootcdn.net/ajax/libs&apos;</span><span class="token punctuation">;</span>
+<pre data-role="codeBlock" data-info="js code_block=true class=&quot;line-numbers&quot;" class="language-javascript line-numbers"><span class="token comment">// https://cli.vuejs.org/config/#pages</span>
+<span class="token comment">// du -h --max-depth=1 ./dist</span>
+
+
+<span class="token doc-comment comment">/**
+ * &#x83B7;&#x53D6;CDN&#x8D44;&#x6E90;&#x5730;&#x5740;
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">}</span></span> <span class="token parameter">lib</span>
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">}</span></span> <span class="token parameter">ver</span>
+ * <span class="token keyword keyword-@param">@param</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">}</span></span> <span class="token optional-parameter"><span class="token punctuation">[</span><span class="token parameter">file</span><span class="token punctuation">]</span></span>
+ * <span class="token keyword keyword-@return">@return</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">}</span></span>
+ */</span>
+ <span class="token keyword keyword-const">const</span> <span class="token function-variable function">cdnUrl</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">lib<span class="token punctuation">,</span> ver<span class="token punctuation">,</span> file</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// &#x3010;bootcdn&#x3011; https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js</span>
+    <span class="token comment">// const cdnPath = &apos;https://cdn.bootcdn.net/ajax/libs&apos;;</span>
+    <span class="token comment">// file = file || `${lib}.min.js`;</span>
+    <span class="token comment">// return `${cdnPath}/${lib}/${ver}/${file}`;</span>
+
+    <span class="token comment">// &#x3010;jsdelivr&#x3011; https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js</span>
+    <span class="token keyword keyword-const">const</span> cdnPath <span class="token operator">=</span> <span class="token string">&apos;https://cdn.jsdelivr.net/npm&apos;</span><span class="token punctuation">;</span>
+    file <span class="token operator">=</span> file <span class="token operator">||</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">dist/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>lib<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">.min.js</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+    <span class="token keyword control-flow keyword-return">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>cdnPath<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>lib<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">@</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>ver<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>file<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+
+<span class="token doc-comment comment">/**
+ * CDN&#x8D44;&#x6E90;&#x8868;
+ */</span>
 <span class="token keyword keyword-const">const</span> cdnResources <span class="token operator">=</span> <span class="token punctuation">[</span>
     <span class="token punctuation">{</span>
         moduleName<span class="token operator">:</span> <span class="token string">&apos;axios&apos;</span><span class="token punctuation">,</span>
         globalName<span class="token operator">:</span> <span class="token string">&apos;axios&apos;</span><span class="token punctuation">,</span>
-        js<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token maybe-class-name">BootCDN</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/axios/0.21.1/axios.min.js</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">]</span>
+        js<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token function">cdnUrl</span><span class="token punctuation">(</span><span class="token string">&apos;axios&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;0.21.1&apos;</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token punctuation">{</span>
         moduleName<span class="token operator">:</span> <span class="token string">&apos;vue&apos;</span><span class="token punctuation">,</span>
         globalName<span class="token operator">:</span> <span class="token string">&apos;Vue&apos;</span><span class="token punctuation">,</span>
-        js<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token maybe-class-name">BootCDN</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/vue/2.6.11/vue.min.js</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">]</span>
+        js<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token function">cdnUrl</span><span class="token punctuation">(</span><span class="token string">&apos;vue&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;2.6.11&apos;</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token punctuation">{</span>
         moduleName<span class="token operator">:</span> <span class="token string">&apos;vuex&apos;</span><span class="token punctuation">,</span>
         globalName<span class="token operator">:</span> <span class="token string">&apos;Vuex&apos;</span><span class="token punctuation">,</span>
-        js<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token maybe-class-name">BootCDN</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/vuex/3.5.1/vuex.min.js</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">]</span>
+        js<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token function">cdnUrl</span><span class="token punctuation">(</span><span class="token string">&apos;vuex&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;3.5.1&apos;</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token punctuation">{</span>
         moduleName<span class="token operator">:</span> <span class="token string">&apos;vue-router&apos;</span><span class="token punctuation">,</span>
         globalName<span class="token operator">:</span> <span class="token string">&apos;VueRouter&apos;</span><span class="token punctuation">,</span>
-        js<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token maybe-class-name">BootCDN</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/vue-router/3.2.0/vue-router.min.js</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">]</span>
-    <span class="token punctuation">}</span>
+        js<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token function">cdnUrl</span><span class="token punctuation">(</span><span class="token string">&apos;vue-router&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;3.2.0&apos;</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+        moduleName<span class="token operator">:</span> <span class="token string">&apos;moment&apos;</span><span class="token punctuation">,</span>
+        globalName<span class="token operator">:</span> <span class="token string">&apos;moment&apos;</span><span class="token punctuation">,</span>
+        js<span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token function">cdnUrl</span><span class="token punctuation">(</span><span class="token string">&apos;moment&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;2.21.0&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;moment.min.js&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token function">cdnUrl</span><span class="token punctuation">(</span><span class="token string">&apos;moment&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;2.21.0&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;locale/zh-cn.js&apos;</span><span class="token punctuation">)</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+        moduleName<span class="token operator">:</span> <span class="token string">&apos;ant-design-vue&apos;</span><span class="token punctuation">,</span>
+        globalName<span class="token operator">:</span> <span class="token string">&apos;antd&apos;</span><span class="token punctuation">,</span>
+        js<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token function">cdnUrl</span><span class="token punctuation">(</span><span class="token string">&apos;ant-design-vue&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;1.7.6&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;dist/antd.min.js&apos;</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        css<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token function">cdnUrl</span><span class="token punctuation">(</span><span class="token string">&apos;ant-design-vue&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;1.7.6&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;dist/antd.min.css&apos;</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
 <span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword keyword-const">const</span> cdnExternals <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword keyword-function">function</span> <span class="token punctuation">(</span><span class="token parameter">rs</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword control-flow keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-let">let</span> r <span class="token keyword keyword-of">of</span> rs<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword keyword-this">this</span><span class="token punctuation">[</span>r<span class="token punctuation">.</span><span class="token property-access">moduleName</span><span class="token punctuation">]</span> <span class="token operator">=</span> r<span class="token punctuation">.</span><span class="token property-access">globalName</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> <span class="token keyword control-flow keyword-return">return</span> <span class="token keyword keyword-this">this</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">call</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> cdnResources<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token doc-comment comment">/**
+ * CDN&#x8D44;&#x6E90;&#x66FF;&#x6362;&#x8868;
+ */</span>
+<span class="token keyword keyword-const">const</span> cdnExternals <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-let">let</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token comment">/* moduleName: globalName */</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword control-flow keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-let">let</span> res <span class="token keyword keyword-of">of</span> cdnResources<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        obj<span class="token punctuation">[</span>res<span class="token punctuation">.</span><span class="token property-access">moduleName</span><span class="token punctuation">]</span> <span class="token operator">=</span> res<span class="token punctuation">.</span><span class="token property-access">globalName</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword control-flow keyword-return">return</span> obj<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>cdnResources<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>cdnExternals<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 
+<span class="token doc-comment comment">/**
+ * exports
+ */</span>
 module<span class="token punctuation">.</span><span class="token property-access">exports</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
     <span class="token comment">// publicPath: &apos;/&apos;,</span>
     configureWebpack<span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -313,7 +366,7 @@ module<span class="token punctuation">.</span><span class="token property-access
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><p><code>public/index.html</code></p>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><p><code>public/index.html</code></p>
 <pre data-role="codeBlock" data-info="ejs code_block=true class=&quot;line-numbers&quot;" class="language-ejs line-numbers"><span class="token language-javascript"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token constant">DOCTYPE</span> html<span class="token operator">&gt;</span>
 <span class="token operator">&lt;</span>html lang<span class="token operator">=</span><span class="token string">&quot;&quot;</span><span class="token operator">&gt;</span>
   <span class="token operator">&lt;</span>head<span class="token operator">&gt;</span>
