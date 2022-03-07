@@ -21,7 +21,14 @@
     // 局部组件
     const comCard = {
         // 组建接受的属性值
-        props: ['title', 'content'],
+        // props: ['title', 'content'],
+        props: {
+            title: String,
+            content: {
+                type: String,
+                default: ""
+            },
+        },
         template: "<div @click='divEventClick'><B>{{title}}</B><p v-html='content'></p></div>",
         methods: {
             divEventClick: function () {

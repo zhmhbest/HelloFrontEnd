@@ -27,7 +27,8 @@ function collectHtmlCode(eleCollector, eleView) {
     const pre = document.createElement('pre');
     pre.className = "line-numbers"
         const code = document.createElement('code');
-        code.className = "match-braces rainbow-braces language-html"
+        // code.className = "match-braces rainbow-braces language-html"
+        code.className = "language-html"
         code.innerHTML = codeText.trim().replace(/</g, '&lt;').replace(/</g, '&gt;').replace(/ /g, '&nbsp;');
     pre.appendChild(code);
     eleView.appendChild(pre);
@@ -46,7 +47,8 @@ function finalRun(fn) {
  */
 if (null === window.onload) {
     window.onload = function() {
-        const cdnPrismURL = "https://cdn.bootcdn.net/ajax/libs/prism/1.23.0";
+        // const cdnPrismURL = "https://cdn.bootcdn.net/ajax/libs/prism/1.23.0";
+        const cdnPrismURL = "https://cdn.jsdelivr.net/npm/prismjs@1.27.0";
         // Style
         addStyle(`
 body{
@@ -67,15 +69,16 @@ div.view {
     margin-bottom: 50px;
 }
         `.trim());
+
         // Prism.js
         addLinkStyle(`${cdnPrismURL}/themes/prism-tomorrow.css`);
-        addScript(`${cdnPrismURL}/prism.js`);
+        addScript(`${cdnPrismURL}/prism.min.js`);
 
         // Prism.js Plugins
-        addLinkStyle(`${cdnPrismURL}/plugins/line-numbers/prism-line-numbers.css`);
+        addLinkStyle(`${cdnPrismURL}/plugins/line-numbers/prism-line-numbers.min.css`);
         addScript(`${cdnPrismURL}/plugins/line-numbers/prism-line-numbers.min.js`);
-        addLinkStyle(`${cdnPrismURL}/plugins/match-braces/prism-match-braces.css`);
-        addScript(`${cdnPrismURL}/plugins/match-braces/prism-match-braces.min.js`);
+        // addLinkStyle(`${cdnPrismURL}/plugins/match-braces/prism-match-braces.min.css`);
+        // addScript(`${cdnPrismURL}/plugins/match-braces/prism-match-braces.min.js`);
 
         // demo -> view
         const demoList = document.querySelectorAll('.demo');
